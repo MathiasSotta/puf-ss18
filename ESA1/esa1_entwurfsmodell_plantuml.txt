@@ -1,0 +1,63 @@
+@startuml
+' Erzeugen der UML-Grafik: http://www.plantuml.com/plantuml aufrufen > den Code von hier reinkopieren > auf "Submit" klicken
+' Hilfe zur Syntax von Klassendiagrammen: http://plantuml.com/class-diagram
+
+left to right direction
+
+Angehöriger - Hilfsangebot : nutzt >
+Angehöriger - Patient : gehört zu >
+
+Warteliste - Gesprächsgruppe : gehört zu >
+
+Hilfsangebot <|-- Kinderbetreuung
+Hilfsangebot <|-- Gesprächsgruppe
+Hilfsangebot <|-- Fahrdienst
+
+EhrenamtlMitarbeiter - Hilfsangebot : führt durch >
+
+Fahrdienst - Taxiunternehmen : beauftragt >
+Fahrdienst - Fahrt : führt durch >
+
+Person <|-- Patient
+Person <|-- EhrenamtlMitarbeiter
+Person <|-- Angehöriger
+
+
+class Person {
+}
+
+class Angehöriger {
+  AngehörigerID() : int
+}
+
+class EhrenamtlMitarbeiter {
+  EhrenamtlMitarbeiterID() : int
+}
+
+class Patient {
+  PatientID() : int
+  + isRollstuhlfahrer() : boolean
+}
+
+class Hilfsangebot {
+}
+
+class Fahrdienst {
+}
+
+class Fahrt {
+}
+
+class Taxiunternehmen {
+  + rufeTaxi()
+}
+
+class Kinderbetreuung {
+}
+
+class Gesprächsgruppe {
+}
+
+class Warteliste {
+}
+@enduml

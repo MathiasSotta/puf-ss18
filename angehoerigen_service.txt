@@ -1,0 +1,18 @@
+1. Ein Pflegeheim unterstützt die Anwesenheit von Angehörigen durch
+eine Reihe von Hilfsangeboten: Fahrdienst, Kinderbetreuung,
+Gesprächsgruppen. Angehörige sind Patienten eindeutig
+zugeordnet.
+
+2. Die Dienste werden von ehrenamtlichen Mitarbeitern ausgeführt..
+
+3. Im Fahrdienst können pro Fahrt im PKW max. 3 Personen befördert
+werden. Für Rollstuhlfahrer wird ein Taxiunternehmen beauftragt.
+
+4. An einer Gesprächsgruppe können jeweils 6 Angehörige
+teilnehmen.
+
+5. In der Kinderbetreuung können pro Mitarbeiter max. 4 Kinder
+betreut werden.
+
+6. Wegen der großen Nachfrage wird für die Teilnahme an
+Gesprächsgruppen eine Warteliste geführt.

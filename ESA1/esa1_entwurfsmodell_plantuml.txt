@@ -1,11 +1,11 @@
-@startuml
+﻿@startuml
 ' Erzeugen der UML-Grafik: http://www.plantuml.com/plantuml aufrufen > den Code von hier reinkopieren > auf "Submit" klicken
 ' Hilfe zur Syntax von Klassendiagrammen: http://plantuml.com/class-diagram
 
 left to right direction
 
 Angehöriger - Hilfsangebot : nutzt >
-Angehöriger - Patient : gehört zu >
+Angehöriger "1" -- "1" Patient : gehört zu >
 
 Warteliste - Gesprächsgruppe : gehört zu >
 
@@ -14,6 +14,7 @@ Hilfsangebot <|-- Gesprächsgruppe
 Hilfsangebot <|-- Fahrdienst
 
 EhrenamtlMitarbeiter - Hilfsangebot : führt durch >
+EhrenamtlMitarbeiter "4" -- "1" Kinderbetreuung: führt durch >
 
 Fahrdienst - Taxiunternehmen : beauftragt >
 Fahrdienst - Fahrt : führt durch >
@@ -21,7 +22,9 @@ Fahrdienst - Fahrt : führt durch >
 Person <|-- Patient
 Person <|-- EhrenamtlMitarbeiter
 Person <|-- Angehöriger
+Person "3"-- "1"Fahrt 
 
+Angehöriger "1"-- "6" Gesprächsgruppe
 
 class Person {
 }

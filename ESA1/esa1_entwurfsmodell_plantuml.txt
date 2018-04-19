@@ -66,10 +66,10 @@ class Fahrdienst {
 class Kinderbetreuung {
   - betreuer : arrayList
   - teilnehmer : arrayList
-  + getMitarbeiter()
+  + getBetreuer()
   + getTeilnehmer()
   + setTeilnehmer(kind : Kind)
-  + setMitarbeiter(mitarbeiter : EhrenamtlMitarbeiter[])
+  + setBetreuer(betreuer : EhrenamtlMitarbeiter[])
 }
 
 class Kind {

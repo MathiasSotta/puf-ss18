@@ -2,7 +2,9 @@
 ' Erzeugen der UML-Grafik: http://www.plantuml.com/plantuml aufrufen > den Code von hier reinkopieren > auf "Submit" klicken
 ' Hilfe zur Syntax von Klassendiagrammen: http://plantuml.com/class-diagram
 
+' Global-Options:
 left to right direction
+skinparam classAttributeIconSize 0
 
 Angehöriger - Hilfsangebot : nutzt >
 Angehöriger "1" -- "1" Patient : gehört zu >
@@ -14,7 +16,8 @@ Hilfsangebot <|-- Gesprächsgruppe
 Hilfsangebot <|-- Fahrdienst
 
 EhrenamtlMitarbeiter - Hilfsangebot : führt durch >
-EhrenamtlMitarbeiter "4" -- "1" Kinderbetreuung: führt durch >
+EhrenamtlMitarbeiter "4" -- "1" Kinderbetreuung
+Kinderbetreuung - Kind : betreut >
 
 Fahrdienst - Taxiunternehmen : beauftragt >
 Fahrdienst - Fahrt : führt durch >
@@ -22,52 +25,74 @@ Fahrdienst - Fahrt : führt durch >
 Person <|-- Patient
 Person <|-- EhrenamtlMitarbeiter
 Person <|-- Angehöriger
-Person "3"-- "1"Fahrt 
+Person "3" -- "1" Fahrt
+Person <|-- Kind 
 
-Angehöriger "1"-- "6" Gesprächsgruppe
+Angehöriger "1"-- "6" Gesprächsgruppe : nimmt teil >
 
-class Person {
-    name : String
+abstract class Person {
+  - name : String
 }
 
 class Angehöriger {
-  angehörigerID() : int
+  - angehörigerID : int
 }
 
 class EhrenamtlMitarbeiter {
-  ehrenamtlMitarbeiterID() : int
+  - ehrenamtlMitarbeiterID : int
 }
 
 class Patient {
-  patientID : int
-  isRollstuhlfahrer : boolean
+  - patientID : int
+  - isRollstuhlfahrer : boolean
+  - angehöriger : Angehöriger
 }
 
-class Hilfsangebot {
-    hilfsangebotID : int
-    uhrzeit : float
-    tag : String
-    treffpunkt : String
-    betreuer : EhrenamtlMitarbeiter
+abstract class Hilfsangebot {
+   - hilfsangebotID : int
+   - typ : String
+   - uhrzeit : float
+   - datum : String
+   - betreuer : EhrenamtlMitarbeiter
 }
 
 class Fahrdienst {
+   - treffpunkt : String
+   - rufeTaxi (uhrzeit : float, ort: String)
+   + getPassagiere()
+   + setPassagiere(person : Person[])
+}
+
+class Kinderbetreuung {
+  - betreuer : arrayList
+  - teilnehmer : arrayList
+  + getMitarbeiter()
+  + getTeilnehmer()
+  + setTeilnehmer(kind : Kind)
+  + setMitarbeiter(mitarbeiter : EhrenamtlMitarbeiter[])
+}
+
+class Kind {
+  - kindID : int
+}
+
+class Gesprächsgruppe {
+  + getTeilnehmer()
+  + setTeilnehmer(angehöriger : Angehöriger[])
+  + warteliste : Warteliste
+}
+
+class Warteliste {
+  - gesprächsgruppe : Gesprächsgruppe
+  + warteliste : arrayList
+  + getStack()
+  + pop(angehöriger: Angehöriger)
+  + push(angehöriger : Angehöriger)
 }
 
 class Fahrt {
 }
 
 class Taxiunternehmen {
-  + rufeTaxi (uhrzeit : float, ort: String)
-}
-
-class Kinderbetreuung {
-}
-
-class Gesprächsgruppe {
-}
-
-class Warteliste {
-    warteliste : arrayList
 }
 @enduml

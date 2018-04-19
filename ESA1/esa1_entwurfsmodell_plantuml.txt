@@ -27,22 +27,28 @@ Person "3"-- "1"Fahrt
 Angehöriger "1"-- "6" Gesprächsgruppe
 
 class Person {
+    name : String
 }
 
 class Angehöriger {
-  AngehörigerID() : int
+  angehörigerID() : int
 }
 
 class EhrenamtlMitarbeiter {
-  EhrenamtlMitarbeiterID() : int
+  ehrenamtlMitarbeiterID() : int
 }
 
 class Patient {
-  PatientID() : int
-  + isRollstuhlfahrer() : boolean
+  patientID : int
+  isRollstuhlfahrer : boolean
 }
 
 class Hilfsangebot {
+    hilfsangebotID : int
+    uhrzeit : float
+    tag : String
+    treffpunkt : String
+    betreuer : EhrenamtlMitarbeiter
 }
 
 class Fahrdienst {
@@ -52,7 +58,7 @@ class Fahrt {
 }
 
 class Taxiunternehmen {
-  + rufeTaxi()
+  + rufeTaxi (uhrzeit : float, ort: String)
 }
 
 class Kinderbetreuung {
@@ -62,5 +68,6 @@ class Gesprächsgruppe {
 }
 
 class Warteliste {
+    warteliste : arrayList
 }
 @enduml

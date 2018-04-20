@@ -85,9 +85,9 @@ class Gesprächsgruppe {
 class Warteliste {
   - gesprächsgruppe : Gesprächsgruppe
   + warteliste : arrayList
-  + getStack()
-  + pop(angehöriger: Angehöriger)
-  + push(angehöriger : Angehöriger)
+  + getQueue()
+  + enterQueue(angehöriger: Angehöriger)
+  + leaveQueue(angehöriger : Angehöriger)
 }
 
 class Fahrt {

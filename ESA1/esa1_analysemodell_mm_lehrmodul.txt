@@ -1,0 +1,64 @@
+@startuml
+
+title Analysemodell "Multimediales Lehrmodul"
+
+object Lehrmodul
+
+object Lehrtext
+object Kapitel
+object Unterkapitel
+object Übungsverzeichnis
+
+object Seite
+object Text
+object Visualisierung
+object Grafik
+object Animation
+object RollOverGrafik
+object Verweis
+
+object Glossar
+object Begriffsdefinition
+
+object Informationsmaterial
+
+object Übungsteil
+
+object Übung
+object Selbsttest
+object Einsendeübung
+object Lösung
+
+Lehrmodul "1" *-- "1" Lehrtext
+Lehrmodul "1" *-- "1" Informationsmaterial
+Lehrmodul "1" *-- "1" Übungsteil
+
+Übungsteil "1" *-- "1..*" Übung
+Übungsteil "1" *-- "1..*" Lösung
+Übung "1" <|-- "1" Einsendeübung
+Übung "1" <|-- "1" Selbsttest
+Lösung "1" -- "1" Selbsttest
+
+Lehrtext "1" *-- "1..*" Kapitel
+Lehrtext "1" *-- "1" Glossar
+Glossar "1" *-- "1..*" Begriffsdefinition
+Begriffsdefinition "1" -- "1..*" Seite
+
+Kapitel "1" *-- "1..*" Seite
+Kapitel "1" *-- "1" Übungsverzeichnis
+Kapitel "1" <|-- "0..*" Unterkapitel
+Unterkapitel "1" *-- "1..*" Seite
+
+Seite "1" o-- "1" Text
+Seite "1" o-- "1..*" Visualisierung
+Text "1" o-- "1..*" Verweis
+Verweis "1..*" -- "1..*" Seite
+Verweis "1" -- "1" Begriffsdefinition
+Verweis "1" -- "1" Übung
+
+Visualisierung "1" <|-- "1" Grafik
+Visualisierung "1" <|-- "1" Animation
+Visualisierung "1" <|-- "1" RollOverGrafik
+
+Übungsverzeichnis "1" *-- "1..*" Übung
+@enduml

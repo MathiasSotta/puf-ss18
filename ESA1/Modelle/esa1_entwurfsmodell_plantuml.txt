@@ -6,36 +6,36 @@
 left to right direction
 skinparam classAttributeIconSize 0
 
-Angehöriger - Hilfsangebot : nutzt >
-Angehöriger "1" -- "1" Patient : gehört zu >
+Angehoeriger - Hilfsangebot : nutzt >
+Angehoeriger "1" -- "1" Patient : gehoert zu >
 
-Warteliste - Gesprächsgruppe : gehört zu >
+Warteliste - Gespraechsgruppe : gehoert zu >
 
 Hilfsangebot <|-- Kinderbetreuung
-Hilfsangebot <|-- Gesprächsgruppe
+Hilfsangebot <|-- Gespraechsgruppe
 Hilfsangebot <|-- Fahrdienst
 
-EhrenamtlMitarbeiter - Hilfsangebot : führt durch >
-EhrenamtlMitarbeiter "4" -- "1" Kinderbetreuung
-Kinderbetreuung - Kind : betreut >
+EhrenamtlMitarbeiter - Hilfsangebot : fuehrt durch >
+EhrenamtlMitarbeiter "1" -- "1" Kinderbetreuung
+Kinderbetreuung "1" - "4" Kind : betreut >
 
 Fahrdienst - Taxiunternehmen : beauftragt >
-Fahrdienst - Fahrt : führt durch >
+Fahrdienst - Fahrt : fuehrt durch >
 
 Person <|-- Patient
 Person <|-- EhrenamtlMitarbeiter
-Person <|-- Angehöriger
+Person <|-- Angehoeriger
 Person "3" -- "1" Fahrt
-Person <|-- Kind 
+Person <|-- Kind
 
-Angehöriger "1"-- "6" Gesprächsgruppe : nimmt teil >
+Angehoeriger "6"-- "1" Gespraechsgruppe : nimmt teil >
 
 abstract class Person {
   - name : String
 }
 
-class Angehöriger {
-  - angehörigerID : int
+class Angehoeriger {
+  - AngehoerigerID : int
 }
 
 class EhrenamtlMitarbeiter {
@@ -45,7 +45,7 @@ class EhrenamtlMitarbeiter {
 class Patient {
   - patientID : int
   - isRollstuhlfahrer : boolean
-  - angehöriger : Angehöriger
+  - Angehoeriger : Angehoeriger
 }
 
 abstract class Hilfsangebot {
@@ -59,38 +59,39 @@ abstract class Hilfsangebot {
 class Fahrdienst {
    - treffpunkt : String
    - rufeTaxi (uhrzeit : float, ort: String)
-   + getPassagiere()
-   + setPassagiere(person : Person[])
 }
 
 class Kinderbetreuung {
-  - betreuer : arrayList
+  - betreuer : EhrenamtlMitarbeiterId
   - teilnehmer : arrayList
   + getBetreuer()
   + getTeilnehmer()
-  + setTeilnehmer(kind : Kind)
-  + setBetreuer(betreuer : EhrenamtlMitarbeiter[])
+  + addTeilnehmer(kind : Kind)
+  + setBetreuer(betreuer : EhrenamtlMitarbeiter)
 }
 
 class Kind {
   - kindID : int
 }
 
-class Gesprächsgruppe {
+class Gespraechsgruppe {
   + getTeilnehmer()
-  + setTeilnehmer(angehöriger : Angehöriger[])
+  + setTeilnehmer(Angehoeriger : Angehoeriger[])
   + warteliste : Warteliste
 }
 
 class Warteliste {
-  - gesprächsgruppe : Gesprächsgruppe
+  - Gespraechsgruppe : Gespraechsgruppe
   + warteliste : arrayList
   + getQueue()
-  + enterQueue(angehöriger: Angehöriger)
-  + leaveQueue(angehöriger : Angehöriger)
+  + enterQueue(Angehoeriger: Angehoeriger)
+  + leaveQueue(Angehoeriger : Angehoeriger)
 }
 
 class Fahrt {
+    - passagiere : arrayList
+    + getPassagiere()
+    + setPassagiere(person : Person[])
 }
 
 class Taxiunternehmen {

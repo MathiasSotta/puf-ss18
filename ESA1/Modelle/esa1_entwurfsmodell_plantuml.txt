@@ -16,8 +16,9 @@ Hilfsangebot <|-- Gespraechsgruppe
 Hilfsangebot <|-- Fahrdienst
 
 EhrenamtlMitarbeiter - Hilfsangebot : fuehrt durch >
-EhrenamtlMitarbeiter "1" -- "1" Kinderbetreuung
-Kinderbetreuung "1" - "4" Kind : betreut >
+EhrenamtlMitarbeiter "1..*" -- "1" Kinderbetreuung
+EhrenamtlMitarbeiter "1" -- "4" Kind
+Kinderbetreuung "1" - "0..*" Kind : betreut >
 
 Fahrdienst - Taxiunternehmen : beauftragt >
 Fahrdienst - Fahrt : fuehrt durch >
@@ -25,10 +26,11 @@ Fahrdienst - Fahrt : fuehrt durch >
 Person <|-- Patient
 Person <|-- EhrenamtlMitarbeiter
 Person <|-- Angehoeriger
-Person "3" -- "1" Fahrt
+Person "1..3" -- "1" Fahrt
 Person <|-- Kind
 
-Angehoeriger "6"-- "1" Gespraechsgruppe : nimmt teil >
+Angehoeriger "1..6"-- "1" Gespraechsgruppe : nimmt teil >
+
 
 abstract class Person {
   - name : String
@@ -46,6 +48,10 @@ class Patient {
   - patientID : int
   - isRollstuhlfahrer : boolean
   - Angehoeriger : Angehoeriger
+}
+
+class Kind {
+  - kindID : int
 }
 
 abstract class Hilfsangebot {
@@ -70,9 +76,6 @@ class Kinderbetreuung {
   + setBetreuer(betreuer : EhrenamtlMitarbeiter)
 }
 
-class Kind {
-  - kindID : int
-}
 
 class Gespraechsgruppe {
   + getTeilnehmer()

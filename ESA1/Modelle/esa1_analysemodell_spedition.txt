@@ -1,0 +1,53 @@
+@startuml
+
+title Spedition - Klassendiagramm
+
+object Spedition
+object Fahrer
+object Fuhrpark
+object Transportauftrag
+
+object Auftraggeber
+object Empfaenger
+object Lieferant
+object Geschaeftspartner
+
+object LKW
+object Team
+object Tour
+object LangeTour
+
+Spedition "1" *-- "many" Fahrer
+Spedition "1" *-- "1" Fuhrpark
+Spedition "1" *-- "many" Geschaeftspartner
+Spedition "1" *-- "many" Transportauftrag
+
+Geschaeftspartner <|-- Auftraggeber
+Geschaeftspartner <|-- Lieferant
+Geschaeftspartner <|-- Empfaenger
+
+Transportauftrag "many" o-- "1" Lieferant
+Transportauftrag "many" o-- "1" Empfaenger
+Transportauftrag "many" o-- "1" Auftraggeber
+
+Transportauftrag "many" -- "1" Gut
+Transportauftrag "many" -- "1" Strecke
+Transportauftrag "many" -- "1" Termin
+
+Tour "1" *-- "many" Transportauftrag
+Tour "many" *-- "1" LKW
+Tour "many" *-- "1" Fahrer
+
+Tour <|-- LangeTour
+LangeTour "many" o-- "1" Team
+
+LKW "1" *-- "1" Fahrer : Hauptfahrer
+LKW <|-- StueckgutLKW
+LKW <|-- SchuettgutLKW
+LKW <|-- FluessiggutLKW
+
+Fahrer "0..2" --* "1" Team
+
+Fuhrpark "1" *-- "many" LKW
+
+@enduml

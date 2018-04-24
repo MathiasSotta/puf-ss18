@@ -17,7 +17,7 @@ Hilfsangebot <|-- Fahrdienst
 
 EhrenamtlMitarbeiter - Hilfsangebot : fuehrt durch >
 EhrenamtlMitarbeiter "1..*" -- "1" Kinderbetreuung
-EhrenamtlMitarbeiter "1" -- "4" Kind
+EhrenamtlMitarbeiter "1" -- "0..4" Kind
 Kinderbetreuung "1" - "0..*" Kind : betreut >
 
 Fahrdienst - Taxiunternehmen : beauftragt >
@@ -29,7 +29,7 @@ Person <|-- Angehoeriger
 Person "1..3" -- "1" Fahrt
 Person <|-- Kind
 
-Angehoeriger "1..6"-- "1" Gespraechsgruppe : nimmt teil >
+Angehoeriger "6"-- "1" Gespraechsgruppe : nimmt teil >
 
 
 abstract class Person {

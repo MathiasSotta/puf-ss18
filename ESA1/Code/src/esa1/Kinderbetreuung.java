@@ -10,6 +10,5 @@ public class Kinderbetreuung extends Hilfsangebot{
 	
 	private EhrenamtlMitarbeiter getBetreuer() {
 		return betreuer;
-	}
-	
+	}	
 }

@@ -3,13 +3,14 @@ package application.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import application.GameLogic.Game;
+import application.GameLogic.Movement;
+import application.GameLogic.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
-import javax.sound.midi.SysexMessage;
 
 /**
  * GameViewController-Klasse
@@ -26,28 +27,40 @@ public class GameViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Game game = Game.getInstance();
+        game.Initialize(GameBoard);
+        Player localPlayer = game.getLocalPlayer();
+
         GameBoard.setFocusTraversable(true);
         GameBoard.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
-                    System.out.println("LINKS");
+                    localPlayer.setMovement(Movement.LEFT);
                     break;
                 case RIGHT:
-                    System.out.println("RECHTS");
+                    localPlayer.setMovement(Movement.RIGHT);
                     break;
                 case UP:
-                    System.out.println("OBEN");
+                    localPlayer.setMovement(Movement.UP);
                     break;
                 case DOWN:
-                    System.out.println("UNTEN");
+                    localPlayer.setMovement(Movement.DOWN);
                     break;
-
             }
         });
 
         GameBoard.setOnKeyReleased(event -> {
-
+            if (
+                event.getCode() == KeyCode.LEFT ||
+                event.getCode() == KeyCode.RIGHT ||
+                event.getCode() == KeyCode.UP ||
+                event.getCode() == KeyCode.DOWN
+            ) {
+                localPlayer.setMovement(Movement.IDLE);
+            }
         });
+
+        game.Start();
     }
 
 }

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Rectangle?>
 
-
 <AnchorPane id="GameView" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.GameViewController">
    <children>
       <MenuBar fx:id="MenuBar" prefWidth="770.0" AnchorPane.leftAnchor="0.0">
@@ -51,9 +50,8 @@
             </Text>
          </children>
       </AnchorPane>
-    <AnchorPane fx:id="GameBoard" layoutY="100.0" minHeight="70.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: eee;">
+    <AnchorPane fx:id="GameBoard" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: eee;">
          <children>
-            <Rectangle id="Player" fx:id="Player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="2.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0" />
             <Rectangle id="NPC" fx:id="NPC" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="66.0" layoutX="702.0" layoutY="702.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0" />
             <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock00" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
             <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock01" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />

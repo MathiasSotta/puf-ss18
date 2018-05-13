@@ -7,8 +7,8 @@ public class Player extends ImageView {
 
     private Movement movement = Movement.IDLE;
 
-    static final int STEP_WIDTH = 4;
-    static final int STEP_HEIGHT = 4;
+    static final int STEP_WIDTH = 2;
+    static final int STEP_HEIGHT = 2;
 
     public Player(Image image) {
 
@@ -16,7 +16,8 @@ public class Player extends ImageView {
         this.setPreserveRatio(true);
         this.setCache(true);
 
-        this.setFitWidth(64);
+        this.setFitWidth(60);
+        this.setFitHeight(60);
 
         this.setX(0);
         this.setY(0);
@@ -39,6 +40,9 @@ public class Player extends ImageView {
             yFactor = STEP_HEIGHT * 1;
         }
 
+
+        //System.out.println(posY + yFactor + getFitHeight());
+
         if (posX + xFactor + getFitWidth() < Game.getInstance().getFieldPane().getWidth() && posX + xFactor > 0) {
             this.setX(posX + xFactor);
         }
@@ -46,6 +50,7 @@ public class Player extends ImageView {
         if (posY + yFactor + getFitHeight() < Game.getInstance().getFieldPane().getHeight() && posY + yFactor > 0) {
             this.setY(posY + yFactor);
         }
+
     }
 
 

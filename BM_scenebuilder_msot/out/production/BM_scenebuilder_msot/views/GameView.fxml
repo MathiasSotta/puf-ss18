@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 
 
-<AnchorPane id="GameBoard" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="GameView" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller.GameViewController">
    <children>
       <MenuBar fx:id="MenuBar" prefWidth="770.0" AnchorPane.leftAnchor="0.0">
         <menus>

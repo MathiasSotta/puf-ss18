@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../puf-ss18/BM_scenebuilder/BM_scenebuilder_msot.iml" filepath="$PROJECT_DIR$/../puf-ss18/BM_scenebuilder/BM_scenebuilder_msot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BM_scenebuilder_msot.iml" filepath="$PROJECT_DIR$/BM_scenebuilder_msot.iml" />
     </modules>
   </component>
 </project>

@@ -14,7 +14,7 @@ public class Game {
     private Player localPlayer;
 
     /**
-     * Singleton Pattern for Game
+     * Singleton Pattern for Game Instance
      * @return Game Instance
      */
     public static Game getInstance() {

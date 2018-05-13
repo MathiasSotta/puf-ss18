@@ -12,16 +12,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
 
-/**
- * GameViewController-Klasse
- */
 public class GameViewController implements Initializable {
 
     @FXML
     private AnchorPane GameBoard;
 
     /**
-     * Inizialisiert die Controller-Klasse.
      * @param url
      * @param rb
      */

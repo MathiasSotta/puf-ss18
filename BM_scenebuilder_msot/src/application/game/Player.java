@@ -44,9 +44,6 @@ public class Player extends ImageView {
             yFactor = STEP_HEIGHT * 1;
         }
 
-
-        //System.out.println(posY + yFactor + getFitHeight());
-
         if (posX + xFactor + getFitWidth() < Game.getInstance().getFieldPane().getWidth() && posX + xFactor > 0) {
             this.setX(posX + xFactor);
         }
@@ -57,6 +54,9 @@ public class Player extends ImageView {
     }
 
     public void dropBomb() {
+        // todo: add time until next bomb can be dropped
+        // start timer and update with delta in update()
+        // only allow dropping another bomb after 2 seconds and reset timer
         Bomb bomb = new Bomb(this.bombImage);
         bomb.setX(this.getX());
         bomb.setY(this.getY());

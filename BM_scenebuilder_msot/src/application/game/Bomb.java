@@ -17,5 +17,6 @@ public class Bomb extends ImageView {
     }
 
     public void update() {
+        // do explosion timer here and trigger explosion
     }
 }

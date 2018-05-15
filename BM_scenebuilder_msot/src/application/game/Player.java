@@ -7,12 +7,14 @@ public class Player extends ImageView {
 
     private Movement movement = Movement.IDLE;
 
+    private Image bombImage;
+
     static final int STEP_WIDTH = 2;
     static final int STEP_HEIGHT = 2;
 
-    public Player(Image image) {
+    public Player(Image playerImage, Image bombImage) {
 
-        this.setImage(image);
+        this.setImage(playerImage);
         this.setPreserveRatio(true);
         this.setCache(true);
 
@@ -21,6 +23,8 @@ public class Player extends ImageView {
 
         this.setX(0);
         this.setY(0);
+
+        this.bombImage = bombImage;
     }
 
     public void update() {
@@ -50,7 +54,13 @@ public class Player extends ImageView {
         if (posY + yFactor + getFitHeight() < Game.getInstance().getFieldPane().getHeight() && posY + yFactor > 0) {
             this.setY(posY + yFactor);
         }
+    }
 
+    public void dropBomb() {
+        Bomb bomb = new Bomb(this.bombImage);
+        bomb.setX(this.getX());
+        bomb.setY(this.getY());
+        Game.getInstance().getFieldPane().getChildren().add(bomb);
     }
 
 

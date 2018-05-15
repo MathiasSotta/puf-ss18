@@ -42,6 +42,9 @@ public class GameViewController implements Initializable {
                 case DOWN:
                     localPlayer.setMovement(Movement.DOWN);
                     break;
+                case SPACE:
+                    localPlayer.dropBomb();
+                    break;
             }
         });
 

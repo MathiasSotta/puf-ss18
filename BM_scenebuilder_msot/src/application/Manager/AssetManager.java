@@ -10,6 +10,7 @@ public class AssetManager {
 
     public void loadAssets() {
         assets.put("player", new Image("images/test.png"));
+        assets.put("bomb", new Image("images/bomb.png"));
     }
 
     public Image getImageAsset(String key) {

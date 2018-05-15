@@ -48,7 +48,7 @@ public class Game {
     // todo: move to factory pattern
     private Player createPlayerObject() {
         Image playerImage = assetManager.getImageAsset("player");
-        Player player = new Player(playerImage);
+        Player player = new Player(playerImage, assetManager.getImageAsset("bomb"));
         return player;
     }
 }

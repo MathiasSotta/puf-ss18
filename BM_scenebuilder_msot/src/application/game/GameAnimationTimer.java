@@ -1,4 +1,4 @@
-package application.GameLogic;
+package application.game;
 
 import javafx.animation.AnimationTimer;
 

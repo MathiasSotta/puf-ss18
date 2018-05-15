@@ -1,4 +1,4 @@
-package application.GameLogic;
+package application.game;
 
 public enum Movement {
     IDLE,

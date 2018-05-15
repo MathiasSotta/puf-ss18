@@ -1,4 +1,4 @@
-package application.Manager;
+package application.manager;
 
 import javafx.scene.image.Image;
 

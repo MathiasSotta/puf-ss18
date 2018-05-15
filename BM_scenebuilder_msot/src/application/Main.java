@@ -1,6 +1,6 @@
 package application;
 
-import application.Manager.ViewManager;
+import application.manager.ViewManager;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

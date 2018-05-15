@@ -1,6 +1,6 @@
-package application.GameLogic;
+package application.game;
 
-import application.Manager.AssetManager;
+import application.manager.AssetManager;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 

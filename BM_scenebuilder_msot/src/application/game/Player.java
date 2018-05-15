@@ -1,4 +1,4 @@
-package application.GameLogic;
+package application.game;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

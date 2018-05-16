@@ -1,6 +1,8 @@
 package application.game;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
+import javafx.scene.shape.Rectangle;
 
 public class GameAnimationTimer extends AnimationTimer {
 

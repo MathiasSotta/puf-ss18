@@ -1,7 +1,9 @@
 package application.game;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 public class Player extends ImageView {
 
@@ -9,11 +11,13 @@ public class Player extends ImageView {
 
     private Image bombImage;
 
+    private Field field;
+
     static final int STEP_WIDTH = 2;
     static final int STEP_HEIGHT = 2;
 
-    public Player(Image playerImage, Image bombImage) {
-
+    public Player(Field field, Image playerImage, Image bombImage) {
+        this.field = field;
         this.setImage(playerImage);
         this.setPreserveRatio(true);
         this.setCache(true);
@@ -44,12 +48,19 @@ public class Player extends ImageView {
             yFactor = STEP_HEIGHT * 1;
         }
 
-        if (posX + xFactor + getFitWidth() < Game.getInstance().getFieldPane().getWidth() && posX + xFactor > 0) {
+        if (posX + xFactor + getFitWidth() < field.getWidth() && posX + xFactor > 0) {
             this.setX(posX + xFactor);
         }
 
-        if (posY + yFactor + getFitHeight() < Game.getInstance().getFieldPane().getHeight() && posY + yFactor > 0) {
+        if (posY + yFactor + getFitHeight() < field.getHeight() && posY + yFactor > 0) {
             this.setY(posY + yFactor);
+        }
+
+        // check if new player position collides with static objects in scene
+        // and reset position if needed
+        if (field.isCollidingWithStaticElement(this)) {
+            this.setX(posX);
+            this.setY(posY);
         }
     }
 
@@ -60,7 +71,7 @@ public class Player extends ImageView {
         Bomb bomb = new Bomb(this.bombImage);
         bomb.setX(this.getX());
         bomb.setY(this.getY());
-        Game.getInstance().getFieldPane().getChildren().add(bomb);
+        field.add(bomb);
     }
 
 

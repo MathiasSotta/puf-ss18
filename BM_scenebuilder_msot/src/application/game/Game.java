@@ -10,8 +10,8 @@ public class Game {
 
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
-    private AnchorPane fieldPane;
     private Player localPlayer;
+    private Field field;
 
     /**
      * Singleton Pattern for Game Instance
@@ -25,11 +25,12 @@ public class Game {
     }
 
     public void Initialize(AnchorPane pane) {
-        this.fieldPane = pane;
+        this.field = new Field(pane);
         assetManager.loadAssets();
 
+
         localPlayer = createPlayerObject();
-        fieldPane.getChildren().add(localPlayer);
+        field.add(localPlayer);
     }
 
     public void Start() {
@@ -41,14 +42,10 @@ public class Game {
         return localPlayer;
     }
 
-    public AnchorPane getFieldPane() {
-        return fieldPane;
-    }
-
     // todo: move to factory pattern
     private Player createPlayerObject() {
         Image playerImage = assetManager.getImageAsset("player");
-        Player player = new Player(playerImage, assetManager.getImageAsset("bomb"));
+        Player player = new Player(field, playerImage, assetManager.getImageAsset("bomb"));
         return player;
     }
 }

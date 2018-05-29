@@ -17,12 +17,10 @@ public class Main extends Application {
 
         Label currentAction = new Label("Dies ist ein Wettrennen");
 
-
         primaryStage.setTitle("ESA3: Raumschiffrennen");
         primaryStage.setScene(new Scene(root, 600, 450));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

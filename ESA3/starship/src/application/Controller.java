@@ -28,6 +28,7 @@ public class Controller implements Initializable{
 	@FXML
 	private Rectangle greenSpaceShuttle;
 	
+	ArrayList<Rectangle> arri = new ArrayList<>();
 	private Rectangle rect;
 	private final int COUNT_STARSHIPS = 3;
 	private int posX[] = new int[COUNT_STARSHIPS];
@@ -40,30 +41,36 @@ public class Controller implements Initializable{
 	private int won = -1;   
 	//Statusanzeige
 	private String statusMsg = new String(" ");
-	
-	
+	 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		//blueSpaceShuttle.setTranslateX(blueSpaceShuttle.getTranslateX() + 100);
 		//move();
 		statusThread.init();
+		arri.add(blueSpaceShuttle);
+        arri.add(redSpaceShuttle);
+        arri.add(greenSpaceShuttle);
+		
 	}
-	
 	
 	public class Starship extends Thread{
 		private int nr = 0;
 		private int x = 0;
 		private long sleepTime;
+		private Rectangle r;
 		
-		public Starship(int nr) {
+		
+		public Starship(int nr, Rectangle r) {
 			this.nr = nr;
+			this.r = r;
 		}
 		public void run() {
 			int _nr = nr + 1;
+			r = arri.get(1);
 			while (x<end) {
 				sleepTime = Math.abs(random.nextLong() %1000);
-				
+				move(r);
 				try {
 					Thread.sleep(sleepTime);
 				}catch(InterruptedException e) {
@@ -72,7 +79,6 @@ public class Controller implements Initializable{
 				}
 				x +=10;
 				posX[nr] = x;
-				move();
 			}
 			System.out.println("Ich habe gewonnen " + nr);
 			for (int i=0; i<COUNT_STARSHIPS; i++) {
@@ -86,10 +92,8 @@ public class Controller implements Initializable{
 		public int getX() {
 			return x;
 		}
-		public void move() {
-		       blueSpaceShuttle.setTranslateX(blueSpaceShuttle.getTranslateX() + 50);
-		   	   redSpaceShuttle.setTranslateX(redSpaceShuttle.getTranslateX()+50);
-		   	   greenSpaceShuttle.setTranslateX(greenSpaceShuttle.getTranslateX()+50);
+		public void move(Rectangle r) {
+		       r.setTranslateX(r.getTranslateX() + 50);
 		}
 	}
 	
@@ -117,7 +121,7 @@ public class Controller implements Initializable{
 			for (int i = 0; i < COUNT_STARSHIPS; i++) {
 				posX[i] = 10;
 				posY[i] = 10 + (10 + 100*i);
-				threads[i] = new Starship(i);
+				threads[i] = new Starship(i, blueSpaceShuttle);
 				threads[i].start();
 			} // for
 			statusThread.start();

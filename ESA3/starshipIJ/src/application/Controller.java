@@ -6,17 +6,15 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
-import com.sun.prism.paint.Color;
-
-import javafx.event.EventHandler;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class Controller implements Initializable{
 
@@ -29,8 +27,15 @@ public class Controller implements Initializable{
     @FXML
     private Rectangle greenSpaceShuttle;
 
-    ArrayList<Rectangle> arri = new ArrayList<>();
-    Image starshipSprite = new Image(getClass().getResource("/images/raumschiff.gif").toString());
+    @FXML
+    private Text statusText;
+
+    @FXML
+    private Rectangle winner;
+
+
+    private ArrayList<Rectangle> arri = new ArrayList<>();
+    private Image starshipImg = new Image(getClass().getResource("/images/raumschiff.gif").toString());
 
     private final int COUNT_STARSHIPS = 3;
     private int posX[] = new int[COUNT_STARSHIPS];
@@ -38,18 +43,27 @@ public class Controller implements Initializable{
     private Starship threads[] = new Starship[COUNT_STARSHIPS];
     private StatusThread statusThread = new StatusThread();
     private boolean done = false;
-    private int end = 72;   // Sieger-x-Wert
+    private int end = 370;   // Sieger-x-Wert
     private Random random = new Random();
+    private Image winnerImg = new Image(getClass().getResource("/images/siegerbild.gif").toString());
+
+
     private int won = -1;
     //Statusanzeige
     private String statusMsg = new String(" ");
+    private StringProperty statusMsgDisplay = new SimpleStringProperty();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        blueSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
-        redSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
-        greenSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
+        statusText.textProperty().bind(statusMsgDisplay);
+
+        blueSpaceShuttle.setFill(new ImagePattern(starshipImg, 0, 0, 120, 60, false));
+        redSpaceShuttle.setFill(new ImagePattern(starshipImg, 0, 0, 120, 60, false));
+        greenSpaceShuttle.setFill(new ImagePattern(starshipImg, 0, 0, 120, 60, false));
+
+        winner.setFill(new ImagePattern(winnerImg));
         //blueSpaceShuttle.setTranslateX(blueSpaceShuttle.getTranslateX() + 100);
         //move();
         arri.add(blueSpaceShuttle);
@@ -64,41 +78,57 @@ public class Controller implements Initializable{
         private long sleepTime;
         private Rectangle r;
 
-
         public Starship(int nr, Rectangle r) {
             this.nr = nr;
             this.r = r;
         }
         public void run() {
             int _nr = nr + 1;
-            System.out.println(_nr);
+            //System.out.println(_nr);
             r = arri.get(_nr-1);
-            while (x<end) {
+            while (x < end) {
                 sleepTime = Math.abs(random.nextLong() %1000);
                 move(r);
                 try {
                     Thread.sleep(sleepTime);
                 }catch(InterruptedException e) {
-                    System.out.println("Schade, ich (Nr " + _nr + " habe verloren");
+                    System.out.println("Schade, ich (Nr " + _nr + ") habe verloren");
                     return;
                 }
                 x += 10;
                 posX[nr] = x;
             }
             System.out.println("Ich habe gewonnen: Nr " + _nr);
-            for (int i=0; i<COUNT_STARSHIPS; i++) {
-                if(i!=nr) {
-                    threads[i].interrupt();
-                }
-            }
-            won = nr;
-            done = true;
+
+                Platform.runLater(() -> {
+                    for (int i=0; i<COUNT_STARSHIPS; i++) {
+                        if (i != nr) {
+                            threads[i].interrupt();
+                            statusThread.interrupt();
+                        }
+                        won = nr;
+                        done = true;
+                        displayWinner(_nr);
+                    }
+                });
+
+
         }
+
+        private void displayWinner(int nr) {
+            winner.setVisible(true);
+            winner.setTranslateY(posY[nr-1]);
+            statusMsgDisplay.setValue("Raumschiff Nr. " + nr + " hat gesiegt.");
+        }
+
         public int getX() {
             return x;
         }
         public void move(Rectangle r) {
-            r.setTranslateX(r.getTranslateX() + 50);
+            r.setTranslateX(r.getTranslateX() + 10);
+//            trans.setByX(27);
+//            trans.setNode(r);
+//            trans.play();
         }
     }
 
@@ -115,6 +145,9 @@ public class Controller implements Initializable{
                 }
                 statusMsg += nr;
                 statusMsg += " führt!";
+                statusMsgDisplay.setValue(statusMsg);
+                //System.out.println(statusMsg);
+
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -125,7 +158,7 @@ public class Controller implements Initializable{
         public void init() {
             for (int i = 0; i < COUNT_STARSHIPS; i++) {
                 posX[i] = 10;
-                posY[i] = 10 + (10 + 100*i);
+                posY[i] = (15 + 100*i);
                 threads[i] = new Starship(i, arri.get(i));
                 threads[i].start();
             } // for

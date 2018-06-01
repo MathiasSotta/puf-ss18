@@ -13,6 +13,7 @@ import com.sun.prism.paint.Color;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -29,6 +30,7 @@ public class Controller implements Initializable{
     private Rectangle greenSpaceShuttle;
 
     ArrayList<Rectangle> arri = new ArrayList<>();
+    Image starshipSprite = new Image(getClass().getResource("/images/raumschiff.gif").toString());
 
     private final int COUNT_STARSHIPS = 3;
     private int posX[] = new int[COUNT_STARSHIPS];
@@ -36,7 +38,7 @@ public class Controller implements Initializable{
     private Starship threads[] = new Starship[COUNT_STARSHIPS];
     private StatusThread statusThread = new StatusThread();
     private boolean done = false;
-    private int end = 200;   // Sieger-x-Wert
+    private int end = 72;   // Sieger-x-Wert
     private Random random = new Random();
     private int won = -1;
     //Statusanzeige
@@ -45,13 +47,15 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        blueSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
+        redSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
+        greenSpaceShuttle.setFill(new ImagePattern(starshipSprite, 0, 0, 120, 60, false));
         //blueSpaceShuttle.setTranslateX(blueSpaceShuttle.getTranslateX() + 100);
         //move();
-        statusThread.init();
         arri.add(blueSpaceShuttle);
         arri.add(redSpaceShuttle);
         arri.add(greenSpaceShuttle);
-
+        statusThread.init();
     }
 
     public class Starship extends Thread{
@@ -67,20 +71,21 @@ public class Controller implements Initializable{
         }
         public void run() {
             int _nr = nr + 1;
-            r = arri.get(0);
+            System.out.println(_nr);
+            r = arri.get(_nr-1);
             while (x<end) {
                 sleepTime = Math.abs(random.nextLong() %1000);
                 move(r);
                 try {
                     Thread.sleep(sleepTime);
                 }catch(InterruptedException e) {
-                    System.out.println("Schade, ich (Nr " + nr + "habe verloren");
+                    System.out.println("Schade, ich (Nr " + _nr + " habe verloren");
                     return;
                 }
                 x += 10;
                 posX[nr] = x;
             }
-            System.out.println("Ich habe gewonnen " + nr);
+            System.out.println("Ich habe gewonnen: Nr " + _nr);
             for (int i=0; i<COUNT_STARSHIPS; i++) {
                 if(i!=nr) {
                     threads[i].interrupt();
@@ -121,11 +126,13 @@ public class Controller implements Initializable{
             for (int i = 0; i < COUNT_STARSHIPS; i++) {
                 posX[i] = 10;
                 posY[i] = 10 + (10 + 100*i);
-                threads[i] = new Starship(i, blueSpaceShuttle);
+                threads[i] = new Starship(i, arri.get(i));
                 threads[i].start();
             } // for
             statusThread.start();
         }
+
+
 
     }
 }

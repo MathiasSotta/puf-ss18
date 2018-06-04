@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+    <children>
+        <Rectangle id="blueSpaceShuttle" fx:id="blueSpaceShuttle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="10.0" layoutY="15.0" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
+        <Rectangle id="greenSpaceShuttle" fx:id="greenSpaceShuttle" arcHeight="5.0" arcWidth="5.0" fill="#1fff52" height="60.0" layoutX="10.0" layoutY="215.0" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
+        <Rectangle id="redSpaceShuttle" fx:id="redSpaceShuttle" arcHeight="5.0" arcWidth="5.0" fill="#ff2d1f" height="60.0" layoutX="10.0" layoutY="115.0" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
+        <Rectangle id="targetArea" fx:id="targetArea" arcHeight="5.0" arcWidth="5.0" fill="#f1ff1f" height="400.0" layoutX="497.0" opacity="0.3" strokeType="INSIDE" width="103.0" />
+      <Line endX="100.0" layoutX="400.0" startX="100.0" startY="400.0" />
+      <Text fx:id="statusText" layoutX="10.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="statusText">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="winner" arcHeight="1.0" arcWidth="1.0" fill="DODGERBLUE" height="75.0" layoutX="515.0" layoutY="8.0" strokeType="INSIDE" visible="false" width="60.0" />
+    </children>
+</Pane>

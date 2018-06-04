@@ -36,10 +36,8 @@ public class Controller implements Initializable{
     @FXML
     private Rectangle winner;
 
-
     private ArrayList<Rectangle> arri = new ArrayList<>();
     private Image starshipImg = new Image(getClass().getResource("/images/raumschiff.gif").toString());
-
     private final int COUNT_STARSHIPS = 3;
     private int posX[] = new int[COUNT_STARSHIPS];
     private int posY[] = new int[COUNT_STARSHIPS];
@@ -49,8 +47,6 @@ public class Controller implements Initializable{
     private int end = 370;   // Sieger-x-Wert
     private Random random = new Random();
     private Image winnerImg = new Image(getClass().getResource("/images/siegerbild.gif").toString());
-
-
     private int won = -1;
     //Statusanzeige
     private String statusMsg = new String(" ");
@@ -72,10 +68,7 @@ public class Controller implements Initializable{
         arri.add(redSpaceShuttle);
         arri.add(greenSpaceShuttle);
 
-        // init StatusThread - excluding Threads
         statusThread.init();
-
-
         }
 
 
@@ -85,7 +78,7 @@ public class Controller implements Initializable{
         private long sleepTime;
         private Rectangle r;
 
-        public Starship(int nr, Rectangle r) {
+        private Starship(int nr, Rectangle r) {
             this.nr = nr;
             this.r = r;
         }
@@ -119,8 +112,6 @@ public class Controller implements Initializable{
                         displayWinner(_nr);
                     }
                 });
-
-
         }
 
         private void displayWinner(int nr) {
@@ -129,16 +120,16 @@ public class Controller implements Initializable{
             statusMsgDisplay.setValue("Raumschiff Nr. " + nr + " hat gesiegt.");
         }
 
-        public int getX() {
+        private int getX() {
             return x;
         }
-        public void move(Rectangle r) {
+        private void move(Rectangle r) {
             r.setTranslateX(r.getTranslateX() + 10);
 
         }
     }
 
-     class StatusThread extends Thread {
+     private class StatusThread extends Thread {
         public void run() {
             System.out.println(Thread.currentThread().getName() + " in " + this.getClass() + " gestartet");
             while(true) {
@@ -162,12 +153,12 @@ public class Controller implements Initializable{
                 }
             }
         }
-         public void init() {
+        private void init() {
 
-             // init FixedThreadpool
-             ExecutorService executor = Executors.newFixedThreadPool(2);
+            // init FixedThreadpool
+            ExecutorService executor = Executors.newFixedThreadPool(2);
 
-             for (int i = 0; i < COUNT_STARSHIPS; i++) {
+            for (int i = 0; i < COUNT_STARSHIPS; i++) {
                  posX[i] = 10;
                  posY[i] = (15 + 100*i);
 
@@ -176,12 +167,10 @@ public class Controller implements Initializable{
                      executor.execute(starshipWorker);
 
              } // for
-             Thread statusWorker = new Thread(statusThread::start);
-             executor.execute(statusWorker);
-             executor.shutdown();
-         } // for
-
+            Thread statusWorker = new Thread(statusThread::start);
+            executor.execute(statusWorker);
+            executor.shutdown();
+        } // for
      }
-
 }
 

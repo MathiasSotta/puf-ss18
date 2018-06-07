@@ -35,7 +35,7 @@ public class Game {
 
 
         localPlayer = createPlayerObject();
-        field.add(localPlayer);
+        field.addPlayer(localPlayer);
         gameObjectList.add(localPlayer);
     }
 
@@ -46,6 +46,10 @@ public class Game {
 
     public Player getLocalPlayer() {
         return localPlayer;
+    }
+
+    public Field getField() {
+        return this.field;
     }
 
     // todo: move to factory pattern

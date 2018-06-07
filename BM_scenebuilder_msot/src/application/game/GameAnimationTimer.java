@@ -1,8 +1,6 @@
 package application.game;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
-import javafx.scene.shape.Rectangle;
 
 public class GameAnimationTimer extends AnimationTimer {
 
@@ -18,5 +16,7 @@ public class GameAnimationTimer extends AnimationTimer {
         for (GameObject go : game.gameObjectList) {
             go.update();
         }
+
+        game.getField().update();
     }
 }

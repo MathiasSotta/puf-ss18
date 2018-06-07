@@ -1,6 +1,7 @@
 package application.game;
 
-import javafx.scene.Node;
+import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 
@@ -72,12 +73,16 @@ public class Player extends GameObject {
         Bomb bomb = new Bomb(this.bombImage);
         bomb.setX(this.getX());
         bomb.setY(this.getY());
-        field.add(bomb);
+        field.addBomb(bomb);
         game.gameObjectList.add(bomb);
 
         bomb.explode();
-    }
 
+        for (Rectangle2D ex : bomb.getExplosions()) {
+            Rectangle r = new Rectangle(ex.getMinX(), ex.getMinY(), ex.getWidth(), ex.getHeight());
+            field.add(r);
+        }
+    }
 
     public void setMovement(Movement move) {
         this.movement = move;

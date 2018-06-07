@@ -2,10 +2,11 @@ package application.game;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
-public class Player extends ImageView {
+public class Player extends GameObject {
+
+    private Game game = Game.getInstance();
 
     private Movement movement = Movement.IDLE;
 
@@ -72,6 +73,9 @@ public class Player extends ImageView {
         bomb.setX(this.getX());
         bomb.setY(this.getY());
         field.add(bomb);
+        game.gameObjectList.add(bomb);
+
+        bomb.explode();
     }
 
 

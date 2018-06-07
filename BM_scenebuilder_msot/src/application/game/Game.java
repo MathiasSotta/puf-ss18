@@ -4,6 +4,9 @@ import application.manager.AssetManager;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     private static Game Instance;
@@ -12,6 +15,8 @@ public class Game {
     private AssetManager assetManager = new AssetManager();
     private Player localPlayer;
     private Field field;
+
+    public List<GameObject> gameObjectList = new ArrayList<>();
 
     /**
      * Singleton Pattern for Game Instance
@@ -31,6 +36,7 @@ public class Game {
 
         localPlayer = createPlayerObject();
         field.add(localPlayer);
+        gameObjectList.add(localPlayer);
     }
 
     public void Start() {

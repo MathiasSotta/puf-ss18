@@ -15,6 +15,8 @@ public class GameAnimationTimer extends AnimationTimer {
      */
     @Override
     public void handle(long now) {
-        game.getLocalPlayer().update();
+        for (GameObject go : game.gameObjectList) {
+            go.update();
+        }
     }
 }

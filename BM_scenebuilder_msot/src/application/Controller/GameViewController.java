@@ -33,35 +33,35 @@ public class GameViewController implements Initializable {
         GameBoard.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
-                    player1.setMovement(Movement.LEFT);
+                    player2.setMovement(Movement.LEFT);
                     break;
                 case RIGHT:
-                    player1.setMovement(Movement.RIGHT);
+                    player2.setMovement(Movement.RIGHT);
                     break;
                 case UP:
-                    player1.setMovement(Movement.UP);
+                    player2.setMovement(Movement.UP);
                     break;
                 case DOWN:
-                    player1.setMovement(Movement.DOWN);
+                    player2.setMovement(Movement.DOWN);
                     break;
                 case ENTER:
-                    player1.dropBomb();
+                    player2.dropBomb();
                     break;
 
                 case A:
-                    player2.setMovement(Movement.LEFT);
+                    player1.setMovement(Movement.LEFT);
                     break;
                 case D:
-                    player2.setMovement(Movement.RIGHT);
+                    player1.setMovement(Movement.RIGHT);
                     break;
                 case W:
-                    player2.setMovement(Movement.UP);
+                    player1.setMovement(Movement.UP);
                     break;
                 case S:
-                    player2.setMovement(Movement.DOWN);
+                    player1.setMovement(Movement.DOWN);
                     break;
                 case SHIFT:
-                    player2.dropBomb();
+                    player1.dropBomb();
                     break;
             }
         });
@@ -73,7 +73,7 @@ public class GameViewController implements Initializable {
                 event.getCode() == KeyCode.UP ||
                 event.getCode() == KeyCode.DOWN
             ) {
-                player1.setMovement(Movement.IDLE);
+                player2.setMovement(Movement.IDLE);
             }
 
             if (
@@ -82,7 +82,7 @@ public class GameViewController implements Initializable {
                 event.getCode() == KeyCode.W ||
                 event.getCode() == KeyCode.S
             ) {
-                player2.setMovement(Movement.IDLE);
+                player1.setMovement(Movement.IDLE);
             }
         });
 

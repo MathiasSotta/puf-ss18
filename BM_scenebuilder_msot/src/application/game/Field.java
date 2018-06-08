@@ -61,7 +61,6 @@ public class Field {
                         if (!p.isAlive()) {
                             // player is within explosion
                             System.out.println("Player died");
-                            p.triggerRespawn(now);
                         }
                     }
                 }

@@ -44,23 +44,15 @@ public class Player extends GameObject {
     }
 
     public void update(long now) {
-
         // check health each frame
         if (isAlive() && health <= 0) {
-            health = 0;
-            isAlive = false; // :(
-            setVisible(false);
-            diedAt = now;
+            handleDeath(now);
         }
 
         // handle dead state
         if (!isAlive()) {
             if (timestampToSeconds(now - diedAt) >= respawnCountdown) {
-                health = 100;
-                isAlive = true;
-                setX(initialPos.getX());
-                setY(initialPos.getY());
-                setVisible(true);
+                handleRespawn();
             } else {
                 return;
             }
@@ -101,10 +93,12 @@ public class Player extends GameObject {
         // todo: add time until next bomb can be dropped
         // start timer and update with delta in update()
         // only allow dropping another bomb after 2 seconds and reset timer
-        Bomb bomb = new Bomb(bombImage);
-        bomb.setX(getX());
-        bomb.setY(getY());
-        field.addBomb(bomb);
+        if (isAlive()) {
+            Bomb bomb = new Bomb(bombImage);
+            bomb.setX(getX());
+            bomb.setY(getY());
+            field.addBomb(bomb);
+        }
     }
 
     public void setMovement(Movement move) {
@@ -119,11 +113,23 @@ public class Player extends GameObject {
         health -= amount;
     }
 
-    public void triggerRespawn(long now) {
-
-    }
-
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public void handleDeath(long now) {
+        health = 0;
+        isAlive = false; // :(
+        setVisible(false);
+        diedAt = now;
+    }
+
+    public void handleRespawn() {
+        health = 100;
+        diedAt = 0;
+        isAlive = true;
+        setX(initialPos.getX());
+        setY(initialPos.getY());
+        setVisible(true);
     }
 }

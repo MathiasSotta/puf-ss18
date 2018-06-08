@@ -13,10 +13,6 @@ public class GameAnimationTimer extends AnimationTimer {
      */
     @Override
     public void handle(long now) {
-        for (GameObject go : game.gameObjectList) {
-            go.update();
-        }
-
-        game.getField().update();
+        game.getField().update(now);
     }
 }

@@ -25,25 +25,43 @@ public class GameViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Game game = Game.getInstance();
         game.Initialize(GameBoard);
-        Player localPlayer = game.getLocalPlayer();
+        Player player1 = game.getField().getPlayers().get(0);
+        Player player2 = game.getField().getPlayers().get(1);
 
         GameBoard.setFocusTraversable(true);
+
         GameBoard.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
-                    localPlayer.setMovement(Movement.LEFT);
+                    player1.setMovement(Movement.LEFT);
                     break;
                 case RIGHT:
-                    localPlayer.setMovement(Movement.RIGHT);
+                    player1.setMovement(Movement.RIGHT);
                     break;
                 case UP:
-                    localPlayer.setMovement(Movement.UP);
+                    player1.setMovement(Movement.UP);
                     break;
                 case DOWN:
-                    localPlayer.setMovement(Movement.DOWN);
+                    player1.setMovement(Movement.DOWN);
                     break;
-                case SPACE:
-                    localPlayer.dropBomb();
+                case ENTER:
+                    player1.dropBomb();
+                    break;
+
+                case A:
+                    player2.setMovement(Movement.LEFT);
+                    break;
+                case D:
+                    player2.setMovement(Movement.RIGHT);
+                    break;
+                case W:
+                    player2.setMovement(Movement.UP);
+                    break;
+                case S:
+                    player2.setMovement(Movement.DOWN);
+                    break;
+                case SHIFT:
+                    player2.dropBomb();
                     break;
             }
         });
@@ -55,7 +73,16 @@ public class GameViewController implements Initializable {
                 event.getCode() == KeyCode.UP ||
                 event.getCode() == KeyCode.DOWN
             ) {
-                localPlayer.setMovement(Movement.IDLE);
+                player1.setMovement(Movement.IDLE);
+            }
+
+            if (
+                event.getCode() == KeyCode.A ||
+                event.getCode() == KeyCode.D ||
+                event.getCode() == KeyCode.W ||
+                event.getCode() == KeyCode.S
+            ) {
+                player2.setMovement(Movement.IDLE);
             }
         });
 

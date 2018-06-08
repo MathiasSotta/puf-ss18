@@ -1,11 +1,9 @@
 package application.game;
 
 import application.manager.AssetManager;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
 
@@ -13,10 +11,7 @@ public class Game {
 
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
-    private Player localPlayer;
     private Field field;
-
-    public List<GameObject> gameObjectList = new ArrayList<>();
 
     /**
      * Singleton Pattern for Game Instance
@@ -33,10 +28,10 @@ public class Game {
         this.field = new Field(pane);
         assetManager.loadAssets();
 
-
-        localPlayer = createPlayerObject();
-        field.addPlayer(localPlayer);
-        gameObjectList.add(localPlayer);
+        // first player upper left
+        field.addPlayer(createPlayerObject(new Point2D(0,0)));
+        // second player lower right
+        field.addPlayer(createPlayerObject(new Point2D(field.getWidth()-Player.WIDTH, field.getHeight()-Player.HEIGHT)));
     }
 
     public void Start() {
@@ -44,18 +39,14 @@ public class Game {
         gameAnimationTimer.start();
     }
 
-    public Player getLocalPlayer() {
-        return localPlayer;
-    }
-
     public Field getField() {
         return this.field;
     }
 
     // todo: move to factory pattern
-    private Player createPlayerObject() {
+    private Player createPlayerObject(Point2D initialPos) {
         Image playerImage = assetManager.getImageAsset("player");
-        Player player = new Player(field, playerImage, assetManager.getImageAsset("bomb"));
+        Player player = new Player(field, playerImage, assetManager.getImageAsset("bomb"), initialPos);
         return player;
     }
 }

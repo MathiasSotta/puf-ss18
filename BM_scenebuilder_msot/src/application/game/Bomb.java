@@ -10,7 +10,10 @@ public class Bomb extends GameObject {
 
     private List<Rectangle2D> explosion = new ArrayList<>();
 
-    private int explosionTime = 2;
+    private int explosionCountdown = 2;
+    private int explosionDuration = 2;
+
+    private long droppedAt = 0;
     private long explosionStart = 0;
 
     public Bomb(Image image) {
@@ -22,11 +25,19 @@ public class Bomb extends GameObject {
         this.setFitHeight(60);
     }
 
-    public void update() {
+    public void update(long now) {
+        if (!isExploding()) {
+            if (droppedAt == 0) {
+                droppedAt = now;
+            }
+            if (timestampToSeconds(now - droppedAt) >= explosionCountdown) {
+                explode(now);
+            }
+        }
     }
 
-    public boolean exploded() {
-        return ((System.currentTimeMillis() / 1000L) - this.explosionStart) >= explosionTime;
+    public boolean exploded(long now) {
+        return timestampToSeconds(now - explosionStart) >= explosionDuration;
     }
 
     public boolean withinExplosion(GameObject gameObject) {
@@ -39,7 +50,7 @@ public class Bomb extends GameObject {
         return false;
     }
 
-    public void explode() {
+    public void explode(long now) {
         // explosion right
         this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 250, getFitHeight()));
         // explosion left
@@ -49,7 +60,7 @@ public class Bomb extends GameObject {
         // explosion down
         this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 250));
 
-        this.explosionStart = System.currentTimeMillis() / 1000L;
+        this.explosionStart = now;
     }
 
     public boolean isExploding() {

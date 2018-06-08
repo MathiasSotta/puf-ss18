@@ -1,13 +1,9 @@
 package application.game;
 
 import javafx.geometry.Point2D;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
 
 public class Player extends GameObject {
-
-    private Game game = Game.getInstance();
 
     private Movement movement = Movement.IDLE;
 
@@ -15,25 +11,60 @@ public class Player extends GameObject {
 
     private Field field;
 
+    private int health = 100;
+    
+    private Point2D initialPos;
+
+    private boolean isAlive = true;
+    private long diedAt = 0;
+
     static final int STEP_WIDTH = 2;
     static final int STEP_HEIGHT = 2;
 
-    public Player(Field field, Image playerImage, Image bombImage) {
+    static final int WIDTH = 60;
+    static final int HEIGHT = 60;
+
+    static final int respawnCountdown = 2;
+
+    public Player(Field field, Image playerImage, Image bomb, Point2D pos) {
         this.field = field;
-        this.setImage(playerImage);
-        this.setPreserveRatio(true);
-        this.setCache(true);
+        setImage(playerImage);
+        setPreserveRatio(true);
+        setCache(true);
 
-        this.setFitWidth(60);
-        this.setFitHeight(60);
+        setFitWidth(Player.WIDTH);
+        setFitHeight(Player.HEIGHT);
+        
+        initialPos = pos;
 
-        this.setX(0);
-        this.setY(0);
+        setX(initialPos.getX());
+        setY(initialPos.getY());
 
-        this.bombImage = bombImage;
+        bombImage = bomb;
     }
 
-    public void update() {
+    public void update(long now) {
+
+        // check health each frame
+        if (isAlive() && health <= 0) {
+            health = 0;
+            isAlive = false; // :(
+            setVisible(false);
+            diedAt = now;
+        }
+
+        // handle dead state
+        if (!isAlive()) {
+            if (timestampToSeconds(now - diedAt) >= respawnCountdown) {
+                health = 100;
+                isAlive = true;
+                setX(initialPos.getX());
+                setY(initialPos.getY());
+                setVisible(true);
+            } else {
+                return;
+            }
+        }
 
         int posX = (int) getX();
         int posY = (int) getY();
@@ -51,18 +82,18 @@ public class Player extends GameObject {
         }
 
         if (posX + xFactor + getFitWidth() < field.getWidth() && posX + xFactor > 0) {
-            this.setX(posX + xFactor);
+            setX(posX + xFactor);
         }
 
         if (posY + yFactor + getFitHeight() < field.getHeight() && posY + yFactor > 0) {
-            this.setY(posY + yFactor);
+            setY(posY + yFactor);
         }
 
         // check if new player position collides with static objects in scene
         // and reset position if needed
         if (field.isCollidingWithStaticElement(this)) {
-            this.setX(posX);
-            this.setY(posY);
+            setX(posX);
+            setY(posY);
         }
     }
 
@@ -70,25 +101,29 @@ public class Player extends GameObject {
         // todo: add time until next bomb can be dropped
         // start timer and update with delta in update()
         // only allow dropping another bomb after 2 seconds and reset timer
-        Bomb bomb = new Bomb(this.bombImage);
-        bomb.setX(this.getX());
-        bomb.setY(this.getY());
+        Bomb bomb = new Bomb(bombImage);
+        bomb.setX(getX());
+        bomb.setY(getY());
         field.addBomb(bomb);
-        game.gameObjectList.add(bomb);
-
-        bomb.explode();
-
-        for (Rectangle2D ex : bomb.getExplosions()) {
-            Rectangle r = new Rectangle(ex.getMinX(), ex.getMinY(), ex.getWidth(), ex.getHeight());
-            field.add(r);
-        }
     }
 
     public void setMovement(Movement move) {
-        this.movement = move;
+        movement = move;
     }
 
     Movement getMovement() {
-        return this.movement;
+        return movement;
+    }
+
+    public void damage(int amount) {
+        health -= amount;
+    }
+
+    public void triggerRespawn(long now) {
+
+    }
+
+    public boolean isAlive() {
+        return isAlive;
     }
 }

@@ -27,11 +27,11 @@ public class Field {
     }
 
     public double getWidth() {
-        return fieldPane.getWidth();
+        return fieldPane.getMaxWidth();
     }
 
     public double getHeight() {
-        return fieldPane.getHeight();
+        return fieldPane.getMaxHeight();
     }
 
     public boolean isCollidingWithStaticElement(Node node) {
@@ -44,23 +44,43 @@ public class Field {
         return false;
     }
 
-    public void update() {
+    public void update(long now) {
         Bomb removeBomb = null;
         for (Bomb b : this.bombs) {
+            b.update(now);
             if (b.isExploding()) {
                 for (Player p : this.players) {
+                    // if player is not alive we can skip the check
+                    if (!p.isAlive()) {
+                        break;
+                    }
                     if (b.withinExplosion(p)) {
-                        // player is within explosion
-                        System.out.println("Player is within explosion");
+                        p.damage(100);
+
+                        // is player still alive after damage ?
+                        if (!p.isAlive()) {
+                            // player is within explosion
+                            System.out.println("Player died");
+                            p.triggerRespawn(now);
+                        }
                     }
                 }
-                if (b.exploded()) {
+
+                // remove exploded bomb
+                // todo: remove multiple in one frame
+                if (b.exploded(now)) {
                     fieldPane.getChildren().remove(b);
                     removeBomb = b;
                 }
             }
         }
+
+        // cleanup Objects
         this.bombs.remove(removeBomb);
+
+        for (Player p : this.players) {
+            p.update(now);
+        }
     }
 
     public void add(Node node) {
@@ -75,5 +95,13 @@ public class Field {
     public void addBomb(Bomb bomb) {
         this.add(bomb);
         this.bombs.add(bomb);
+    }
+
+    public List<Bomb> getBombs() {
+        return bombs;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

@@ -18,6 +18,7 @@ public class Bomb extends GameObject {
 
     public Bomb(Image image) {
         this.setImage(image);
+
         this.setPreserveRatio(true);
         this.setCache(true);
 

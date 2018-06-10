@@ -26,8 +26,11 @@ public class Player extends GameObject {
 
     static final int respawnCountdown = 2;
 
-    public Player(Field field, Image playerImage, Image bomb, Point2D pos) {
+    private ViewDirection playerLooks;
+
+    public Player(Field field, Image playerImage, Image bomb, Point2D pos, ViewDirection playerLooks) {
         this.field = field;
+        this.playerLooks = playerLooks;
         setImage(playerImage);
         setPreserveRatio(true);
         setCache(true);
@@ -44,8 +47,10 @@ public class Player extends GameObject {
     }
 
     public void update(long now) {
+
         // check health each frame
         if (isAlive() && health <= 0) {
+            isAlive = false;
             handleDeath(now);
         }
 
@@ -65,12 +70,19 @@ public class Player extends GameObject {
 
         if (movement == Movement.RIGHT) {
             xFactor = STEP_WIDTH;
+            this.playerLooks = ViewDirection.RIGHT;
+
         } else if (movement == Movement.LEFT) {
             xFactor = STEP_WIDTH * -1;
+            this.playerLooks = ViewDirection.LEFT;
+
         } else if (movement == Movement.UP) {
             yFactor = STEP_HEIGHT * -1;
+            this.playerLooks = ViewDirection.UP;
+
         } else if (movement == Movement.DOWN) {
             yFactor = STEP_HEIGHT * 1;
+            this.playerLooks = ViewDirection.DOWN;
         }
 
         if (posX + xFactor + getFitWidth() < field.getWidth() && posX + xFactor > 0) {
@@ -95,8 +107,14 @@ public class Player extends GameObject {
         // only allow dropping another bomb after 2 seconds and reset timer
         if (isAlive()) {
             Bomb bomb = new Bomb(bombImage);
-            bomb.setX(getX());
-            bomb.setY(getY());
+
+            // set bomb position to center of the players current tile
+            Point2D bombPosition = field.getBombTileCenterPosition(this);
+            if (bombPosition != null) {
+
+                bomb.setX(bombPosition.getX()-(bomb.getFitWidth()/2));
+                bomb.setY(bombPosition.getY()-(bomb.getFitHeight()/2));
+            }
             field.addBomb(bomb);
         }
     }

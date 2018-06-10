@@ -1,7 +1,12 @@
 package application.game;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +21,8 @@ public class Field {
 
     private List<Player> players = new ArrayList<>();
 
+    private List<Rectangle2D> gameMatrix = new ArrayList<>();
+
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;
 
@@ -24,6 +31,9 @@ public class Field {
                 staticElements.add(node);
             }
         }
+
+        // enable gameMatrix
+        initGameMatrix();
     }
 
     public double getWidth() {
@@ -40,7 +50,6 @@ public class Field {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -103,4 +112,73 @@ public class Field {
     public List<Player> getPlayers() {
         return players;
     }
+
+    private void initGameMatrix() {
+        double matrixTileHeight = this.fieldPane.getMaxHeight() / 11;
+        double matrixTileWidth = this.fieldPane.getMaxWidth() / 11;
+
+        for (int i=0; i<this.fieldPane.getMaxHeight(); i+=matrixTileHeight) {
+            for (int j = 0; j<this.fieldPane.getMaxWidth(); j+=matrixTileWidth) {
+                Rectangle2D r = new Rectangle2D(i, j, matrixTileWidth, matrixTileHeight);
+                gameMatrix.add(r);
+            }
+        }
+    }
+
+    public List<Rectangle2D> getGameMatrix() {
+        return gameMatrix;
+    }
+
+    public Point2D getBombTileCenterPosition(Node node) {
+        double x;
+        double y;
+
+        List<Rectangle> intersectingTiles = new ArrayList<>();
+
+        for (Rectangle2D r : gameMatrix) {
+            Rectangle currentMatrixTile = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
+
+            if (currentMatrixTile.getBoundsInParent().intersects(node.getBoundsInParent())) {
+                intersectingTiles.add(currentMatrixTile);
+            }
+        }
+        if(intersectingTiles.size() == 1) {
+            Rectangle r = intersectingTiles.get(0);
+            x = r.getX() + (r.getWidth()/2);
+            y = r.getY() + (r.getHeight()/2);
+            return new Point2D(x, y);
+        }
+        else if(intersectingTiles.size() > 1) {
+
+            // Algorithm to calculate player position in relation to tiles of the game matrix
+            // Simplified: if player is in fields A and B and most of the players bounding-box is in field A, the bomb is being placed in field A and vice versa
+            for (int i=0; i<intersectingTiles.size(); i++) {
+                double nodeMinX = node.getBoundsInParent().getMinX();
+                double nodeMinY = node.getBoundsInParent().getMinY();
+                double nodeMaxX = node.getBoundsInParent().getMaxX();
+                double nodeMaxY = node.getBoundsInParent().getMaxY();
+                double aMatrixMaxX = intersectingTiles.get(i).getBoundsInParent().getMaxX();
+                double aMatrixMaxY = intersectingTiles.get(i).getBoundsInParent().getMaxY();
+                double bMatrixMinX = intersectingTiles.get(i+1).getBoundsInParent().getMinX();
+                double bMatrixMinY = intersectingTiles.get(i+1).getBoundsInParent().getMinY();
+
+                int dX = ((Math.abs(aMatrixMaxX - nodeMinX) > Math.abs(bMatrixMinX - nodeMaxX)) && (aMatrixMaxY >= nodeMaxY) && (bMatrixMinY <= nodeMinY)) ? i : i+1;
+                int dY = ((Math.abs(aMatrixMaxY - nodeMinY) > Math.abs(bMatrixMinY - nodeMaxY)) && (aMatrixMaxX >= nodeMaxX) && (bMatrixMinX <= nodeMinX)) ? i : i+1;
+
+                // debug
+//              System.out.println("xStrike: " + (dX == 1));
+//              System.out.println("yStrike: " + (dY == 1));
+//              System.out.println("Arraygroesse: " + intersectingTiles.size());
+
+                Rectangle rX = intersectingTiles.get(dX);
+                Rectangle rY = intersectingTiles.get(dY);
+                x = rX.getX() + (rX.getWidth()/2);
+                y = rY.getY() + (rY.getHeight()/2);
+
+                return new Point2D(x, y);
+            }
+        }
+        return null;
+    }
+
 }

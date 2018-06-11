@@ -117,9 +117,9 @@ public class Field {
         double matrixTileHeight = this.fieldPane.getMaxHeight() / 11;
         double matrixTileWidth = this.fieldPane.getMaxWidth() / 11;
 
-        for (int i=0; i<this.fieldPane.getMaxHeight(); i+=matrixTileHeight) {
-            for (int j = 0; j<this.fieldPane.getMaxWidth(); j+=matrixTileWidth) {
-                Rectangle2D r = new Rectangle2D(i, j, matrixTileWidth, matrixTileHeight);
+        for (int i=0; i<this.fieldPane.getMaxWidth(); i+=matrixTileWidth) {
+            for (int j = 0; j<this.fieldPane.getMaxHeight(); j+=matrixTileHeight) {
+                Rectangle2D r = new Rectangle2D(j, i, matrixTileWidth, matrixTileHeight);
                 gameMatrix.add(r);
             }
         }

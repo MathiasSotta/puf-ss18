@@ -31,8 +31,11 @@ public class Game {
         this.field = new Field(pane);
         assetManager.loadAssets();
 
-        // ======== Display GameMatrix for debugging (comment out next line to hide gameMatrix) ========
-        setGameMatrixVisible();
+        // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
+        //setGameMatrixVisible();
+
+        // fill gameBoard with blocks ...
+        fillGameBoardWithBlocks();
 
         // first player upper left
         field.addPlayer(createPlayerObject(new Point2D(0,0)));
@@ -43,13 +46,13 @@ public class Game {
     private void setGameMatrixVisible() {
         for (Rectangle2D r : field.getGameMatrix()) {
             Rectangle myrect = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
-            System.out.println("minX: " + r.getMinX() + "  minY: " + r.getMinY() + "  width: " + r.getWidth() + "  height: " + r.getHeight());
+            //System.out.println("minX: " + r.getMinX() + "  minY: " + r.getMinY() + "  width: " + r.getWidth() + "  height: " + r.getHeight());
             myrect.setFill(Color.RED);
             myrect.setStroke(Color.DARKRED);
             myrect.setOpacity(.5);
             field.add(myrect);
         }
-        System.out.println("gameMatrix-tiles: " + (field.getGameMatrix()).size());
+        //System.out.println("gameMatrix-tiles: " + (field.getGameMatrix()).size());
     }
 
     public void Start() {
@@ -66,5 +69,45 @@ public class Game {
         Image playerImage = assetManager.getImageAsset("player");
         Player player = new Player(field, playerImage, assetManager.getImageAsset("bomb"), initialPos, ViewDirection.DOWN);
         return player;
+    }
+
+    private void fillGameBoardWithBlocks() {
+
+        Rectangle destructableBlock;
+        int counter = 0;
+
+        // ToDo: set NonDestructibleBlocks programatically
+        // ToDo: create Object for Blocks
+        // 0 = empty field
+        // 1 = NonDestructableBlock
+        // 2 = Destructable Block
+        int[][] gameBoardAsIntArri = new int[][] {
+                {0,0,2,0,2,2,0,0,2,2,0},//10
+                {0,1,2,1,0,1,0,1,0,1,2},//21
+                {2,2,0,2,2,2,2,0,0,2,2},//32
+                {0,1,0,1,2,1,0,1,0,1,2},//43
+                {2,0,2,2,0,2,0,2,0,0,0},//54
+                {2,1,0,1,0,1,2,1,2,1,0},//65
+                {0,0,2,2,2,0,0,2,0,0,2},//76
+                {2,1,0,1,0,1,2,1,2,1,0},//87
+                {0,0,2,2,0,2,0,0,2,2,2},//98
+                {2,1,0,1,2,1,2,1,0,1,0},//109
+                {2,0,0,2,0,2,2,0,2,0,0},//120
+
+        };
+        for(int[] y : gameBoardAsIntArri) {
+            for( int x : y) {
+                if (x == 2) {
+                    Rectangle2D r = field.getGameMatrix().get(counter);
+                    Rectangle currRect = new Rectangle(r.getMinX()+5, r.getMinY()+5, r.getWidth()-10, r.getHeight()-10);
+                    currRect.setFill(Color.DARKGREY);
+                    currRect.setStroke(Color.DARKSLATEGREY);
+                    field.add(currRect);
+                }
+                counter++;
+                //System.out.println(counter);
+            }
+
+        }
     }
 }

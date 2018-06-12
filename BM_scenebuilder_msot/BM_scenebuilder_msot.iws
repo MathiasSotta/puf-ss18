@@ -36,8 +36,8 @@
       <file leaf-file-name="Field.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/game/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="192">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
               <folding>
                 <element signature="e#956#957#0" expanded="true" />
                 <element signature="e#1002#1003#0" expanded="true" />
@@ -60,7 +60,11 @@
         <entry file="file://$PROJECT_DIR$/src/application/game/GameAnimationTimer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+              <folding>
+                <element signature="e#305#306#0" expanded="true" />
+                <element signature="e#348#349#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +91,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="104" column="62" lean-forward="true" selection-start-line="104" selection-start-column="62" selection-end-line="104" selection-end-column="62" />
+            <state relative-caret-position="383">
+              <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
               <folding>
                 <element signature="e#2048#2049#0" expanded="true" />
                 <element signature="e#2081#2082#0" expanded="true" />
@@ -100,7 +104,7 @@
       <file leaf-file-name="ViewManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Manager/ViewManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="405">
               <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -377,7 +381,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75630000" />
+    <option name="totallyTimeSpent" value="76526000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -641,13 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/game/GameAnimationTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/javafx-src.zip!/javafx/scene/image/ImageView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -696,16 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/Manager/ViewManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/GameView.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -713,6 +700,48 @@
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/Manager/ViewManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/GameAnimationTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding>
+            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#348#349#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#2577#2578#0" expanded="true" />
+            <element signature="e#2626#2627#0" expanded="true" />
+            <element signature="e#2870#2871#0" expanded="true" />
+            <element signature="e#2898#2899#0" expanded="true" />
+            <element signature="e#2938#2939#0" expanded="true" />
+            <element signature="e#2968#2969#0" expanded="true" />
+            <element signature="e#3507#3508#0" expanded="true" />
+            <element signature="e#3540#3541#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/game/Player.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -731,31 +760,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/game/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#2577#2578#0" expanded="true" />
-            <element signature="e#2626#2627#0" expanded="true" />
-            <element signature="e#2870#2871#0" expanded="true" />
-            <element signature="e#2898#2899#0" expanded="true" />
-            <element signature="e#2938#2939#0" expanded="true" />
-            <element signature="e#2968#2969#0" expanded="true" />
-            <element signature="e#3507#3508#0" expanded="true" />
-            <element signature="e#3540#3541#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="104" column="62" lean-forward="true" selection-start-line="104" selection-start-column="62" selection-end-line="104" selection-end-column="62" />
+        <state relative-caret-position="383">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
           <folding>
             <element signature="e#2048#2049#0" expanded="true" />
             <element signature="e#2081#2082#0" expanded="true" />

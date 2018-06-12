@@ -31,9 +31,6 @@ public class Game {
         this.field = new Field(pane);
         assetManager.loadAssets();
 
-        // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
-        //setGameMatrixVisible();
-
         // fill gameBoard with blocks ...
         fillGameBoardWithBlocks();
 
@@ -41,6 +38,10 @@ public class Game {
         field.addPlayer(createPlayerObject(new Point2D(0,0)));
         // second player lower right
         field.addPlayer(createPlayerObject(new Point2D(field.getWidth()-Player.WIDTH, field.getHeight()-Player.HEIGHT)));
+
+
+        // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
+        setGameMatrixVisible();
     }
 
     private void setGameMatrixVisible() {
@@ -50,6 +51,7 @@ public class Game {
             myrect.setFill(Color.RED);
             myrect.setStroke(Color.DARKRED);
             myrect.setOpacity(.5);
+            myrect.setId("gameMatrixBlock");
             field.add(myrect);
         }
         //System.out.println("gameMatrix-tiles: " + (field.getGameMatrix()).size());
@@ -121,6 +123,7 @@ public class Game {
             }
 
         }
+    // update static elements
     field.initStaticElements();
     }
 }

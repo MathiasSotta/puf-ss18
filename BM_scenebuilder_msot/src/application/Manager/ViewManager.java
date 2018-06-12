@@ -39,7 +39,12 @@ public class ViewManager extends StackPane {
         if (!getChildren().isEmpty()) {
             getChildren().remove(0);
         }
-        getChildren().add(view);
+        try {
+            getChildren().add(view);
+        }
+        catch (Exception e) {
+            System.out.print(e);
+        }
         return true;
     }
 }

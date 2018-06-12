@@ -96,12 +96,24 @@ public class Game {
 
         };
         for(int[] y : gameBoardAsIntArri) {
+
             for( int x : y) {
+
+                if (x == 1) {
+                    Rectangle2D r = field.getGameMatrix().get(counter);
+                    Rectangle currRect = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
+                    currRect.setFill(Color.valueOf("d7d7d7"));
+                    currRect.setStroke(Color.valueOf("#cccccc"));
+                    currRect.setId("UndestructableBlock");
+                    field.add(currRect);
+                }
+
                 if (x == 2) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
                     Rectangle currRect = new Rectangle(r.getMinX()+5, r.getMinY()+5, r.getWidth()-10, r.getHeight()-10);
                     currRect.setFill(Color.DARKGREY);
                     currRect.setStroke(Color.DARKSLATEGREY);
+                    currRect.setId("DestructibleBlock");
                     field.add(currRect);
                 }
                 counter++;
@@ -109,5 +121,6 @@ public class Game {
             }
 
         }
+    field.initStaticElements();
     }
 }

@@ -53,31 +53,6 @@
     <AnchorPane fx:id="GameBoard" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: eee;">
          <children>
             <Rectangle id="NPC" fx:id="NPC" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="66.0" layoutX="702.0" layoutY="702.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock00" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock01" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock02" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="350.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock03" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="490.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock04" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="630.0" layoutY="70.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock13" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="490.0" layoutY="210.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock14" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="630.0" layoutY="210.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock10" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="210.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock12" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="350.0" layoutY="210.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock11" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="210.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock20" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="350.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock24" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="630.0" layoutY="350.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock21" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="350.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock23" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="490.0" layoutY="350.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock22" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="350.0" layoutY="350.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock33" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="490.0" layoutY="490.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock32" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="350.0" layoutY="490.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock31" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="490.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock34" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="630.0" layoutY="490.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock30" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="490.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock41" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="210.0" layoutY="630.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock40" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="70.0" layoutY="630.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock43" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="490.0" layoutY="630.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock44" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="630.0" layoutY="630.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
-            <Rectangle id="UndestructableBlock" fx:id="UndestructableBlock42" arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="70.0" layoutX="350.0" layoutY="630.0" stroke="#cccccc" strokeType="INSIDE" width="70.0" />
          </children>
       </AnchorPane>
    </children>

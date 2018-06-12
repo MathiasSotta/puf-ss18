@@ -4,9 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +24,8 @@ public class Field {
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;
 
-        for (Node node : this.fieldPane.getChildren()) {
-            if (node.getId().equals("UndestructableBlock")) {
-                staticElements.add(node);
-            }
-        }
+        // parse and set static elements
+        initStaticElements();
 
         // enable gameMatrix
         initGameMatrix();
@@ -111,6 +106,14 @@ public class Field {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void initStaticElements() {
+        for (Node node : this.fieldPane.getChildren()) {
+            if (node.getId().equals("UndestructableBlock")) {
+                staticElements.add(node);
+            }
+        }
     }
 
     private void initGameMatrix() {

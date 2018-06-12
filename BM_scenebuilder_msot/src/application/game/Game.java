@@ -41,7 +41,7 @@ public class Game {
 
 
         // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
-        setGameMatrixVisible();
+        //setGameMatrixVisible();
     }
 
     private void setGameMatrixVisible() {

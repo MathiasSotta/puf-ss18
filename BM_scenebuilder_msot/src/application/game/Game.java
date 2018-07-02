@@ -109,13 +109,13 @@ public class Game {
                     currRect.setId("UndestructableBlock");
                     field.add(currRect);
                 }
-
+                //setting up the destructable blocks on the game field
                 if (x == 2) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
                     Rectangle currRect = new Rectangle(r.getMinX()+5, r.getMinY()+5, r.getWidth()-10, r.getHeight()-10);
                     currRect.setFill(Color.DARKGREY);
                     currRect.setStroke(Color.DARKSLATEGREY);
-                    currRect.setId("DestructibleBlock");
+                    currRect.setId("DestructableBlock");
                     field.add(currRect);
                 }
                 counter++;
@@ -123,6 +123,7 @@ public class Game {
             }
 
         }
+
     // update static elements
     field.initStaticElements();
     }

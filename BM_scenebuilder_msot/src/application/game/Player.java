@@ -150,4 +150,5 @@ public class Player extends GameObject {
         setY(initialPos.getY());
         setVisible(true);
     }
+
 }

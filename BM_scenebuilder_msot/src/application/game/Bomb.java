@@ -69,6 +69,7 @@ public class Bomb extends GameObject {
     }
 
     public List<Rectangle2D> getExplosions() {
+
         return this.explosion;
     }
 }

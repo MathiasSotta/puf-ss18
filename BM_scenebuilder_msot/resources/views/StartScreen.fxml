@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="GameView" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameViewController">
+   <children>
+      <MenuBar fx:id="MenuBar" prefWidth="770.0" AnchorPane.leftAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+    <AnchorPane id="InfoBoard" fx:id="InfoBoard" layoutY="25.0" minHeight="70.0" minWidth="770.0" prefHeight="70.0" prefWidth="770.0" />
+      <Text layoutX="95.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bomberman!!!!!!!" wrappingWidth="620.8515625">
+         <font>
+            <Font name="Comic Sans MS" size="72.0" />
+         </font>
+      </Text>
+      <BottomNavigationButton layoutX="495.0" layoutY="638.0" prefHeight="127.0" prefWidth="240.0" text="Start playing" />
+   </children>
+</AnchorPane>

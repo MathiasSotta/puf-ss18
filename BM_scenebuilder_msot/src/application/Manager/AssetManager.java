@@ -11,6 +11,10 @@ public class AssetManager {
     public void loadAssets() {
         assets.put("player", new Image("images/test.png"));
         assets.put("bomb", new Image("images/bomb.png"));
+        assets.put("looksRight", new Image("images/looksRight.png"));
+        assets.put("looksLeft", new Image("images/looksLeft.png"));
+        assets.put("looksUp", new Image("images/looksUp.png"));
+        assets.put("looksDown", new Image("images/looksDown.png"));
     }
 
     public Image getImageAsset(String key) {

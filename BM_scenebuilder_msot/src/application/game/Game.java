@@ -74,8 +74,7 @@ public class Game {
 
     // todo: move to factory pattern
     private Player createPlayerObject(Point2D initialPos) {
-        Image playerImage = assetManager.getImageAsset("player");
-        Player player = new Player(field, playerImage, assetManager.getImageAsset("bomb"), initialPos, ViewDirection.DOWN);
+        Player player = new Player(field, assetManager, initialPos, ViewDirection.DOWN);
         return player;
     }
 

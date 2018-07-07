@@ -56,10 +56,13 @@ public class Field {
             b.update(now, delta);
             if (b.isExploding()) {
                 for (Player p : this.players) {
+
                     // if player is not alive we can skip the check
                     if (!p.isAlive()) {
                         break;
                     }
+
+                    // player within bomb explosion
                     if (b.withinExplosionCenter(p)) {
                         p.damage(100);
 
@@ -70,6 +73,7 @@ public class Field {
                         }
                     }
 
+                    // destructible block within bomb explosion
                     for (Node node : staticElements) {
                         if (node.getId().equals("DestructableBlock")) {
                             Rectangle rect = (Rectangle)node;
@@ -83,7 +87,6 @@ public class Field {
                 }
 
                 // remove exploded bomb
-                // todo: remove multiple in one frame
                 if (b.exploded(now)) {
                     fieldPane.getChildren().remove(b);
                     cleanup.add(b);
@@ -105,6 +108,7 @@ public class Field {
             }
         }
 
+        // update player state
         for (Player p : this.players) {
             p.update(now, delta);
         }

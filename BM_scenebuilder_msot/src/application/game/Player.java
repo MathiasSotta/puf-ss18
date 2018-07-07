@@ -29,15 +29,22 @@ public class Player extends GameObject {
 
     private ViewDirection playerLooks;
 
-    private Image playerRight = new Image("images/looksRight.png");
-    private Image playerUp = new Image("images/looksUp.png");
-    private Image playerDown = new Image ("images/looksDown.png");
-    private Image playerLeft = new Image("images/looksLeft.png");
+    private Image playerRight = null;
+    private Image playerUp = null;
+    private Image playerDown = null;
+    private Image playerLeft = null;
 
-    public Player(Field field, Image playerImage, Image bomb, Point2D pos, ViewDirection playerLooks) {
+    public Player(Field field, AssetManager assetManager, Point2D pos, ViewDirection playerLooks) {
         this.field = field;
         this.playerLooks = playerLooks;
-        setImage(playerImage);
+
+        setImage(assetManager.getImageAsset("player"));
+        playerRight = assetManager.getImageAsset("looksRight");
+        playerLeft = assetManager.getImageAsset("looksLeft");
+        playerUp = assetManager.getImageAsset("looksUp");
+        playerDown = assetManager.getImageAsset("looksDown");
+        bombImage = assetManager.getImageAsset("bomb");
+
         setPreserveRatio(true);
         setCache(true);
 
@@ -48,8 +55,6 @@ public class Player extends GameObject {
 
         setX(initialPos.getX());
         setY(initialPos.getY());
-
-        bombImage = bomb;
     }
 
     public void update(long now, double delta) {

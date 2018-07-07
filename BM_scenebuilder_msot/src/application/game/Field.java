@@ -75,7 +75,6 @@ public class Field {
                     if(b.withinExplosion(d)){
                         gameMatrix.remove(d);
                     }
-
                 }
 
                 // remove exploded bomb
@@ -83,6 +82,10 @@ public class Field {
                 if (b.exploded(now)) {
                     fieldPane.getChildren().remove(b);
                     removeBomb = b;
+
+                    for (Explosion e: b.getExplosions()) {
+                        fieldPane.getChildren().remove(e);
+                    }
                 }
             }
         }

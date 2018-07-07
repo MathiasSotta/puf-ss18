@@ -4,9 +4,12 @@ import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.animation.Animation;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +46,6 @@ public class Game {
         field.addPlayer(createPlayerObject(new Point2D(0, 0)));
         // second player lower right
         field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT)));
-
 
         // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
         //setGameMatrixVisible();

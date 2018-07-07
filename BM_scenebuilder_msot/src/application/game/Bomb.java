@@ -10,8 +10,10 @@ public class Bomb extends GameObject {
 
     private List<Rectangle2D> explosion = new ArrayList<>();
 
+    private List<Explosion> explosions = new ArrayList<>();
+
     private int explosionCountdown = 2;
-    private int explosionDuration = 2;
+    private int explosionDuration = 1;
 
     private long droppedAt = 0;
     private long explosionStart = 0;
@@ -61,15 +63,18 @@ public class Bomb extends GameObject {
         // explosion down
         this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 250));
 
+        this.setVisible(false);
         this.explosionStart = now;
+        Explosion explosion = new Explosion(now, this);
+        Game.getInstance().getField().add(explosion);
+        this.explosions.add(explosion);
     }
 
     public boolean isExploding() {
         return this.explosion.size() > 0;
     }
 
-    public List<Rectangle2D> getExplosions() {
-
-        return this.explosion;
+    public List<Explosion> getExplosions() {
+        return this.explosions;
     }
 }

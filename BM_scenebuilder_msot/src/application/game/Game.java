@@ -8,6 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     private static Game Instance;
@@ -15,9 +18,11 @@ public class Game {
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
     private Field field;
+    private List<DestructableBlock> destructableBlockList = new ArrayList<>();
 
     /**
      * Singleton Pattern for Game Instance
+     *
      * @return Game Instance
      */
     public static Game getInstance() {
@@ -35,9 +40,9 @@ public class Game {
         fillGameBoardWithBlocks();
 
         // first player upper left
-        field.addPlayer(createPlayerObject(new Point2D(0,0)));
+        field.addPlayer(createPlayerObject(new Point2D(0, 0)));
         // second player lower right
-        field.addPlayer(createPlayerObject(new Point2D(field.getWidth()-Player.WIDTH, field.getHeight()-Player.HEIGHT)));
+        field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT)));
 
 
         // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
@@ -83,23 +88,23 @@ public class Game {
         // 0 = empty field
         // 1 = NonDestructableBlock
         // 2 = Destructable Block
-        int[][] gameBoardAsIntArri = new int[][] {
-                {0,0,2,0,2,2,0,0,2,2,0},//10
-                {0,1,2,1,0,1,0,1,0,1,2},//21
-                {2,2,0,2,2,2,2,0,0,2,2},//32
-                {0,1,0,1,2,1,0,1,0,1,2},//43
-                {2,0,2,2,0,2,0,2,0,0,0},//54
-                {2,1,0,1,0,1,2,1,2,1,0},//65
-                {0,0,2,2,2,0,0,2,0,0,2},//76
-                {2,1,0,1,0,1,2,1,2,1,0},//87
-                {0,0,2,2,0,2,0,0,2,2,2},//98
-                {2,1,0,1,2,1,2,1,0,1,0},//109
-                {2,0,0,2,0,2,2,0,2,0,0},//120
+        int[][] gameBoardAsIntArri = new int[][]{
+                {0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0},//10
+                {0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 2},//21
+                {2, 2, 0, 2, 2, 2, 2, 0, 0, 2, 2},//32
+                {0, 1, 0, 1, 2, 1, 0, 1, 0, 1, 2},//43
+                {2, 0, 2, 2, 0, 2, 0, 2, 0, 0, 0},//54
+                {2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0},//65
+                {0, 0, 2, 2, 2, 0, 0, 2, 0, 0, 2},//76
+                {2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0},//87
+                {0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 2},//98
+                {2, 1, 0, 1, 2, 1, 2, 1, 0, 1, 0},//109
+                {2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0},//120
 
         };
-        for(int[] y : gameBoardAsIntArri) {
+        for (int[] y : gameBoardAsIntArri) {
 
-            for( int x : y) {
+            for (int x : y) {
 
                 if (x == 1) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
@@ -112,10 +117,11 @@ public class Game {
                 //setting up the destructable blocks on the game field
                 if (x == 2) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
-                    Rectangle currRect = new Rectangle(r.getMinX()+5, r.getMinY()+5, r.getWidth()-10, r.getHeight()-10);
+                    Rectangle currRect = new Rectangle(r.getMinX() + 5, r.getMinY() + 5, r.getWidth() - 10, r.getHeight() - 10);
                     currRect.setFill(Color.DARKGREY);
                     currRect.setStroke(Color.DARKSLATEGREY);
                     currRect.setId("DestructableBlock");
+                    //System.out.println("Block : " + currRect.getId());
                     field.add(currRect);
                 }
                 counter++;
@@ -124,7 +130,7 @@ public class Game {
 
         }
 
-    // update static elements
-    field.initStaticElements();
+        // update static elements
+        field.initStaticElements();
     }
 }

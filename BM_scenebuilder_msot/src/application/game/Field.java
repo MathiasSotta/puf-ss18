@@ -21,6 +21,8 @@ public class Field {
 
     private List<Rectangle2D> gameMatrix = new ArrayList<>();
 
+    private List<DestructableBlock> destructableBlocks = new ArrayList<>();
+
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;
 
@@ -68,6 +70,13 @@ public class Field {
                         }
                     }
                 }
+                //destructable blocks
+                for(DestructableBlock d : this.destructableBlocks){
+                    if(b.withinExplosion(d)){
+                        gameMatrix.remove(d);
+                    }
+
+                }
 
                 // remove exploded bomb
                 // todo: remove multiple in one frame
@@ -107,6 +116,17 @@ public class Field {
     public List<Player> getPlayers() {
         return players;
     }
+
+    public void addDestrBlock(DestructableBlock destrBlock){
+        this.add(destrBlock);
+        this.destructableBlocks.add(destrBlock);
+    }
+
+    public  List<DestructableBlock> getDestructableBlocks(){
+        return destructableBlocks;
+    }
+
+
 
     public void initStaticElements() {
         for (Node node : this.fieldPane.getChildren()) {

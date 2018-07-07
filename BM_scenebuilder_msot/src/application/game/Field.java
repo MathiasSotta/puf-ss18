@@ -50,10 +50,10 @@ public class Field {
         return false;
     }
 
-    public void update(long now) {
+    public void update(long now, double delta) {
         Bomb removeBomb = null;
         for (Bomb b : this.bombs) {
-            b.update(now);
+            b.update(now, delta);
             if (b.isExploding()) {
                 for (Player p : this.players) {
                     // if player is not alive we can skip the check
@@ -86,7 +86,7 @@ public class Field {
         this.bombs.remove(removeBomb);
 
         for (Player p : this.players) {
-            p.update(now);
+            p.update(now, delta);
         }
     }
 
@@ -185,11 +185,6 @@ public class Field {
 
                 int dX = ((Math.abs(aMatrixMaxX - nodeMinX) > Math.abs(bMatrixMinX - nodeMaxX)) && (aMatrixMaxY >= nodeMaxY) && (bMatrixMinY <= nodeMinY)) ? i : i+1;
                 int dY = ((Math.abs(aMatrixMaxY - nodeMinY) > Math.abs(bMatrixMinY - nodeMaxY)) && (aMatrixMaxX >= nodeMaxX) && (bMatrixMinX <= nodeMinX)) ? i : i+1;
-
-                // debug
-//              System.out.println("xStrike: " + (dX == 1));
-//              System.out.println("yStrike: " + (dY == 1));
-//              System.out.println("Arraygroesse: " + intersectingTiles.size());
 
                 Rectangle rX = intersectingTiles.get(dX);
                 Rectangle rY = intersectingTiles.get(dY);

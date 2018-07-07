@@ -18,8 +18,8 @@ public class Player extends GameObject {
     private boolean isAlive = true;
     private long diedAt = 0;
 
-    static final int STEP_WIDTH = 2;
-    static final int STEP_HEIGHT = 2;
+    static final int STEP_WIDTH = 100;
+    static final int STEP_HEIGHT = 100;
 
     static final int WIDTH = 60;
     static final int HEIGHT = 60;
@@ -46,7 +46,7 @@ public class Player extends GameObject {
         bombImage = bomb;
     }
 
-    public void update(long now) {
+    public void update(long now, double delta) {
 
         // check health each frame
         if (isAlive() && health <= 0) {
@@ -63,25 +63,25 @@ public class Player extends GameObject {
             }
         }
 
-        int posX = (int) getX();
-        int posY = (int) getY();
-        int xFactor = 0;
-        int yFactor = 0;
+        double posX = getX();
+        double posY = getY();
+        double xFactor = 0;
+        double yFactor = 0;
 
         if (movement == Movement.RIGHT) {
-            xFactor = STEP_WIDTH;
+            xFactor = STEP_WIDTH * delta;
             this.playerLooks = ViewDirection.RIGHT;
 
         } else if (movement == Movement.LEFT) {
-            xFactor = STEP_WIDTH * -1;
+            xFactor = STEP_WIDTH * delta * -1;
             this.playerLooks = ViewDirection.LEFT;
 
         } else if (movement == Movement.UP) {
-            yFactor = STEP_HEIGHT * -1;
+            yFactor = STEP_HEIGHT * delta * -1;
             this.playerLooks = ViewDirection.UP;
 
         } else if (movement == Movement.DOWN) {
-            yFactor = STEP_HEIGHT * 1;
+            yFactor = STEP_HEIGHT * delta * 1;
             this.playerLooks = ViewDirection.DOWN;
         }
 

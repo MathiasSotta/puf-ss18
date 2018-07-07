@@ -26,7 +26,7 @@ public class Bomb extends GameObject {
         this.setFitHeight(60);
     }
 
-    public void update(long now) {
+    public void update(long now, double delta) {
         if (!isExploding()) {
             if (droppedAt == 0) {
                 droppedAt = now;

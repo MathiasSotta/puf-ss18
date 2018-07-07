@@ -16,7 +16,7 @@ public class DestructableBlock extends GameObject {
     }
 
     @Override
-    public void update(long now) {
+    public void update(long now, double delta) {
 
     }
 

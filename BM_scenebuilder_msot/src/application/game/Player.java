@@ -1,5 +1,6 @@
 package application.game;
 
+import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
@@ -27,6 +28,11 @@ public class Player extends GameObject {
     static final int respawnCountdown = 2;
 
     private ViewDirection playerLooks;
+
+    private Image playerRight = new Image("images/looksRight.png");
+    private Image playerUp = new Image("images/looksUp.png");
+    private Image playerDown = new Image ("images/looksDown.png");
+    private Image playerLeft = new Image("images/looksLeft.png");
 
     public Player(Field field, Image playerImage, Image bomb, Point2D pos, ViewDirection playerLooks) {
         this.field = field;
@@ -71,18 +77,23 @@ public class Player extends GameObject {
         if (movement == Movement.RIGHT) {
             xFactor = STEP_WIDTH * delta;
             this.playerLooks = ViewDirection.RIGHT;
+            this.setImage(playerRight);
+
 
         } else if (movement == Movement.LEFT) {
             xFactor = STEP_WIDTH * delta * -1;
             this.playerLooks = ViewDirection.LEFT;
+            this.setImage(playerLeft);
 
         } else if (movement == Movement.UP) {
             yFactor = STEP_HEIGHT * delta * -1;
             this.playerLooks = ViewDirection.UP;
+            this.setImage(playerUp);
 
         } else if (movement == Movement.DOWN) {
             yFactor = STEP_HEIGHT * delta * 1;
             this.playerLooks = ViewDirection.DOWN;
+            this.setImage(playerDown);
         }
 
         if (posX + xFactor + getFitWidth() < field.getWidth() && posX + xFactor > 0) {
@@ -150,5 +161,6 @@ public class Player extends GameObject {
         setY(initialPos.getY());
         setVisible(true);
     }
+
 
 }

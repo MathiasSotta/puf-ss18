@@ -55,19 +55,50 @@ public class Bomb extends GameObject {
 
     public void explode(long now) {
         // explosion right
-        this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 250, getFitHeight()));
+        this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 60, getFitHeight()));
         // explosion left
-        this.explosion.add(new Rectangle2D(getX()-250, getY(), 250, getFitHeight()));
+        this.explosion.add(new Rectangle2D(getX()-60, getY(), 60, getFitHeight()));
         // explosion up
-        this.explosion.add(new Rectangle2D(getX(), getY()-250, getFitWidth(), 250));
+        this.explosion.add(new Rectangle2D(getX(), getY()-60, getFitWidth(), 60));
         // explosion down
-        this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 250));
+        this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 60));
 
         this.setVisible(false);
         this.explosionStart = now;
-        Explosion explosion = new Explosion(now, this);
+
+        Explosion explosion = new Explosion(now);
+        explosion.setX(this.getX());
+        explosion.setY(this.getY());
         Game.getInstance().getField().add(explosion);
         this.explosions.add(explosion);
+
+        // top
+        Explosion explosionTop = new Explosion(now);
+        explosionTop.setX(this.getX());
+        explosionTop.setY(this.getY()-60);
+        Game.getInstance().getField().add(explosionTop);
+        this.explosions.add(explosionTop);
+
+        // bottom
+        Explosion explosionBottom = new Explosion(now);
+        explosionBottom.setX(this.getX());
+        explosionBottom.setY(this.getY()+60);
+        Game.getInstance().getField().add(explosionBottom);
+        this.explosions.add(explosionBottom);
+
+        // right
+        Explosion explosionRight = new Explosion(now);
+        explosionRight.setX(this.getX()+60);
+        explosionRight.setY(this.getY());
+        Game.getInstance().getField().add(explosionRight);
+        this.explosions.add(explosionRight);
+
+        // left
+        Explosion explosionLeft = new Explosion(now);
+        explosionLeft.setX(this.getX()-60);
+        explosionLeft.setY(this.getY());
+        Game.getInstance().getField().add(explosionLeft);
+        this.explosions.add(explosionLeft);
     }
 
     public boolean isExploding() {

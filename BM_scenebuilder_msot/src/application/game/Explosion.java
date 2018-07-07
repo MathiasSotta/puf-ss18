@@ -17,7 +17,7 @@ public class Explosion extends GameObject {
 
     private Animation animation = null;
 
-    public Explosion(long now, Bomb b) {
+    public Explosion(long now) {
         this.setImage(IMAGE);
 
         this.setPreserveRatio(true);
@@ -36,9 +36,6 @@ public class Explosion extends GameObject {
         );
         this.animation.setCycleCount(Animation.INDEFINITE);
         this.animation.play();
-
-        this.setX(b.getX());
-        this.setY(b.getY());
     }
 
     public void update(long now, double delta) {

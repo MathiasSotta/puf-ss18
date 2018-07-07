@@ -18,7 +18,6 @@ public class Game {
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
     private Field field;
-    private List<DestructableBlock> destructableBlockList = new ArrayList<>();
 
     /**
      * Singleton Pattern for Game Instance

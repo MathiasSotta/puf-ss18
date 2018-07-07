@@ -69,13 +69,8 @@ public class Field {
                             System.out.println("Player died");
                         }
                     }
-                }
-                //destructable blocks
-                for(DestructableBlock d : this.destructableBlocks){
-                    if(b.withinExplosion(d)){
-                        gameMatrix.remove(d);
-                    }
-
+                    //destructable blocks
+                    gameMatrix.remove(destructableBlocks);
                 }
 
                 // remove exploded bomb

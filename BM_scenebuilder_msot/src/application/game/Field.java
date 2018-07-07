@@ -14,6 +14,7 @@ public class Field {
     private AnchorPane fieldPane;
 
     private List<Node> staticElements = new ArrayList<>();
+    private List<Node> cleanup = new ArrayList<>();
 
     private List<Bomb> bombs = new ArrayList<>();
 
@@ -51,7 +52,6 @@ public class Field {
     }
 
     public void update(long now, double delta) {
-        Bomb removeBomb = null;
         for (Bomb b : this.bombs) {
             b.update(now, delta);
             if (b.isExploding()) {
@@ -60,7 +60,7 @@ public class Field {
                     if (!p.isAlive()) {
                         break;
                     }
-                    if (b.withinExplosion(p)) {
+                    if (b.withinExplosionCenter(p)) {
                         p.damage(100);
 
                         // is player still alive after damage ?
@@ -69,15 +69,24 @@ public class Field {
                             System.out.println("Player died");
                         }
                     }
-                    //destructable blocks
-                    gameMatrix.remove(destructableBlocks);
+
+                    for (Node node : staticElements) {
+                        if (node.getId().equals("DestructableBlock")) {
+                            Rectangle rect = (Rectangle)node;
+                            Rectangle2D targetRect = new Rectangle2D(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+                            if (b.withinExplosionRect(targetRect)) {
+                                fieldPane.getChildren().remove(node);
+                                cleanup.add(node);
+                            }
+                        }
+                    }
                 }
 
                 // remove exploded bomb
                 // todo: remove multiple in one frame
                 if (b.exploded(now)) {
                     fieldPane.getChildren().remove(b);
-                    removeBomb = b;
+                    cleanup.add(b);
 
                     for (Explosion e: b.getExplosions()) {
                         fieldPane.getChildren().remove(e);
@@ -87,7 +96,14 @@ public class Field {
         }
 
         // cleanup Objects
-        this.bombs.remove(removeBomb);
+        for (Node n : cleanup) {
+            if (n.getId().equals("DestructableBlock")) {
+                staticElements.remove(n);
+            }
+            if (n.getId().equals("Bomb")) {
+                bombs.remove(n);
+            }
+        }
 
         for (Player p : this.players) {
             p.update(now, delta);
@@ -124,8 +140,6 @@ public class Field {
     public  List<DestructableBlock> getDestructableBlocks(){
         return destructableBlocks;
     }
-
-
 
     public void initStaticElements() {
         for (Node node : this.fieldPane.getChildren()) {

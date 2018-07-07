@@ -19,6 +19,7 @@ public class Bomb extends GameObject {
     private long explosionStart = 0;
 
     public Bomb(Image image) {
+        this.setId("Bomb");
         this.setImage(image);
 
         this.setPreserveRatio(true);
@@ -43,9 +44,19 @@ public class Bomb extends GameObject {
         return timestampToSeconds(now - explosionStart) >= explosionDuration;
     }
 
-    public boolean withinExplosion(GameObject gameObject) {
+    public boolean withinExplosionCenter(GameObject gameObject) {
         for (Rectangle2D rect : this.explosion) {
             if (rect.contains(gameObject.getCenterPosition())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean withinExplosionRect(Rectangle2D targetRect) {
+        for (Rectangle2D rect : this.explosion) {
+            if (rect.intersects(targetRect)) {
                 return true;
             }
         }

@@ -6,11 +6,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.animation.Animation;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,7 @@ public class Game {
 
         // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
         //setGameMatrixVisible();
+
     }
 
     private void setGameMatrixVisible() {

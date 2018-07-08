@@ -4,8 +4,11 @@ import application.manager.ViewManager;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Properties;
 
 public class Main extends Application {
@@ -28,6 +31,12 @@ public class Main extends Application {
         mainStage.show();
     }
 
+    public void backgroundSound(){
+        String musicFile = "resources/sounds/background.mid";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+    }
 
     public static void main(String[] args) {
         launch(args);

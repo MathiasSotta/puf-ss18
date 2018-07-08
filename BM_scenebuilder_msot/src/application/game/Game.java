@@ -3,19 +3,9 @@ package application.game;
 import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.animation.Animation;
-import javafx.util.Duration;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
 
@@ -89,8 +79,8 @@ public class Game {
         // ToDo: set NonDestructibleBlocks programatically
         // ToDo: create Object for Blocks
         // 0 = empty field
-        // 1 = NonDestructableBlock
-        // 2 = Destructable Block
+        // 1 = Undestructible Block
+        // 2 = Destructible Block
         int[][] gameBoardAsIntArri = new int[][]{
                 {0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0},//10
                 {0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 2},//21
@@ -114,25 +104,24 @@ public class Game {
                     Rectangle currRect = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
                     currRect.setFill(Color.valueOf("d7d7d7"));
                     currRect.setStroke(Color.valueOf("#cccccc"));
-                    currRect.setId("UndestructableBlock");
+                    currRect.setId("UndestructibleBlock");
                     field.add(currRect);
                 }
-                //setting up the destructable blocks on the game field
+                //setting up the destructible blocks on the game field
                 if (x == 2) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
-                    Rectangle currRect = new Rectangle(r.getMinX() + 5, r.getMinY() + 5, r.getWidth() - 10, r.getHeight() - 10);
-                    currRect.setFill(Color.DARKGREY);
-                    currRect.setStroke(Color.DARKSLATEGREY);
-                    currRect.setId("DestructableBlock");
-                    field.add(currRect);
+                    DestructibleBlock d = new DestructibleBlock();
+                    d.setId("DestructibleBlock");
+                    d.setImage(assetManager.getImageAsset("destructible"));
+                    d.setFitWidth(r.getWidth() - 10);
+                    d.setFitHeight(r.getHeight() - 10);
+                    d.setX(r.getMinX() + 5);
+                    d.setY(r.getMinY() + 5);
+                    field.add(d);
                 }
                 counter++;
                 //System.out.println(counter);
             }
-
         }
-
-        // update static elements
-        field.initStaticElements();
     }
 }

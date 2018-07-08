@@ -14,6 +14,8 @@ public class Field {
     private AnchorPane fieldPane;
 
     private List<Node> staticElements = new ArrayList<>();
+    private List<DestructibleBlock> destructibleBlocks = new ArrayList<>();
+
     private List<Node> cleanup = new ArrayList<>();
 
     private List<Bomb> bombs = new ArrayList<>();
@@ -25,9 +27,6 @@ public class Field {
 
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;
-
-        // parse and set static elements
-        initStaticElements();
 
         // enable gameMatrix
         initGameMatrix();
@@ -72,15 +71,11 @@ public class Field {
                         }
                     }
 
-                    // destructable block within bomb explosion
-                    for (Node node : staticElements) {
-                        if (node.getId().equals("DestructableBlock")) {
-                            Rectangle rect = (Rectangle)node;
-                            Rectangle2D targetRect = new Rectangle2D(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-                            if (b.withinExplosionRect(targetRect)) {
-                                fieldPane.getChildren().remove(node);
-                                cleanup.add(node);
-                            }
+                    // destructible block within bomb explosion
+                    for (DestructibleBlock d : destructibleBlocks) {
+                        if (b.withinExplosionCenter(d)) {
+                            fieldPane.getChildren().remove(d);
+                            cleanup.add(d);
                         }
                     }
                 }
@@ -99,8 +94,9 @@ public class Field {
 
         // cleanup Objects
         for (Node n : cleanup) {
-            if (n.getId().equals("DestructableBlock")) {
+            if (n.getId().equals("DestructibleBlock")) {
                 staticElements.remove(n);
+                destructibleBlocks.remove(n);
             }
             if (n.getId().equals("Bomb")) {
                 bombs.remove(n);
@@ -114,6 +110,15 @@ public class Field {
     }
 
     public void add(Node node) {
+        if (node.getId() != null) {
+            if (node.getId().equals("DestructibleBlock")) {
+                staticElements.add(node);
+                destructibleBlocks.add((DestructibleBlock)node);
+            }
+            if (node.getId().equals("UndestructibleBlock")) {
+                staticElements.add(node);
+            }
+        }
         fieldPane.getChildren().add(node);
     }
 
@@ -133,18 +138,6 @@ public class Field {
 
     public List<Player> getPlayers() {
         return players;
-    }
-
-
-    public void initStaticElements() {
-        for (Node node : this.fieldPane.getChildren()) {
-            if (node.getId().equals("UndestructableBlock")) {
-                staticElements.add(node);
-            }
-            if (node.getId().equals("DestructableBlock")) {
-                staticElements.add(node);
-            }
-        }
     }
 
     private void initGameMatrix() {

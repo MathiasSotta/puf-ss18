@@ -15,6 +15,7 @@ public class AssetManager {
         assets.put("looksLeft", new Image("images/looksLeft.png"));
         assets.put("looksUp", new Image("images/looksUp.png"));
         assets.put("looksDown", new Image("images/looksDown.png"));
+        assets.put("destructible", new Image("images/destructible.png"));
     }
 
     public Image getImageAsset(String key) {

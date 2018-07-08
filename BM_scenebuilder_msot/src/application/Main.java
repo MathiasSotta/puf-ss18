@@ -19,8 +19,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //viewManager.setView("/views/StartScreen.fxml");
-        viewManager.setView("/views/GameView.fxml");
+        viewManager.setView("/views/StartScreen.fxml");
+        //viewManager.setView("/views/GameView.fxml");
         settings.load(getClass().getResourceAsStream("/config/application.config"));
 
         Group root = new Group();

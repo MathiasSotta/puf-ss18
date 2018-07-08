@@ -50,7 +50,7 @@
             </Text>
          </children>
       </AnchorPane>
-    <AnchorPane fx:id="GameBoard" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: eee;">
+    <AnchorPane fx:id="GameBoard" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: #0f7931;">
          <children>
             <Rectangle id="NPC" fx:id="NPC" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="66.0" layoutX="702.0" layoutY="702.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0" />
          </children>

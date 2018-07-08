@@ -22,7 +22,6 @@ public class Field {
 
     private List<Rectangle2D> gameMatrix = new ArrayList<>();
 
-    private List<DestructableBlock> destructableBlocks = new ArrayList<>();
 
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;

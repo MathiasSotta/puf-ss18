@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.media.*;
+import java.io.File;
+
 public class Bomb extends GameObject {
 
     private List<Rectangle2D> explosion = new ArrayList<>();
@@ -18,6 +21,7 @@ public class Bomb extends GameObject {
     private long droppedAt = 0;
     private long explosionStart = 0;
 
+
     public Bomb(Image image) {
         this.setId("Bomb");
         this.setImage(image);
@@ -27,6 +31,7 @@ public class Bomb extends GameObject {
 
         this.setFitWidth(60);
         this.setFitHeight(60);
+
     }
 
     public void update(long now, double delta) {
@@ -110,6 +115,9 @@ public class Bomb extends GameObject {
         explosionLeft.setY(this.getY());
         Game.getInstance().getField().add(explosionLeft);
         this.explosions.add(explosionLeft);
+
+        bombSound();
+
     }
 
     public boolean isExploding() {
@@ -118,5 +126,12 @@ public class Bomb extends GameObject {
 
     public List<Explosion> getExplosions() {
         return this.explosions;
+    }
+
+    public void bombSound(){
+        String musicFile = "resources/sounds/Bomb_Exploding.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
     }
 }

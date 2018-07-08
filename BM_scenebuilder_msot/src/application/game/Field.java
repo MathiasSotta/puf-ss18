@@ -73,7 +73,7 @@ public class Field {
                         }
                     }
 
-                    // destructible block within bomb explosion
+                    // destructable block within bomb explosion
                     for (Node node : staticElements) {
                         if (node.getId().equals("DestructableBlock")) {
                             Rectangle rect = (Rectangle)node;
@@ -136,14 +136,6 @@ public class Field {
         return players;
     }
 
-    public void addDestrBlock(DestructableBlock destrBlock){
-        this.add(destrBlock);
-        this.destructableBlocks.add(destrBlock);
-    }
-
-    public  List<DestructableBlock> getDestructableBlocks(){
-        return destructableBlocks;
-    }
 
     public void initStaticElements() {
         for (Node node : this.fieldPane.getChildren()) {

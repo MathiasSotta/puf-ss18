@@ -80,7 +80,6 @@ public class Game {
 
     private void fillGameBoardWithBlocks() {
 
-        Rectangle destructableBlock;
         int counter = 0;
 
         // ToDo: set NonDestructibleBlocks programatically
@@ -121,7 +120,6 @@ public class Game {
                     currRect.setFill(Color.DARKGREY);
                     currRect.setStroke(Color.DARKSLATEGREY);
                     currRect.setId("DestructableBlock");
-                    //System.out.println("Block : " + currRect.getId());
                     field.add(currRect);
                 }
                 counter++;

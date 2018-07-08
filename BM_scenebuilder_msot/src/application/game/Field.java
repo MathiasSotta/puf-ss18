@@ -115,7 +115,7 @@ public class Field {
                 staticElements.add(node);
                 destructibleBlocks.add((DestructibleBlock)node);
             }
-            if (node.getId().equals("UndestructibleBlock")) {
+            if (node.getId().equals("IndestructibleBlock")) {
                 staticElements.add(node);
             }
         }

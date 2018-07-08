@@ -79,7 +79,7 @@ public class Game {
         // ToDo: set NonDestructibleBlocks programatically
         // ToDo: create Object for Blocks
         // 0 = empty field
-        // 1 = Undestructible Block
+        // 1 = IndestructibleBlock Block
         // 2 = Destructible Block
         int[][] gameBoardAsIntArri = new int[][]{
                 {0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0},//10
@@ -101,11 +101,14 @@ public class Game {
 
                 if (x == 1) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
-                    Rectangle currRect = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
-                    currRect.setFill(Color.valueOf("d7d7d7"));
-                    currRect.setStroke(Color.valueOf("#cccccc"));
-                    currRect.setId("UndestructibleBlock");
-                    field.add(currRect);
+                    IndestructibleBlock i = new IndestructibleBlock();
+                    i.setId("IndestructibleBlock");
+                    i.setImage(assetManager.getImageAsset("indestructible"));
+                    i.setFitWidth(r.getWidth() - 10);
+                    i.setFitHeight(r.getHeight() - 10);
+                    i.setX(r.getMinX() + 5);
+                    i.setY(r.getMinY() + 5);
+                    field.add(i);
                 }
                 //setting up the destructible blocks on the game field
                 if (x == 2) {

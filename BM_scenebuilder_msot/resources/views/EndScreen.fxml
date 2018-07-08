@@ -45,7 +45,7 @@
                   <Font name="Comic Sans MS" size="65.0" />
                </font>
             </Text>
-            <Button fx:id="startPlaying" layoutX="559.0" layoutY="661.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
+            <Button fx:id="startPlaying" layoutX="559.0" layoutY="661.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Quit">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>

@@ -3,12 +3,15 @@ package application.game;
 import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
 
 public class Player extends GameObject {
 
     private Movement movement = Movement.IDLE;
 
     private Image bombImage;
+
+    private MediaPlayer bombAudio;
 
     private Field field;
 
@@ -38,12 +41,13 @@ public class Player extends GameObject {
         this.field = field;
         this.playerLooks = playerLooks;
 
-        setImage(assetManager.getImageAsset("player"));
-        playerRight = assetManager.getImageAsset("looksRight");
-        playerLeft = assetManager.getImageAsset("looksLeft");
-        playerUp = assetManager.getImageAsset("looksUp");
-        playerDown = assetManager.getImageAsset("looksDown");
-        bombImage = assetManager.getImageAsset("bomb");
+        setImage(assetManager.getImage("player"));
+        playerRight = assetManager.getImage("looksRight");
+        playerLeft = assetManager.getImage("looksLeft");
+        playerUp = assetManager.getImage("looksUp");
+        playerDown = assetManager.getImage("looksDown");
+        bombImage = assetManager.getImage("bomb");
+        bombAudio = assetManager.getAudio("explosion");
 
         setPreserveRatio(true);
         setCache(true);
@@ -122,7 +126,8 @@ public class Player extends GameObject {
         // start timer and update with delta in update()
         // only allow dropping another bomb after 2 seconds and reset timer
         if (isAlive()) {
-            Bomb bomb = new Bomb(bombImage);
+            bombAudio.stop();
+            Bomb bomb = new Bomb(bombImage, bombAudio);
 
             // set bomb position to center of the players current tile
             Point2D bombPosition = field.getBombTileCenterPosition(this);

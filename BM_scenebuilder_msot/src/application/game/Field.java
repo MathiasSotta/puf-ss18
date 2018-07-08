@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;

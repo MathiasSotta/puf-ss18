@@ -103,7 +103,7 @@ public class Game {
                     Rectangle2D r = field.getGameMatrix().get(counter);
                     IndestructibleBlock i = new IndestructibleBlock();
                     i.setId("IndestructibleBlock");
-                    i.setImage(assetManager.getImageAsset("indestructible"));
+                    i.setImage(assetManager.getImage("indestructible"));
                     i.setFitWidth(r.getWidth() - 10);
                     i.setFitHeight(r.getHeight() - 10);
                     i.setX(r.getMinX() + 5);
@@ -115,7 +115,7 @@ public class Game {
                     Rectangle2D r = field.getGameMatrix().get(counter);
                     DestructibleBlock d = new DestructibleBlock();
                     d.setId("DestructibleBlock");
-                    d.setImage(assetManager.getImageAsset("destructible"));
+                    d.setImage(assetManager.getImage("destructible"));
                     d.setFitWidth(r.getWidth() - 10);
                     d.setFitHeight(r.getHeight() - 10);
                     d.setX(r.getMinX() + 5);

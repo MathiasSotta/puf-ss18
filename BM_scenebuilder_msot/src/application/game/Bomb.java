@@ -21,8 +21,10 @@ public class Bomb extends GameObject {
     private long droppedAt = 0;
     private long explosionStart = 0;
 
+    private MediaPlayer bombAudio = null;
 
-    public Bomb(Image image) {
+
+    public Bomb(Image image, MediaPlayer bombAudio) {
         this.setId("Bomb");
         this.setImage(image);
 
@@ -31,6 +33,8 @@ public class Bomb extends GameObject {
 
         this.setFitWidth(60);
         this.setFitHeight(60);
+
+        this.bombAudio = bombAudio;
 
     }
 
@@ -116,8 +120,7 @@ public class Bomb extends GameObject {
         Game.getInstance().getField().add(explosionLeft);
         this.explosions.add(explosionLeft);
 
-        bombSound();
-
+        bombAudio.play();
     }
 
     public boolean isExploding() {
@@ -126,12 +129,5 @@ public class Bomb extends GameObject {
 
     public List<Explosion> getExplosions() {
         return this.explosions;
-    }
-
-    public void bombSound(){
-        String musicFile = "resources/sounds/Bomb_Exploding.mp3";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
     }
 }

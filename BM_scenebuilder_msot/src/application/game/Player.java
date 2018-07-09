@@ -22,8 +22,8 @@ public class Player extends GameObject {
     private boolean isAlive = true;
     private long diedAt = 0;
 
-    static final int STEP_WIDTH = 100;
-    static final int STEP_HEIGHT = 100;
+    static final int STEP_WIDTH = 150;
+    static final int STEP_HEIGHT = 150;
 
     static final int WIDTH = 60;
     static final int HEIGHT = 60;
@@ -37,9 +37,12 @@ public class Player extends GameObject {
     private Image playerDown = null;
     private Image playerLeft = null;
 
-    public Player(Field field, AssetManager assetManager, Point2D pos, ViewDirection playerLooks) {
+    private int score = 0;
+
+    public Player(Field field, AssetManager assetManager, Point2D pos, ViewDirection playerLooks, String name) {
         this.field = field;
         this.playerLooks = playerLooks;
+        this.setId(name);
 
         setImage(assetManager.getImage("player"));
         playerRight = assetManager.getImage("looksRight");
@@ -127,7 +130,7 @@ public class Player extends GameObject {
         // only allow dropping another bomb after 2 seconds and reset timer
         if (isAlive()) {
             bombAudio.stop();
-            Bomb bomb = new Bomb(bombImage, bombAudio);
+            Bomb bomb = new Bomb(bombImage, bombAudio, this);
 
             // set bomb position to center of the players current tile
             Point2D bombPosition = field.getBombTileCenterPosition(this);
@@ -148,8 +151,12 @@ public class Player extends GameObject {
         return movement;
     }
 
-    public void damage(int amount) {
+    public boolean damage(int amount) {
         health -= amount;
+        if (health <= 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isAlive() {
@@ -172,5 +179,15 @@ public class Player extends GameObject {
         setVisible(true);
     }
 
+    public void incrementScore() {
+        score++;
+    }
 
+    public void decrementScore() {
+        score--;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }

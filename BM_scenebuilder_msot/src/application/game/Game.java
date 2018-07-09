@@ -6,14 +6,26 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class Game {
 
     private static Game Instance;
 
+    private static String PLAYER_ONE_NAME = "PLAYER_ONE";
+    private static String PLAYER_TWO_NAME = "PLAYER_TWO";
+
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
     private Field field;
+
+    private AnchorPane infoBoard;
+
+    private Text gameTimer;
+    private Text playerOneName;
+    private Text playerTwoName;
+    private Text playerOneScore;
+    private Text playerTwoScore;
 
     /**
      * Singleton Pattern for Game Instance
@@ -27,21 +39,41 @@ public class Game {
         return Instance;
     }
 
-    public void Initialize(AnchorPane pane) {
+    public void Initialize(AnchorPane pane, AnchorPane infoBoard) {
         this.field = new Field(pane);
+        this.infoBoard = infoBoard;
         assetManager.loadAssets();
 
         // fill gameBoard with blocks ...
         fillGameBoardWithBlocks();
 
         // first player upper left
-        field.addPlayer(createPlayerObject(new Point2D(0, 0)));
+        field.addPlayer(createPlayerObject(new Point2D(0, 0), Game.PLAYER_ONE_NAME));
         // second player lower right
-        field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT)));
+        field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT), Game.PLAYER_TWO_NAME));
 
-        // ======== Display GameMatrix for debugging (comment out next line to hide it) ========
+        initializeInfoboard();
+
+        // GameMatrix debugging
         //setGameMatrixVisible();
+    }
 
+    public void initializeInfoboard() {
+        playerOneName = (Text)this.infoBoard.lookup("#PlayerOneName");
+        playerOneScore = (Text)this.infoBoard.lookup("#PlayerOneScore");
+        playerTwoName = (Text)this.infoBoard.lookup("#PlayerTwoName");
+        playerTwoScore = (Text)this.infoBoard.lookup("#PlayerTwoScore");
+
+        gameTimer = (Text)this.infoBoard.lookup("#GameTimer");
+    }
+
+    public void updatePlayerScore(Bomb bomb) {
+        if (bomb.getOwner().getId() == Game.PLAYER_ONE_NAME) {
+            playerOneScore.setText(String.valueOf(bomb.getOwner().getScore()));
+        }
+        if (bomb.getOwner().getId() == Game.PLAYER_TWO_NAME) {
+            playerTwoScore.setText(String.valueOf(bomb.getOwner().getScore()));
+        }
     }
 
     private void setGameMatrixVisible() {
@@ -67,8 +99,8 @@ public class Game {
     }
 
     // todo: move to factory pattern
-    private Player createPlayerObject(Point2D initialPos) {
-        Player player = new Player(field, assetManager, initialPos, ViewDirection.DOWN);
+    private Player createPlayerObject(Point2D initialPos, String name) {
+        Player player = new Player(field, assetManager, initialPos, ViewDirection.DOWN, name);
         return player;
     }
 

@@ -33,27 +33,34 @@
       </MenuBar>
     <AnchorPane id="InfoBoard" fx:id="InfoBoard" layoutY="25.0" minHeight="70.0" minWidth="770.0" prefHeight="70.0" prefWidth="770.0">
          <children>
-            <Text id="DisplayScore" layoutX="342.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 0">
+             <Text id="PlayerOneName" layoutX="71.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1">
+                 <font>
+                     <Font name="Lucida Console" size="18.0" />
+                 </font>
+             </Text>
+             <Text id="PlayerOneScore" layoutX="160.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                 <font>
+                     <Font name="Lucida Console" size="18.0" />
+                 </font>
+             </Text>
+            <Text id="GameTimer" layoutX="342.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4:59">
                <font>
                   <Font name="Lucida Console" size="18.0" />
                </font>
             </Text>
-            <Text id="DisplayTimer" layoutX="578.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time: 04:59">
-               <font>
-                  <Font name="Lucida Console" size="18.0" />
-               </font>
-            </Text>
-            <Text id="DisplayLifeCounter" layoutX="71.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lives: 3">
-               <font>
-                  <Font name="Lucida Console" size="18.0" />
-               </font>
-            </Text>
+             <Text id="PlayerTwoName" layoutX="580.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1">
+                 <font>
+                     <Font name="Lucida Console" size="18.0" />
+                 </font>
+             </Text>
+             <Text id="PlayerTwoScore" layoutX="670.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                 <font>
+                     <Font name="Lucida Console" size="18.0" />
+                 </font>
+             </Text>
          </children>
       </AnchorPane>
     <AnchorPane fx:id="GameBoard" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: #0f7931;">
-         <children>
-            <Rectangle id="NPC" fx:id="NPC" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="66.0" layoutX="702.0" layoutY="702.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0" />
-         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

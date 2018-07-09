@@ -17,6 +17,9 @@ public class GameViewController implements Initializable {
     @FXML
     private AnchorPane GameBoard;
 
+    @FXML
+    private AnchorPane InfoBoard;
+
     /**
      * @param url
      * @param rb
@@ -24,7 +27,7 @@ public class GameViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Game game = Game.getInstance();
-        game.Initialize(GameBoard);
+        game.Initialize(GameBoard, InfoBoard);
         Player player1 = game.getField().getPlayers().get(0);
         Player player2 = game.getField().getPlayers().get(1);
 

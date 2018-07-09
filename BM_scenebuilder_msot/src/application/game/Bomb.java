@@ -15,6 +15,9 @@ public class Bomb extends GameObject {
 
     private List<Explosion> explosions = new ArrayList<>();
 
+    private Player owner;
+    private Player victim;
+
     private int explosionCountdown = 2;
     private int explosionDuration = 1;
 
@@ -23,8 +26,8 @@ public class Bomb extends GameObject {
 
     private MediaPlayer bombAudio = null;
 
-
-    public Bomb(Image image, MediaPlayer bombAudio) {
+    public Bomb(Image image, MediaPlayer bombAudio, Player owner) {
+        this.owner = owner;
         this.setId("Bomb");
         this.setImage(image);
 
@@ -60,6 +63,19 @@ public class Bomb extends GameObject {
             }
         }
 
+        return false;
+    }
+
+    public boolean doesHitOtherPlayer(Player player) {
+        if (withinExplosionCenter(player)) {
+            victim = player;
+            if (victim.getId() == owner.getId()) {
+                owner.decrementScore();
+            } else {
+                owner.incrementScore();
+            }
+            return true;
+        }
         return false;
     }
 
@@ -129,5 +145,9 @@ public class Bomb extends GameObject {
 
     public List<Explosion> getExplosions() {
         return this.explosions;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 }

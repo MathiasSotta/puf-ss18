@@ -62,13 +62,9 @@ public class Field {
                     }
 
                     // player within bomb explosion
-                    if (b.withinExplosionCenter(p)) {
-                        p.damage(100);
-
-                        // is player still alive after damage ?
-                        if (!p.isAlive()) {
-                            // player is within explosion
-                            System.out.println("Player died");
+                    if (b.doesHitOtherPlayer(p)) {
+                        if (p.damage(100)) {
+                            Game.getInstance().updatePlayerScore(b);
                         }
                     }
 

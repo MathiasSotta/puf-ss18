@@ -1,8 +1,10 @@
 package application;
 
+import application.controller.StartScreenController;
 import application.manager.ViewManager;
 import javafx.application.Application;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -15,12 +17,11 @@ public class Main extends Application {
 
     private static final Properties settings = new Properties();
     private static Stage mainStage;
-    private static ViewManager viewManager = new ViewManager();
+    private ViewManager viewManager = ViewManager.getInstance();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //viewManager.setView("/views/StartScreen.fxml");
-        viewManager.setView("/views/GameView.fxml");
+        viewManager.setView("/views/StartScreen.fxml");
         settings.load(getClass().getResourceAsStream("/config/application.config"));
 
         Group root = new Group();

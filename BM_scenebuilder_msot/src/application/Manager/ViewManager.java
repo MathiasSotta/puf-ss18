@@ -1,6 +1,7 @@
 package application.manager;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
@@ -8,7 +9,17 @@ import java.io.IOException;
 
 public class ViewManager extends StackPane {
 
+    private static ViewManager Instance;
+
     private Node view;
+    private Initializable controller;
+
+    public static ViewManager getInstance() {
+        if (Instance == null) {
+            Instance = new ViewManager();
+        }
+        return Instance;
+    }
 
     public ViewManager() {
         super();
@@ -19,7 +30,8 @@ public class ViewManager extends StackPane {
             System.out.println(getClass().getResource(resource));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));
             System.out.println(getClass().getResource(resource));
-            this.view = fxmlLoader.load();
+            view = fxmlLoader.load();
+            controller = fxmlLoader.getController();
             return true;
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -46,5 +58,9 @@ public class ViewManager extends StackPane {
             System.out.print(e);
         }
         return true;
+    }
+
+    public Initializable getController() {
+        return controller;
     }
 }

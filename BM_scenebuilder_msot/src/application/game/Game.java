@@ -65,6 +65,9 @@ public class Game {
         playerTwoScore = (Text)this.infoBoard.lookup("#PlayerTwoScore");
 
         gameTimer = (Text)this.infoBoard.lookup("#GameTimer");
+
+        GameTimerThread thread = new GameTimerThread(gameTimer);
+        thread.start();
     }
 
     public void updatePlayerScore(Bomb bomb) {

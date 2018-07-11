@@ -18,7 +18,6 @@ public class GameboardManager {
         int counter = 0;
 
         // ToDo: set NonDestructibleBlocks programatically
-        // ToDo: create Object for Blocks
         // 0 = empty field
         // 1 = IndestructibleBlock Block
         // 2 = Destructible Block

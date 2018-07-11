@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class Field {
                     fieldPane.getChildren().remove(b);
                     cleanup.add(b);
 
-                    for (Explosion e: b.getExplosions()) {
+                    for (Explosion e : b.getExplosions()) {
                         fieldPane.getChildren().remove(e);
                     }
                 }
@@ -104,13 +105,14 @@ public class Field {
         for (Player p : this.players) {
             p.update(now, delta);
         }
+
     }
 
     public void add(Node node) {
         if (node.getId() != null) {
             if (node.getId().equals("DestructibleBlock")) {
                 staticElements.add(node);
-                destructibleBlocks.add((DestructibleBlock)node);
+                destructibleBlocks.add((DestructibleBlock) node);
             }
             if (node.getId().equals("IndestructibleBlock")) {
                 staticElements.add(node);
@@ -141,8 +143,8 @@ public class Field {
         double matrixTileHeight = this.fieldPane.getMaxHeight() / 11;
         double matrixTileWidth = this.fieldPane.getMaxWidth() / 11;
 
-        for (int i=0; i<this.fieldPane.getMaxWidth(); i+=matrixTileWidth) {
-            for (int j = 0; j<this.fieldPane.getMaxHeight(); j+=matrixTileHeight) {
+        for (int i = 0; i < this.fieldPane.getMaxWidth(); i += matrixTileWidth) {
+            for (int j = 0; j < this.fieldPane.getMaxHeight(); j += matrixTileHeight) {
                 Rectangle2D r = new Rectangle2D(j, i, matrixTileWidth, matrixTileHeight);
                 gameMatrix.add(r);
             }
@@ -153,7 +155,7 @@ public class Field {
         return gameMatrix;
     }
 
-    public Point2D getBombTileCenterPosition(Node node) {
+    public Point2D getBombTileCenterPosition(GameObject node) {
         double x;
         double y;
 
@@ -166,38 +168,29 @@ public class Field {
                 intersectingTiles.add(currentMatrixTile);
             }
         }
-        if(intersectingTiles.size() == 1) {
+
+        if (intersectingTiles.size() == 1) {
             Rectangle r = intersectingTiles.get(0);
-            x = r.getX() + (r.getWidth()/2);
-            y = r.getY() + (r.getHeight()/2);
+            x = r.getX() + (r.getWidth() / 2);
+            y = r.getY() + (r.getHeight() / 2);
             return new Point2D(x, y);
         }
-        else if(intersectingTiles.size() > 1) {
 
-            // Algorithm to calculate player position in relation to tiles of the game matrix
-            // Simplified: if player is in fields A and B and most of the players bounding-box is in field A, the bomb is being placed in field A and vice versa
-            for (int i=0; i<intersectingTiles.size(); i++) {
-                double nodeMinX = node.getBoundsInParent().getMinX();
-                double nodeMinY = node.getBoundsInParent().getMinY();
-                double nodeMaxX = node.getBoundsInParent().getMaxX();
-                double nodeMaxY = node.getBoundsInParent().getMaxY();
-                double aMatrixMaxX = intersectingTiles.get(i).getBoundsInParent().getMaxX();
-                double aMatrixMaxY = intersectingTiles.get(i).getBoundsInParent().getMaxY();
-                double bMatrixMinX = intersectingTiles.get(i+1).getBoundsInParent().getMinX();
-                double bMatrixMinY = intersectingTiles.get(i+1).getBoundsInParent().getMinY();
+        // Algorithm to calculate player position in relation to tiles of the game matrix
+        // Simplified: if player is in fields A and B and most of the players bounding-box is in field A, the bomb is being placed in field A and vice versa
+        for (int i = 0; i < intersectingTiles.size(); i++) {
 
-                int dX = ((Math.abs(aMatrixMaxX - nodeMinX) > Math.abs(bMatrixMinX - nodeMaxX)) && (aMatrixMaxY >= nodeMaxY) && (bMatrixMinY <= nodeMinY)) ? i : i+1;
-                int dY = ((Math.abs(aMatrixMaxY - nodeMinY) > Math.abs(bMatrixMinY - nodeMaxY)) && (aMatrixMaxX >= nodeMaxX) && (bMatrixMinX <= nodeMinX)) ? i : i+1;
+            Point2D playerCenterPosition = new Point2D(node.getX() + (node.getFitWidth() / 2), node.getY() + (node.getFitHeight() / 2));
+            Rectangle currentTile = intersectingTiles.get(i);
 
-                Rectangle rX = intersectingTiles.get(dX);
-                Rectangle rY = intersectingTiles.get(dY);
-                x = rX.getX() + (rX.getWidth()/2);
-                y = rY.getY() + (rY.getHeight()/2);
-
-                return new Point2D(x, y);
+            // the center position of the player should only exist in one tile at a time ...
+            if (currentTile.contains(playerCenterPosition)) {
+                return new Point2D(currentTile.getX() + (currentTile.getWidth() / 2), currentTile.getY() + (currentTile.getHeight() / 2));
             }
         }
+        // a mystery
         return null;
     }
+
 
 }

@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class Main extends Application {
 
-    private static final Properties settings = new Properties();
+    public static final Properties settings = new Properties();
     private static Stage mainStage;
     private ViewManager viewManager = ViewManager.getInstance();
 

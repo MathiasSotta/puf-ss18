@@ -1,5 +1,6 @@
 package application.game;
 
+import application.Main;
 import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
@@ -20,6 +21,8 @@ public class Game {
     private Field field;
 
     private AnchorPane infoBoard;
+
+    private HighScoreList highscores;
 
     private Text gameTimer;
     private Text playerOneName;
@@ -68,6 +71,9 @@ public class Game {
 
         GameTimerThread thread = new GameTimerThread(gameTimer);
         thread.start();
+
+        HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"));
+        highScoreLoader.start();
     }
 
     public void updatePlayerScore(Bomb bomb) {
@@ -161,5 +167,9 @@ public class Game {
                 //System.out.println(counter);
             }
         }
+    }
+
+    public void setHighscores(HighScoreList highscores) {
+        this.highscores = highscores;
     }
 }

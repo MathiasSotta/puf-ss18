@@ -1,59 +1,96 @@
 package com.serverless;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBAsyncClient;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.*;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ScanRequest;
+import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
-	private AmazonDynamoDBClient dynamoDb;
+	private DynamoDB dynamoDb;
+	private AmazonDynamoDB client;
 	private String DYNAMODB_TABLE_NAME = "highscores_table";
 
 	private static final Logger LOG = LogManager.getLogger(Handler.class);
+	static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
 	@Override
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
-		LOG.info("received: {}", input);
+		LOG.info("Incoming Request: {}", input);
+
 		initDynamoDbClient();
-		Response responseBody = new Response("Go Serverless v1.x! Your function executed successfully!", input);
+		if (input.get("httpMethod").toString().equals("POST")) {
+			return processPost(input);
+		} else {
+			return processGet();
+		}
+	}
+
+	private ApiGatewayResponse processGet() {
+		ScanRequest scanRequest = new ScanRequest().withTableName(DYNAMODB_TABLE_NAME);
+
+		ScanResult result = client.scan(scanRequest);
+		Map<String, Object> results = new HashMap<>();
+		for (Map<String, AttributeValue> s : result.getItems()){
+			Map<String, Object> singleResult = new HashMap<>();
+			singleResult.put("PlayerOne", s.get("PlayerOne").getS());
+			singleResult.put("PlayerTwo", s.get("PlayerTwo").getS());
+			singleResult.put("PlayerOneScore", s.get("PlayerOneScore").getN());
+			singleResult.put("PlayerTwoScore", s.get("PlayerTwoScore").getN());
+			singleResult.put("date", s.get("date").getS());
+			results.put(s.get("id").getS(), singleResult);
+		}
+
+		Response responseBody = new Response("GET Highscores list", results);
 		return ApiGatewayResponse.builder()
 				.setStatusCode(200)
 				.setObjectBody(responseBody)
-				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & serverless"))
+				.build();
+	}
+
+	private ApiGatewayResponse processPost(Map<String, Object> input) {
+		int statusCode = 200;
+		try {
+			Map<String, Object> response = new ObjectMapper().readValue(input.get("body").toString(), HashMap.class);
+			Table table = dynamoDb.getTable(DYNAMODB_TABLE_NAME);
+			Item item = new Item()
+					.withPrimaryKey("id", UUID.randomUUID().toString())
+					.withString("PlayerOne", (String)response.get("PlayerOne"))
+					.withString("PlayerTwo", (String)response.get("PlayerTwo"))
+					.withNumber("PlayerOneScore", (Integer)response.get("PlayerOneScore"))
+					.withNumber("PlayerTwoScore", (Integer)response.get("PlayerTwoScore"))
+					.withString("date", dateFormatter.format(new Date()));
+
+			table.putItem(item);
+		} catch (Exception e) {
+			LOG.error("Body not JSON: {}", e.getMessage());
+			statusCode = 500;
+		}
+
+		return ApiGatewayResponse.builder()
+				.setStatusCode(statusCode)
 				.build();
 	}
 
 	private void initDynamoDbClient() {
-		DynamoDB dynamoDB =new DynamoDB(AmazonDynamoDBClientBuilder.standard().withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://dynamodb.eu-central-1.amazonaws.com", "eu-central-1")).build());
-
-		Table table = dynamoDB.getTable(DYNAMODB_TABLE_NAME);
-		Map<String, Object> expressionAttributeValues = new HashMap<>();
-		expressionAttributeValues.put(":pr", 100);
-
-		ItemCollection<ScanOutcome> items = table.scan(
-				"Price < :pr", //FilterExpression
-				"Id, Title, ProductCategory, Price", //ProjectionExpression
-				null, //ExpressionAttributeNames - not used in this example
-				expressionAttributeValues);
-
-		System.out.println("Scan of for items with a price less than 100.");
-		Iterator<Item> iterator = items.iterator();
-		while (iterator.hasNext()) {
-			System.out.println(iterator.next().toJSONPretty());
-		}
+		client = AmazonDynamoDBClientBuilder
+						.standard()
+						.withEndpointConfiguration(
+								new AwsClientBuilder
+										.EndpointConfiguration("https://dynamodb.eu-central-1.amazonaws.com", "eu-central-1"))
+						.build();
+		dynamoDb = new DynamoDB(client);
 	}
 }

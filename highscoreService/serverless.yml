@@ -58,11 +58,10 @@ package:
 functions:
   hello:
     handler: com.serverless.Handler
-
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
     events:
+      - http:
+          path: highscores
+          method: post
       - http:
           path: highscores
           method: get

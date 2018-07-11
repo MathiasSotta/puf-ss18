@@ -85,9 +85,6 @@ public class Game {
 
         GameTimerThread thread = new GameTimerThread(gameTimer);
         thread.start();
-
-        HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"));
-        highScoreLoader.start();
     }
 
     public void updatePlayerScore(Bomb bomb) {
@@ -122,7 +119,6 @@ public class Game {
     public void End() {
         HighScorePosterThread highscorePoster = new HighScorePosterThread(Main.settings.getProperty("highscores_url"), highscore);
         highscorePoster.start();
-        ViewManager.getInstance().setView("/views/HighscoreScreen.fxml");
     }
 
     public Field getField() {
@@ -193,5 +189,13 @@ public class Game {
 
     public void setHighscores(HighScoreList highscores) {
         this.highscores = highscores;
+    }
+
+    public HighScore getHighscore() {
+        return highscore;
+    }
+
+    public HighScoreList getHighscores() {
+        return highscores;
     }
 }

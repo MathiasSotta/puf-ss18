@@ -1,6 +1,7 @@
 package application.game;
 
 import application.Main;
+import application.manager.ViewManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import org.json.JSONArray;
@@ -35,6 +36,7 @@ public class HighScoreLoaderThread extends Thread {
                 public void run() {
                     HighScoreList highscores = HighScoreList.fromJson(json);
                     Game.getInstance().setHighscores(highscores);
+                    ViewManager.getInstance().setView("/views/HighscoreScreen.fxml");
                 }
             });
 

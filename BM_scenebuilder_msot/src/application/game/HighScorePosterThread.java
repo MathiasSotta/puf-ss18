@@ -1,5 +1,7 @@
 package application.game;
 
+import application.Main;
+import javafx.application.Platform;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -27,7 +29,6 @@ public class HighScorePosterThread extends Thread {
     public void run() {
         JSONObject highscoresJson = new JSONObject(highscore);
         String highscoresString = highscoresJson.toString();
-        System.out.println(highscoresString);
 
         try {
             URL url = new URL(highscoreUrl);
@@ -43,13 +44,16 @@ public class HighScorePosterThread extends Thread {
             writer.flush();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            for ( String line; (line = reader.readLine()) != null; )
-            {
-                System.out.println( line );
-            }
-
             writer.close();
             reader.close();
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"));
+                    highScoreLoader.start();
+                }
+            });
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

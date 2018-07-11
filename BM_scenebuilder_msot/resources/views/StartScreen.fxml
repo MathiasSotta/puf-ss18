@@ -54,8 +54,8 @@
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Button>
-            <TextField fx:id="PlayerOneName" layoutX="178.0" layoutY="273.0" text="Playername1" />
-            <TextField fx:id="PlayerTwoName" layoutX="178.0" layoutY="396.0" text="Playername2" />
+            <TextField fx:id="PlayerOneName" layoutX="178.0" layoutY="273.0" text="Player1" />
+            <TextField fx:id="PlayerTwoName" layoutX="178.0" layoutY="396.0" text="Player2" />
             <Text layoutX="55.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2, please insert your name:" textAlignment="CENTER" wrappingWidth="526.3203125">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="StartScreen" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.StartScreenController">
+<AnchorPane id="StartScreen" minHeight="840.0" minWidth="770.0" prefHeight="870.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HighscoresController">
     <children>
         <MenuBar fx:id="MenuBar" prefWidth="770.0" AnchorPane.leftAnchor="0.0">
             <menus>
@@ -32,7 +32,6 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane id="InfoBoard" fx:id="InfoBoard" layoutY="25.0" minHeight="70.0" minWidth="770.0" prefHeight="70.0" prefWidth="770.0" />
         <AnchorPane fx:id="StartScreen" layoutY="100.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0" style="-fx-background-color: #0f7931;">
             <children>
             <ImageView fx:id="backgroundImage" fitHeight="770.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
@@ -45,36 +44,19 @@
                   <Font name="Comic Sans MS" size="48.0" />
                </font>
             </Text>
-            <Button fx:id="startPlaying" layoutX="558.0" layoutY="602.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
-               <font>
-                  <Font name="Comic Sans MS" size="20.0" />
-               </font>
-            </Button>
-            <TextField layoutX="148.0" layoutY="228.0" text="Playername1" />
-            <TextField layoutX="148.0" layoutY="268.0" text="Playername2" />
-            <TextField layoutX="148.0" layoutY="305.0" text="Playername3" />
-            <TextField layoutX="148.0" layoutY="342.0" text="Playername4" />
-            <TextField layoutX="148.0" layoutY="379.0" text="Playername5" />
-            <TextField layoutX="148.0" layoutY="421.0" text="Playername6" />
-            <TextField layoutX="148.0" layoutY="464.0" text="Playername7" />
-            <TextField layoutX="148.0" layoutY="506.0" text="Playername8" />
-            <TextField layoutX="148.0" layoutY="544.0" text="Playername9" />
-            <TextField layoutX="148.0" layoutY="581.0" text="Playername10" />
-            <TextField layoutX="444.0" layoutY="228.0" />
-            <TextField layoutX="444.0" layoutY="268.0" />
-            <TextField layoutX="444.0" layoutY="305.0" />
-            <TextField layoutX="444.0" layoutY="342.0" />
-            <TextField layoutX="444.0" layoutY="379.0" />
-            <TextField layoutX="444.0" layoutY="421.0" />
-            <TextField layoutX="444.0" layoutY="464.0" />
-            <TextField layoutX="444.0" layoutY="506.0" />
-            <TextField layoutX="444.0" layoutY="544.0" />
-            <TextField layoutX="444.0" layoutY="581.0" />
-            <Button fx:id="startPlaying1" layoutX="615.0" layoutY="690.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="131.0" style="-fx-background-color: yellow;" text="Quit">
-               <font>
-                  <Font name="Comic Sans MS" size="20.0" />
-               </font>
-            </Button>
+
+            <AnchorPane fx:id="Highscores" layoutY="120.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0">
+                <Button fx:id="startPlaying" layoutX="558.0" layoutY="400.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
+                    <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="quit" layoutX="615.0" layoutY="490.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="131.0" style="-fx-background-color: yellow;" text="Quit">
+                    <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                    </font>
+                </Button>
+            </AnchorPane>
             </children>
         </AnchorPane>
     </children>

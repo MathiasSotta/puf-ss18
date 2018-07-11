@@ -40,23 +40,41 @@
                   <Image url="@../images/startScreenBackground.jpg" />
                </image>
             </ImageView>
-            <Text layoutX="107.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOMBERMAN" textAlignment="CENTER" wrappingWidth="526.3203125">
+            <Text layoutX="107.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOMBERMAN Highscores:" textAlignment="CENTER" wrappingWidth="526.3203125">
                <font>
-                  <Font name="Comic Sans MS" size="65.0" />
+                  <Font name="Comic Sans MS" size="48.0" />
                </font>
             </Text>
-            <Button fx:id="startPlaying" layoutX="559.0" layoutY="661.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Quit">
+            <Button fx:id="startPlaying" layoutX="558.0" layoutY="602.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Button>
-            <Text layoutX="288.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highscore">
+            <TextField layoutX="148.0" layoutY="228.0" text="Playername1" />
+            <TextField layoutX="148.0" layoutY="268.0" text="Playername2" />
+            <TextField layoutX="148.0" layoutY="305.0" text="Playername3" />
+            <TextField layoutX="148.0" layoutY="342.0" text="Playername4" />
+            <TextField layoutX="148.0" layoutY="379.0" text="Playername5" />
+            <TextField layoutX="148.0" layoutY="421.0" text="Playername6" />
+            <TextField layoutX="148.0" layoutY="464.0" text="Playername7" />
+            <TextField layoutX="148.0" layoutY="506.0" text="Playername8" />
+            <TextField layoutX="148.0" layoutY="544.0" text="Playername9" />
+            <TextField layoutX="148.0" layoutY="581.0" text="Playername10" />
+            <TextField layoutX="444.0" layoutY="228.0" />
+            <TextField layoutX="444.0" layoutY="268.0" />
+            <TextField layoutX="444.0" layoutY="305.0" />
+            <TextField layoutX="444.0" layoutY="342.0" />
+            <TextField layoutX="444.0" layoutY="379.0" />
+            <TextField layoutX="444.0" layoutY="421.0" />
+            <TextField layoutX="444.0" layoutY="464.0" />
+            <TextField layoutX="444.0" layoutY="506.0" />
+            <TextField layoutX="444.0" layoutY="544.0" />
+            <TextField layoutX="444.0" layoutY="581.0" />
+            <Button fx:id="startPlaying1" layoutX="615.0" layoutY="690.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="131.0" style="-fx-background-color: yellow;" text="Quit">
                <font>
-                  <Font name="Comic Sans MS" size="35.0" />
+                  <Font name="Comic Sans MS" size="20.0" />
                </font>
-            </Text>
-            <TextField layoutX="431.0" layoutY="272.0" text="Scores" />
-            <TextField layoutX="178.0" layoutY="273.0" text="Playername" />
+            </Button>
             </children>
         </AnchorPane>
     </children>

@@ -45,18 +45,28 @@
                   <Font name="Comic Sans MS" size="65.0" />
                </font>
             </Text>
-            <Button fx:id="startPlaying" layoutX="559.0" layoutY="661.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
+            <Button fx:id="startPlaying" layoutX="545.0" layoutY="639.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Button>
-            <Text layoutX="288.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highscore">
+            <Button fx:id="startPlaying1" layoutX="545.0" layoutY="527.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="-9.5" style="-fx-background-color: yellow;" text="Highscores">
                <font>
-                  <Font name="Comic Sans MS" size="35.0" />
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Button>
+            <TextField layoutX="178.0" layoutY="273.0" text="Playername1" />
+            <TextField layoutX="178.0" layoutY="396.0" text="Playername2" />
+            <Text layoutX="55.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2, please insert your name:" textAlignment="CENTER" wrappingWidth="526.3203125">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
-            <TextField layoutX="431.0" layoutY="272.0" text="Scores" />
-            <TextField layoutX="178.0" layoutY="273.0" text="Playername" />
+            <Text layoutX="55.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1, please insert your name:" textAlignment="CENTER" wrappingWidth="526.3203125">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>

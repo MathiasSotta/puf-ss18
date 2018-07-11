@@ -1,6 +1,7 @@
 package application.game;
 
 import application.Main;
+import application.Manager.GameboardManager;
 import application.manager.AssetManager;
 import application.manager.ViewManager;
 import javafx.geometry.Point2D;
@@ -19,6 +20,7 @@ public class Game {
 
     private GameAnimationTimer gameAnimationTimer;
     private AssetManager assetManager = new AssetManager();
+    private GameboardManager gameboardManager = new GameboardManager();
     private Field field;
 
     private AnchorPane infoBoard;
@@ -50,7 +52,7 @@ public class Game {
         assetManager.loadAssets();
 
         // fill gameBoard with blocks ...
-        fillGameBoardWithBlocks();
+        gameboardManager.fillGameBoardWithBlocks(field, assetManager);
 
         // first player upper left
         field.addPlayer(createPlayerObject(new Point2D(0, 0), Game.PLAYER_ONE_NAME));
@@ -133,62 +135,6 @@ public class Game {
     private Player createPlayerObject(Point2D initialPos, String name) {
         Player player = new Player(field, assetManager, initialPos, ViewDirection.DOWN, name);
         return player;
-    }
-
-    private void fillGameBoardWithBlocks() {
-
-        int counter = 0;
-
-        // ToDo: set NonDestructibleBlocks programatically
-        // ToDo: create Object for Blocks
-        // 0 = empty field
-        // 1 = IndestructibleBlock Block
-        // 2 = Destructible Block
-        int[][] gameBoardAsIntArri = new int[][]{
-                {0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0},//10
-                {0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 2},//21
-                {2, 2, 0, 2, 2, 2, 2, 0, 0, 2, 2},//32
-                {0, 1, 0, 1, 2, 1, 0, 1, 0, 1, 2},//43
-                {2, 0, 2, 2, 0, 2, 0, 2, 0, 0, 0},//54
-                {2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0},//65
-                {0, 0, 2, 2, 2, 0, 0, 2, 0, 0, 2},//76
-                {2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0},//87
-                {0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 2},//98
-                {2, 1, 0, 1, 2, 1, 2, 1, 0, 1, 0},//109
-                {2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0},//120
-
-        };
-        for (int[] y : gameBoardAsIntArri) {
-
-            for (int x : y) {
-
-                if (x == 1) {
-                    Rectangle2D r = field.getGameMatrix().get(counter);
-                    IndestructibleBlock i = new IndestructibleBlock();
-                    i.setId("IndestructibleBlock");
-                    i.setImage(assetManager.getImage("indestructible"));
-                    i.setFitWidth(r.getWidth() - 10);
-                    i.setFitHeight(r.getHeight() - 10);
-                    i.setX(r.getMinX() + 5);
-                    i.setY(r.getMinY() + 5);
-                    field.add(i);
-                }
-                //setting up the destructible blocks on the game field
-                if (x == 2) {
-                    Rectangle2D r = field.getGameMatrix().get(counter);
-                    DestructibleBlock d = new DestructibleBlock();
-                    d.setId("DestructibleBlock");
-                    d.setImage(assetManager.getImage("destructible"));
-                    d.setFitWidth(r.getWidth() - 10);
-                    d.setFitHeight(r.getHeight() - 10);
-                    d.setX(r.getMinX() + 5);
-                    d.setY(r.getMinY() + 5);
-                    field.add(d);
-                }
-                counter++;
-                //System.out.println(counter);
-            }
-        }
     }
 
     public void setHighscores(HighScoreList highscores) {

@@ -91,5 +91,4 @@ public class GameViewController implements Initializable {
 
         game.Start();
     }
-
 }

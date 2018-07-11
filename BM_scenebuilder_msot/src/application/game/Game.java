@@ -56,24 +56,32 @@ public class Game {
         field.addPlayer(createPlayerObject(new Point2D(0, 0), Game.PLAYER_ONE_NAME));
         // second player lower right
         field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT), Game.PLAYER_TWO_NAME));
-        // highscore
-        highscore = new HighScore();
-        highscore.setPlayerOne("Arne");
-        highscore.setPlayerTwo("Test");
-
-        initializeInfoboard();
 
         // GameMatrix debugging
         //setGameMatrixVisible();
     }
 
-    public void initializeInfoboard() {
+    public void initializeInfoboard(String playerOne, String playerTwo) {
+        Player player1 = getField().getPlayers().get(0);
+        Player player2 = getField().getPlayers().get(1);
+
+        player1.setName(playerOne);
+        player2.setName(playerTwo);
+
         playerOneName = (Text)this.infoBoard.lookup("#PlayerOneName");
         playerOneScore = (Text)this.infoBoard.lookup("#PlayerOneScore");
         playerTwoName = (Text)this.infoBoard.lookup("#PlayerTwoName");
         playerTwoScore = (Text)this.infoBoard.lookup("#PlayerTwoScore");
 
         gameTimer = (Text)this.infoBoard.lookup("#GameTimer");
+
+        playerOneName.setText(player1.getName());
+        playerTwoName.setText(player2.getName());
+
+        // highscore
+        highscore = new HighScore();
+        highscore.setPlayerOne(player1.getName());
+        highscore.setPlayerTwo(player2.getName());
 
         GameTimerThread thread = new GameTimerThread(gameTimer);
         thread.start();
@@ -114,7 +122,7 @@ public class Game {
     public void End() {
         HighScorePosterThread highscorePoster = new HighScorePosterThread(Main.settings.getProperty("highscores_url"), highscore);
         highscorePoster.start();
-        ViewManager.getInstance().setView("/views/StartScreen.fxml");
+        ViewManager.getInstance().setView("/views/HighscoreScreen.fxml");
     }
 
     public Field getField() {

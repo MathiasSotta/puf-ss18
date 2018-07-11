@@ -39,6 +39,8 @@ public class Player extends GameObject {
 
     private int score = 0;
 
+    private String name = "";
+
     public Player(Field field, AssetManager assetManager, Point2D pos, ViewDirection playerLooks, String name) {
         this.field = field;
         this.playerLooks = playerLooks;
@@ -189,5 +191,13 @@ public class Player extends GameObject {
 
     public int getScore() {
         return score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

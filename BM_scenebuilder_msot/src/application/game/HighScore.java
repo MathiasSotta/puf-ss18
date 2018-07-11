@@ -9,6 +9,11 @@ public class HighScore {
 
     private String date;
 
+    public HighScore() {
+        playerOneScore = 0;
+        playerTwoScore = 0;
+    }
+
     public void setPlayerOne(String playerOne) {
         this.playerOne = playerOne;
     }

@@ -2,6 +2,7 @@ package application.game;
 
 import application.Main;
 import application.manager.AssetManager;
+import application.manager.ViewManager;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ public class Game {
     private AnchorPane infoBoard;
 
     private HighScoreList highscores;
+    private HighScore highscore;
 
     private Text gameTimer;
     private Text playerOneName;
@@ -54,6 +56,10 @@ public class Game {
         field.addPlayer(createPlayerObject(new Point2D(0, 0), Game.PLAYER_ONE_NAME));
         // second player lower right
         field.addPlayer(createPlayerObject(new Point2D(field.getWidth() - Player.WIDTH, field.getHeight() - Player.HEIGHT), Game.PLAYER_TWO_NAME));
+        // highscore
+        highscore = new HighScore();
+        highscore.setPlayerOne("Arne");
+        highscore.setPlayerTwo("Test");
 
         initializeInfoboard();
 
@@ -78,9 +84,11 @@ public class Game {
 
     public void updatePlayerScore(Bomb bomb) {
         if (bomb.getOwner().getId() == Game.PLAYER_ONE_NAME) {
+            highscore.setPlayerOneScore(bomb.getOwner().getScore());
             playerOneScore.setText(String.valueOf(bomb.getOwner().getScore()));
         }
         if (bomb.getOwner().getId() == Game.PLAYER_TWO_NAME) {
+            highscore.setPlayerTwoScore(bomb.getOwner().getScore());
             playerTwoScore.setText(String.valueOf(bomb.getOwner().getScore()));
         }
     }
@@ -101,6 +109,12 @@ public class Game {
     public void Start() {
         gameAnimationTimer = new GameAnimationTimer();
         gameAnimationTimer.start();
+    }
+
+    public void End() {
+        HighScorePosterThread highscorePoster = new HighScorePosterThread(Main.settings.getProperty("highscores_url"), highscore);
+        highscorePoster.start();
+        ViewManager.getInstance().setView("/views/StartScreen.fxml");
     }
 
     public Field getField() {

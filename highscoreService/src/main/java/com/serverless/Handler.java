@@ -45,10 +45,10 @@ public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayRe
 		Map<String, Object> results = new HashMap<>();
 		for (Map<String, AttributeValue> s : result.getItems()){
 			Map<String, Object> singleResult = new HashMap<>();
-			singleResult.put("PlayerOne", s.get("PlayerOne").getS());
-			singleResult.put("PlayerTwo", s.get("PlayerTwo").getS());
-			singleResult.put("PlayerOneScore", s.get("PlayerOneScore").getN());
-			singleResult.put("PlayerTwoScore", s.get("PlayerTwoScore").getN());
+			singleResult.put("playerOne", s.get("playerOne").getS());
+			singleResult.put("playerTwo", s.get("playerTwo").getS());
+			singleResult.put("playerOneScore", s.get("playerOneScore").getN());
+			singleResult.put("playerTwoScore", s.get("playerTwoScore").getN());
 			singleResult.put("date", s.get("date").getS());
 			results.put(s.get("id").getS(), singleResult);
 		}
@@ -67,10 +67,10 @@ public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayRe
 			Table table = dynamoDb.getTable(DYNAMODB_TABLE_NAME);
 			Item item = new Item()
 					.withPrimaryKey("id", UUID.randomUUID().toString())
-					.withString("PlayerOne", (String)response.get("PlayerOne"))
-					.withString("PlayerTwo", (String)response.get("PlayerTwo"))
-					.withNumber("PlayerOneScore", (Integer)response.get("PlayerOneScore"))
-					.withNumber("PlayerTwoScore", (Integer)response.get("PlayerTwoScore"))
+					.withString("playerOne", (String)response.get("playerOne"))
+					.withString("playerTwo", (String)response.get("playerTwo"))
+					.withNumber("playerOneScore", (Integer)response.get("playerOneScore"))
+					.withNumber("playerTwoScore", (Integer)response.get("playerTwoScore"))
 					.withString("date", dateFormatter.format(new Date()));
 
 			table.putItem(item);

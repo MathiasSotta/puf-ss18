@@ -11,7 +11,7 @@ public class GameTimerThread extends Thread {
 
     private Text gameTimer;
 
-    private int time = 300;
+    private int time = 20;
 
     public GameTimerThread(Text gameTimer) {
         setDaemon(true);
@@ -29,7 +29,7 @@ public class GameTimerThread extends Thread {
                     int second = time % 60;
                     gameTimer.setText(String.valueOf(minutes) + ":" + String.valueOf(second));
                     if (minutes == 0 && second == 0) {
-                        ViewManager.getInstance().setView("/views/StartScreen.fxml");
+                        Game.getInstance().End();
                     }
                 }
             });

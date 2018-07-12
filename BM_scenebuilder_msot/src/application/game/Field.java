@@ -160,37 +160,35 @@ public class Field {
         double y;
 
         List<Rectangle> intersectingTiles = new ArrayList<>();
-
         for (Rectangle2D r : gameMatrix) {
             Rectangle currentMatrixTile = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
 
+            // check if rectangle of game matrix intersects with player bounds and harvest these in new array
             if (currentMatrixTile.getBoundsInParent().intersects(node.getBoundsInParent())) {
                 intersectingTiles.add(currentMatrixTile);
             }
         }
-
+        // if player bounds are completely in one tile
         if (intersectingTiles.size() == 1) {
             Rectangle r = intersectingTiles.get(0);
             x = r.getX() + (r.getWidth() / 2);
             y = r.getY() + (r.getHeight() / 2);
             return new Point2D(x, y);
         }
+        // if player bounds are in more than one tile
+        else {
+            for (int i = 0; i < intersectingTiles.size(); i++) {
+                Point2D playerCenterPosition = new Point2D(node.getX() + (node.getFitWidth() / 2), node.getY() + (node.getFitHeight() / 2));
+                Rectangle currentTile = intersectingTiles.get(i);
 
-        // Algorithm to calculate player position in relation to tiles of the game matrix
-        // Simplified: if player is in fields A and B and most of the players bounding-box is in field A, the bomb is being placed in field A and vice versa
-        for (int i = 0; i < intersectingTiles.size(); i++) {
-
-            Point2D playerCenterPosition = new Point2D(node.getX() + (node.getFitWidth() / 2), node.getY() + (node.getFitHeight() / 2));
-            Rectangle currentTile = intersectingTiles.get(i);
-
-            // the center position of the player should only exist in one tile at a time ...
-            if (currentTile.contains(playerCenterPosition)) {
-                return new Point2D(currentTile.getX() + (currentTile.getWidth() / 2), currentTile.getY() + (currentTile.getHeight() / 2));
+                // the center position of the player should only exist in one tile at a time ...
+                if (currentTile.contains(playerCenterPosition)) {
+                    return new Point2D(currentTile.getX() + (currentTile.getWidth() / 2), currentTile.getY() + (currentTile.getHeight() / 2));
+                }
             }
+            // a mystery
+            return null;
         }
-        // a mystery
-        return null;
     }
-
 
 }

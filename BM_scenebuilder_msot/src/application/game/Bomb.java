@@ -98,6 +98,9 @@ public class Bomb extends GameObject {
         this.explosion.add(new Rectangle2D(getX(), getY()-60, getFitWidth(), 60));
         // explosion down
         this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 60));
+        // explosion center
+        this.explosion.add(new Rectangle2D(getX(), getY(), getFitWidth(), getFitHeight()));
+
 
         this.setVisible(false);
         this.explosionStart = now;

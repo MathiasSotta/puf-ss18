@@ -44,6 +44,13 @@ public class Player extends GameObject {
 
     private String name = "";
 
+    /**
+     * Gives the player it's position, name and looking direction.
+     * @param field
+     * @param pos
+     * @param playerLooks Defines the direction in which the player is looking
+     * @param name
+     */
     public Player(Field field, Point2D pos, ViewDirection playerLooks, String name) {
         this.field = field;
         this.playerLooks = playerLooks;
@@ -51,6 +58,11 @@ public class Player extends GameObject {
         initialPos = pos;
     }
 
+    /**
+     * Checks if the player is alive in each frame.
+     * @param now
+     * @param delta
+     */
     public void update(long now, double delta) {
 
         // check health each frame
@@ -119,10 +131,11 @@ public class Player extends GameObject {
         }
     }
 
+    /**
+     * Handles the dropped bomb.
+     * Deciding in which field the bomb is dropped.
+     */
     public void dropBomb() {
-        // todo: add time until next bomb can be dropped
-        // start timer and update with delta in update()
-        // only allow dropping another bomb after 2 seconds and reset timer
         if (isAlive()) {
             bombAudio.stop();
             Bomb bomb = new Bomb(bombImage, bombAudio, this);
@@ -138,14 +151,27 @@ public class Player extends GameObject {
         }
     }
 
+    /**
+     *
+     * @param move
+     */
     public void setMovement(Movement move) {
         movement = move;
     }
 
+    /**
+     *
+     * @return
+     */
     Movement getMovement() {
         return movement;
     }
 
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public boolean damage(int amount) {
         health -= amount;
         if (health <= 0) {

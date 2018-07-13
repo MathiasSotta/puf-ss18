@@ -24,7 +24,7 @@ public class Main extends Application {
         settings.load(getClass().getResourceAsStream("/config/application.config"));
 
         backgroundMusic();
-        
+
         Group root = new Group();
         root.getChildren().addAll(viewManager);
 
@@ -44,6 +44,7 @@ public class Main extends Application {
         String music = "resources/sounds/sawsquarenoise_-_01_-_Interstellar.mp3";
         Media sound = new Media(new File(music).toURI().toString());
         MediaPlayer mediaPlayer= new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 

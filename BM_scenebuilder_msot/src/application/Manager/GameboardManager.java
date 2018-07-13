@@ -14,20 +14,29 @@ public class GameboardManager {
     private ArrayList<int[][]> randomPick = new ArrayList<>();
     private Random rand = new Random();
 
+    /**
+     * Setting up the game board by filling it with blocks.
+     * The specific order of blocks is randomly set by the method getGameRandomGameBoard.
+     * @param field is an instance of the Field class which puts the gaming components together.
+     * @param assetManager is an instance of the AssetManager class which administrates used media content
+     *
+     */
+     /* Kinds of blocks:
+     *  0 = empty field
+     *  1 = IndestructibleBlock Block
+     *  2 = Destructible Block
+     */
     public void fillGameBoardWithBlocks(Field field, application.manager.AssetManager assetManager) {
 
         int counter = 0;
 
-        // ToDo: set NonDestructibleBlocks programatically
-        // 0 = empty field
-        // 1 = IndestructibleBlock Block
-        // 2 = Destructible Block
         int[][] gameBoardAsIntArri = getGameRandomGameboard();
         for (int[] y : gameBoardAsIntArri) {
 
             for (int x : y) {
 
                 if (x == 1) {
+                    //setting up the indestructible blocks on the game field
                     Rectangle2D r = field.getGameMatrix().get(counter);
                     IndestructibleBlock i = (IndestructibleBlock)BlockFactory.getBlock(BlockFactory.INDESTRUCTIBLE);
                     i.setFitWidth(r.getWidth() - 10);
@@ -52,6 +61,10 @@ public class GameboardManager {
         }
     }
 
+    /**
+     * Randomly picking one of 4 different game boards.
+     * @return one of four possibilities for a game board setup.
+     */
     private int[][] getGameRandomGameboard() {
 
         // add your favorite gameboard style here

@@ -34,12 +34,10 @@ public class Main extends Application {
         mainStage.show();
     }
 
-    /*public void backgroundSound(){
-        String musicFile = "resources/sounds/background.mid";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
-    }*/
+    /** Playing background music in a loop all game long.
+     * Background music taken as free download from:
+     * http://freemusicarchive.org/genre/Chiptune/?sort=track_date_published&d=1&page=7
+     */
     public void backgroundMusic(){
         String music = "resources/sounds/sawsquarenoise_-_01_-_Interstellar.mp3";
         Media sound = new Media(new File(music).toURI().toString());

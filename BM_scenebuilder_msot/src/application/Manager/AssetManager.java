@@ -25,6 +25,9 @@ public class AssetManager {
         this.loadAssets();
     }
 
+    /**
+     * Loads assets like images for the player, the bomb or the exploding sound.
+     */
     public void loadAssets() {
         images.put("player", new Image("images/test.png"));
         images.put("bomb", new Image("images/bomb.png"));
@@ -41,10 +44,20 @@ public class AssetManager {
         );
     }
 
+    /**
+     * Returns the images from loadAssets() by key.
+     * @param key
+     * @return
+     */
     public Image getImage(String key) {
         return (Image) images.get(key);
     }
 
+    /**
+     * Returns the sound from loadAssets() by key.
+     * @param key
+     * @return
+     */
     public MediaPlayer getAudio(String key) {
         return (MediaPlayer) audio.get(key);
     }

@@ -18,6 +18,17 @@ public class SpriteAnimation extends Transition {
 
     private int lastIndex;
 
+    /**
+     * Animates the bomb explosion.
+     * @param imageView
+     * @param duration
+     * @param count
+     * @param columns
+     * @param offsetX
+     * @param offsetY
+     * @param width
+     * @param height
+     */
     public SpriteAnimation(
             ImageView imageView,
             Duration duration,

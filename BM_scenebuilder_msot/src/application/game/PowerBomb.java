@@ -3,7 +3,10 @@ package application.game;
 import javafx.scene.image.Image;
 
 public class PowerBomb extends Powerup {
-
+    /**
+     * Bomb for powering up.
+     * @param image
+     */
     public PowerBomb(Image image) {
         this.setId("Powerbomb");
         this.setImage(image);

@@ -4,7 +4,13 @@ import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 
 public class PlayerFactory {
-
+    /**
+     * Sets the images for the players looking directions.
+     * @param field
+     * @param initialPos
+     * @param name
+     * @return
+     */
     public static Player getPlayer(Field field, Point2D initialPos, String name)
     {
         AssetManager assetManager = AssetManager.getInstance();

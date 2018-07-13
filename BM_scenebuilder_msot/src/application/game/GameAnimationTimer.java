@@ -4,9 +4,18 @@ import javafx.animation.AnimationTimer;
 
 public class GameAnimationTimer extends AnimationTimer {
 
+    private static GameAnimationTimer Instance;
+
     private Game game = Game.getInstance();
 
     long prevTime = 0;
+
+    public static GameAnimationTimer getInstance() {
+        if (Instance == null) {
+            Instance = new GameAnimationTimer();
+        }
+        return Instance;
+    }
 
     /**
      * Update GameWorld

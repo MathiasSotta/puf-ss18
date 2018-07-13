@@ -140,7 +140,7 @@ public class Game {
      * Starts the timer for an animation.
      */
     public void Start() {
-        gameAnimationTimer = new GameAnimationTimer();
+        gameAnimationTimer = GameAnimationTimer.getInstance();
         gameAnimationTimer.start();
     }
 

@@ -1,6 +1,7 @@
 package application.game;
 
 import application.Main;
+import application.manager.ViewManager;
 import javafx.application.Platform;
 import org.json.JSONObject;
 
@@ -50,8 +51,7 @@ public class HighScorePosterThread extends Thread {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"));
-                    highScoreLoader.start();
+                    ViewManager.getInstance().setView("/views/HighscoreScreen.fxml");
                 }
             });
         } catch (Exception e) {

@@ -49,7 +49,7 @@
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="startPlaying1" layoutX="545.0" layoutY="527.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="-9.5" style="-fx-background-color: yellow;" text="Highscores">
+            <Button fx:id="highScores" layoutX="545.0" layoutY="527.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="-9.5" style="-fx-background-color: yellow;" text="Highscores">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>

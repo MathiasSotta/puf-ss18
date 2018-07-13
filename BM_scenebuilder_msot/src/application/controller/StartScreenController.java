@@ -22,6 +22,9 @@ public class StartScreenController implements Initializable {
     private Button startPlaying;
 
     @FXML
+    private Button highScores;
+
+    @FXML
     private AnchorPane StartScreen;
 
     @Override
@@ -34,6 +37,13 @@ public class StartScreenController implements Initializable {
 
                 ViewManager.getInstance().setView("/views/GameView.fxml");
                 Game.getInstance().initializeInfoboard(playerOne.getText(), playerTwo.getText());
+            }
+        });
+
+        highScores.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ViewManager.getInstance().setView("/views/HighscoreScreen.fxml");
             }
         });
     }

@@ -46,7 +46,7 @@
             </Text>
 
             <AnchorPane fx:id="Highscores" layoutY="120.0" maxHeight="770.0" maxWidth="770.0" minHeight="770.0" minWidth="770.0" prefHeight="770.0" prefWidth="770.0">
-                <Button fx:id="startPlaying" layoutX="558.0" layoutY="400.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Start Playing">
+                <Button fx:id="startPlaying" layoutX="558.0" layoutY="400.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="177.0" rotate="5.7" style="-fx-background-color: yellow;" text="Main Menu">
                     <font>
                         <Font name="Comic Sans MS" size="20.0" />
                     </font>

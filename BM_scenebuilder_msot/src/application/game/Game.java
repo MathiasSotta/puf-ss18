@@ -25,7 +25,6 @@ public class Game {
 
     private AnchorPane infoBoard;
 
-    private HighScoreList highscores;
     private HighScore highscore;
 
     private Text gameTimer;
@@ -33,6 +32,8 @@ public class Game {
     private Text playerTwoName;
     private Text playerOneScore;
     private Text playerTwoScore;
+
+    private boolean ended = false;
 
     /**
      * Singleton Pattern for Game Instance
@@ -119,6 +120,7 @@ public class Game {
     }
 
     public void End() {
+        ended = true;
         HighScorePosterThread highscorePoster = new HighScorePosterThread(Main.settings.getProperty("highscores_url"), highscore);
         highscorePoster.start();
     }
@@ -133,15 +135,7 @@ public class Game {
         return player;
     }
 
-    public void setHighscores(HighScoreList highscores) {
-        this.highscores = highscores;
-    }
-
-    public HighScore getHighscore() {
-        return highscore;
-    }
-
-    public HighScoreList getHighscores() {
-        return highscores;
+    public boolean hasEnded() {
+        return ended;
     }
 }

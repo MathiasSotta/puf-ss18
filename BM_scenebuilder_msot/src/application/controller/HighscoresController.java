@@ -1,7 +1,9 @@
 package application.controller;
 
+import application.Main;
 import application.game.Game;
 import application.game.HighScore;
+import application.game.HighScoreLoaderThread;
 import application.manager.ViewManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,37 +36,8 @@ public class HighscoresController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TableColumn playerOneCol = new TableColumn("Name");
-        TableColumn playerOneScoreCol = new TableColumn("Score");
-        TableColumn playerTwoCol = new TableColumn("Name");
-        TableColumn playerTwoScoreCol = new TableColumn("Score");
-        TableColumn dateColumn = new TableColumn("Date");
-
-        playerOneCol.setCellValueFactory(
-                new PropertyValueFactory<HighScore,String>("playerOne")
-        );
-        playerOneScoreCol.setCellValueFactory(
-                new PropertyValueFactory<HighScore,String>("playerOneScore")
-        );
-        playerTwoCol.setCellValueFactory(
-                new PropertyValueFactory<HighScore,String>("playerTwo")
-        );
-        playerTwoScoreCol.setCellValueFactory(
-                new PropertyValueFactory<HighScore,String>("playerTwoScore")
-        );
-        dateColumn.setCellValueFactory(
-                new PropertyValueFactory<HighScore,String>("date")
-        );
-
-        table.getColumns().addAll(playerOneCol, playerOneScoreCol, playerTwoCol, playerTwoScoreCol, dateColumn);
-        ObservableList<HighScore> highscoreList = FXCollections.observableArrayList();
-        highscoreList.addAll(Game.getInstance().getHighscores().getScores());
-
-        table.setItems(highscoreList);
-        table.setLayoutX(100);
-        table.setMinWidth(500);
-
-        Highscores.getChildren().add(table);
+        HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"), Highscores);
+        highScoreLoader.start();
 
         startPlaying.setOnAction(new EventHandler<ActionEvent>() {
             @Override

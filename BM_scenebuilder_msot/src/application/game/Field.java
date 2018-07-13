@@ -102,10 +102,11 @@ public class Field {
         }
 
         // update player state
-        for (Player p : this.players) {
-            p.update(now, delta);
+        if (!Game.getInstance().hasEnded()) {
+            for (Player p : this.players) {
+                p.update(now, delta);
+            }
         }
-
     }
 
     public void add(Node node) {

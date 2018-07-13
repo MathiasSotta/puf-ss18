@@ -6,8 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.*;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -24,6 +23,8 @@ public class Main extends Application {
         viewManager.setView("/views/StartScreen.fxml");
         settings.load(getClass().getResourceAsStream("/config/application.config"));
 
+        backgroundMusic();
+        
         Group root = new Group();
         root.getChildren().addAll(viewManager);
 
@@ -33,10 +34,16 @@ public class Main extends Application {
         mainStage.show();
     }
 
-    public void backgroundSound(){
+    /*public void backgroundSound(){
         String musicFile = "resources/sounds/background.mid";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+    }*/
+    public void backgroundMusic(){
+        String music = "resources/sounds/sawsquarenoise_-_01_-_Interstellar.mp3";
+        Media sound = new Media(new File(music).toURI().toString());
+        MediaPlayer mediaPlayer= new MediaPlayer(sound);
         mediaPlayer.play();
     }
 

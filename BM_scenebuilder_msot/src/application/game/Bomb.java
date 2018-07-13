@@ -27,6 +27,12 @@ public class Bomb extends GameObject {
 
     private int powerFactor = 1;
 
+    /**
+     * Defines the bomb's properties.
+     * @param image  sets the bomb's image
+     * @param bombAudio sets the bomb's sound
+     * @param owner sets the player who dropped the bomb
+     */
     public Bomb(Image image, MediaPlayer bombAudio, Player owner) {
         this.owner = owner;
         this.setId("Bomb");
@@ -46,6 +52,11 @@ public class Bomb extends GameObject {
         }
     }
 
+    /**
+     * Sets the time it takes til the bomb explodes.
+     * @param now
+     * @param delta
+     */
     public void update(long now, double delta) {
         if (!isExploding()) {
             if (droppedAt == 0) {
@@ -57,10 +68,20 @@ public class Bomb extends GameObject {
         }
     }
 
+    /**
+     * Sets the time til the next bomb can be dropped.
+     * @param now
+     * @return timestamp passed time from now must be longer than explosion duration
+     */
     public boolean exploded(long now) {
         return timestampToSeconds(now - explosionStart) >= explosionDuration;
     }
 
+    /**
+     * Defines which game object is inside the explosion's center by comparing rectangles inside the explosion Array List.
+     * @param gameObject any object like a player, a block or the bomb itself
+     * @return true- object is inside the explosion's center, false - object isn't inside the explosion's center
+     */
     public boolean withinExplosionCenter(GameObject gameObject) {
         for (Rectangle2D rect : this.explosion) {
             if (rect.contains(gameObject.getCenterPosition())) {
@@ -71,6 +92,11 @@ public class Bomb extends GameObject {
         return false;
     }
 
+    /**
+     * Bomb hitting the opponent player increments the score.
+     * @param player is declarated as victim, hit by the bomb of the opponent player or is the owner of the dropped bomb comitting suicide
+     * @return true- anybody got hit, false- no player got hit
+     */
     public boolean doesHitOtherPlayer(Player player) {
         if (withinExplosionCenter(player)) {
             victim = player;
@@ -84,6 +110,11 @@ public class Bomb extends GameObject {
         return false;
     }
 
+    /**
+     * Checks which rectangle is inside the explosion radius.
+     * @param targetRect the rectangle which contains the dropped bomb
+     * @return true- contains the dropped bomb, false- isn't hit by explosion
+     */
     public boolean withinExplosionRect(Rectangle2D targetRect) {
         for (Rectangle2D rect : this.explosion) {
             if (rect.intersects(targetRect)) {

@@ -7,6 +7,11 @@ public class BlockFactory {
     public static final String DESTRUCTIBLE = "destructible";
     public static final String INDESTRUCTIBLE = "indestructible";
 
+    /**
+     * Creating the two types of blocks and sets the images.
+     * @param type destructable or indestructuable block
+     * @return d for returning a destructable block and i for returning an indestructable block
+     */
     public static Block getBlock(String type)
     {
         AssetManager assetManager = AssetManager.getInstance();

@@ -39,8 +39,8 @@ public class Main extends Application {
      * http://freemusicarchive.org/genre/Chiptune/?sort=track_date_published&d=1&page=7
      */
     public void backgroundMusic(){
-        String music = "resources/sounds/sawsquarenoise_-_01_-_Interstellar.mp3";
-        Media sound = new Media(new File(music).toURI().toString());
+        String music = "/sounds/sawsquarenoise_-_01_-_Interstellar.mp3";
+        Media sound = new Media(getClass().getResource(music).toString());
         MediaPlayer mediaPlayer= new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();

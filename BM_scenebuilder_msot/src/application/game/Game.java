@@ -38,6 +38,8 @@ public class Game {
 
     private boolean ended = false;
 
+    private boolean firstRun = true;
+
     /**
      * Singleton Pattern for Game Instance
      *
@@ -58,6 +60,7 @@ public class Game {
     public void Initialize(AnchorPane pane, AnchorPane infoBoard) {
         this.field = new Field(pane);
         this.infoBoard = infoBoard;
+        this.ended = false;
 
         // fill gameBoard with blocks ...
         gameboardManager.fillGameBoardWithBlocks(field, assetManager);
@@ -172,5 +175,13 @@ public class Game {
 
     public boolean hasEnded() {
         return ended;
+    }
+
+    public boolean isFirstRun() {
+        return firstRun;
+    }
+
+    public void setFirstRun(boolean firstRun) {
+        this.firstRun = firstRun;
     }
 }

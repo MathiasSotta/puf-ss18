@@ -42,9 +42,7 @@ public class AssetManager {
         images.put("destructible", new Image("images/destructible.png"));
         images.put("indestructible", new Image("images/indestructible.png"));
 
-        audio.put("explosion", new MediaPlayer(new Media(
-                new File("resources/sounds/bomb_explosion_medium.aif").toURI().toString()))
-        );
+        audio.put("explosion", new MediaPlayer(new Media(getClass().getResource("/sounds/bomb_explosion_medium.aif").toString())));
     }
 
     /**

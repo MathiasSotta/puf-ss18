@@ -47,6 +47,11 @@ public class Game {
         return Instance;
     }
 
+    /**
+     *
+     * @param pane the AnchorPane that is holding the field
+     * @param infoBoard the AnchorPane that provides information on a players scores
+     */
     public void Initialize(AnchorPane pane, AnchorPane infoBoard) {
         this.field = new Field(pane);
         this.infoBoard = infoBoard;
@@ -63,6 +68,11 @@ public class Game {
         //setGameMatrixVisible();
     }
 
+    /**
+     * Provides the information on player's name and score
+     * @param playerOne
+     * @param playerTwo
+     */
     public void initializeInfoboard(String playerOne, String playerTwo) {
         Player player1 = getField().getPlayers().get(0);
         Player player2 = getField().getPlayers().get(1);
@@ -89,6 +99,10 @@ public class Game {
         thread.start();
     }
 
+    /**
+     * Updates a player's score.
+     * @param bomb
+     */
     public void updatePlayerScore(Bomb bomb) {
         if (bomb.getOwner().getId() == Game.PLAYER_ONE_NAME) {
             highscore.setPlayerOneScore(bomb.getOwner().getScore());
@@ -100,6 +114,9 @@ public class Game {
         }
     }
 
+    /**
+     * Fills the rectangles in the game matrix with color and set an Id.
+     */
     private void setGameMatrixVisible() {
         for (Rectangle2D r : field.getGameMatrix()) {
             Rectangle myrect = new Rectangle(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
@@ -113,26 +130,43 @@ public class Game {
         //System.out.println("gameMatrix-tiles: " + (field.getGameMatrix()).size());
     }
 
+    /**
+     * Starts the timer for an animation.
+     */
     public void Start() {
         gameAnimationTimer = new GameAnimationTimer();
         gameAnimationTimer.start();
     }
 
+    /**
+     * Starts the thread for getting the highscores.
+     */
     public void End() {
         ended = true;
         HighScorePosterThread highscorePoster = new HighScorePosterThread(Main.settings.getProperty("highscores_url"), highscore);
         highscorePoster.start();
     }
 
+    /**
+     *
+     * @return AnchorPane
+     */
     public Field getField() {
         return this.field;
     }
 
+    /**
+     * Created a player object.
+     * @param initialPos Position where the player appears on the AnchorPane.
+     * @param name Player's name
+     * @return player
+     */
     private Player createPlayerObject(Point2D initialPos, String name) {
         Player player = PlayerFactory.getPlayer(field, initialPos, name);
         return player;
     }
 
+    
     public boolean hasEnded() {
         return ended;
     }

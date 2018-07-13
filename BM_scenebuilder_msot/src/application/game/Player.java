@@ -1,5 +1,6 @@
 package application.game;
 
+import application.Main;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.media.MediaPlayer;
@@ -38,6 +39,8 @@ public class Player extends GameObject {
     private Image playerLeft;
 
     private int score = 0;
+
+    private Powerup activePowerup;
 
     private String name = "";
 
@@ -98,6 +101,14 @@ public class Player extends GameObject {
 
         if (posY + yFactor + getFitHeight() < field.getHeight() && posY + yFactor > 0) {
             setY(posY + yFactor);
+        }
+
+        field.isPickingUpPowerup(this);
+        if (activePowerup != null) {
+            if (activePowerup.getId().equals("Powerbomb")) {
+                PowerupTimerThread powerupTimer = new PowerupTimerThread(this);
+                powerupTimer.start();
+            }
         }
 
         // check if new player position collides with static objects in scene
@@ -219,5 +230,13 @@ public class Player extends GameObject {
 
     public void setBombAudio(MediaPlayer bombAudio) {
         this.bombAudio = bombAudio;
+    }
+
+    public Powerup getActivePowerup() {
+        return activePowerup;
+    }
+
+    public void setActivePowerup(Powerup activePowerup) {
+        this.activePowerup = activePowerup;
     }
 }

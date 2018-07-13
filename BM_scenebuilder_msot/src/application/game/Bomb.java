@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.media.*;
-import java.io.File;
 
 public class Bomb extends GameObject {
 
@@ -26,6 +25,8 @@ public class Bomb extends GameObject {
 
     private MediaPlayer bombAudio = null;
 
+    private int powerFactor = 1;
+
     public Bomb(Image image, MediaPlayer bombAudio, Player owner) {
         this.owner = owner;
         this.setId("Bomb");
@@ -39,6 +40,10 @@ public class Bomb extends GameObject {
 
         this.bombAudio = bombAudio;
 
+        if (owner.getActivePowerup() != null) {
+            powerFactor = owner.getActivePowerup().getBombPower();
+            setImage(owner.getActivePowerup().getBombImage());
+        }
     }
 
     public void update(long now, double delta) {
@@ -91,13 +96,13 @@ public class Bomb extends GameObject {
 
     public void explode(long now) {
         // explosion right
-        this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 60, getFitHeight()));
+        this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 60*powerFactor, getFitHeight()));
         // explosion left
-        this.explosion.add(new Rectangle2D(getX()-60, getY(), 60, getFitHeight()));
+        this.explosion.add(new Rectangle2D(getX()-60*powerFactor, getY(), 60*powerFactor, getFitHeight()));
         // explosion up
-        this.explosion.add(new Rectangle2D(getX(), getY()-60, getFitWidth(), 60));
+        this.explosion.add(new Rectangle2D(getX(), getY()-60*powerFactor, getFitWidth(), 60*powerFactor));
         // explosion down
-        this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 60));
+        this.explosion.add(new Rectangle2D(getX(), getY()+getFitHeight(), getFitWidth(), 60*powerFactor));
         // explosion center
         this.explosion.add(new Rectangle2D(getX(), getY(), getFitWidth(), getFitHeight()));
 
@@ -112,32 +117,40 @@ public class Bomb extends GameObject {
         this.explosions.add(explosion);
 
         // top
-        Explosion explosionTop = new Explosion(now);
-        explosionTop.setX(this.getX());
-        explosionTop.setY(this.getY()-60);
-        Game.getInstance().getField().add(explosionTop);
-        this.explosions.add(explosionTop);
+        for(int i=1; i <= powerFactor; i++) {
+            Explosion explosionTop = new Explosion(now);
+            explosionTop.setX(this.getX());
+            explosionTop.setY(this.getY() - 60*i);
+            Game.getInstance().getField().add(explosionTop);
+            this.explosions.add(explosionTop);
+        }
 
         // bottom
-        Explosion explosionBottom = new Explosion(now);
-        explosionBottom.setX(this.getX());
-        explosionBottom.setY(this.getY()+60);
-        Game.getInstance().getField().add(explosionBottom);
-        this.explosions.add(explosionBottom);
+        for(int i=1; i <= powerFactor; i++) {
+            Explosion explosionBottom = new Explosion(now);
+            explosionBottom.setX(this.getX());
+            explosionBottom.setY(this.getY() + 60*i);
+            Game.getInstance().getField().add(explosionBottom);
+            this.explosions.add(explosionBottom);
+        }
 
         // right
-        Explosion explosionRight = new Explosion(now);
-        explosionRight.setX(this.getX()+60);
-        explosionRight.setY(this.getY());
-        Game.getInstance().getField().add(explosionRight);
-        this.explosions.add(explosionRight);
+        for(int i=1; i <= powerFactor; i++) {
+            Explosion explosionRight = new Explosion(now);
+            explosionRight.setX(this.getX() + 60*i);
+            explosionRight.setY(this.getY());
+            Game.getInstance().getField().add(explosionRight);
+            this.explosions.add(explosionRight);
+        }
 
         // left
-        Explosion explosionLeft = new Explosion(now);
-        explosionLeft.setX(this.getX()-60);
-        explosionLeft.setY(this.getY());
-        Game.getInstance().getField().add(explosionLeft);
-        this.explosions.add(explosionLeft);
+        for(int i=1; i <= powerFactor; i++) {
+            Explosion explosionLeft = new Explosion(now);
+            explosionLeft.setX(this.getX()-60*i);
+            explosionLeft.setY(this.getY());
+            Game.getInstance().getField().add(explosionLeft);
+            this.explosions.add(explosionLeft);
+        }
 
         bombAudio.play();
     }
@@ -152,5 +165,9 @@ public class Bomb extends GameObject {
 
     public Player getOwner() {
         return owner;
+    }
+
+    public void setPowerFactor(int powerFactor) {
+        this.powerFactor = powerFactor;
     }
 }

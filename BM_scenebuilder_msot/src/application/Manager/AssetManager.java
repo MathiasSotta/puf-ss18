@@ -28,6 +28,7 @@ public class AssetManager {
     public void loadAssets() {
         images.put("player", new Image("images/test.png"));
         images.put("bomb", new Image("images/bomb.png"));
+        images.put("bomb_powerup", new Image("images/bomb_powerup.png"));
         images.put("looksRight", new Image("images/looksRight.png"));
         images.put("looksLeft", new Image("images/looksLeft.png"));
         images.put("looksUp", new Image("images/looksUp.png"));

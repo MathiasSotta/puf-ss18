@@ -1,5 +1,6 @@
 package application.game;
 
+import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Field {
 
@@ -17,6 +19,7 @@ public class Field {
 
     private List<Node> staticElements = new ArrayList<>();
     private List<DestructibleBlock> destructibleBlocks = new ArrayList<>();
+    private List<Powerup> powerups = new ArrayList<>();
 
     private List<Node> cleanup = new ArrayList<>();
 
@@ -51,6 +54,18 @@ public class Field {
         return false;
     }
 
+    public void isPickingUpPowerup(Player player) {
+        if (player.getActivePowerup() == null) {
+            for (Powerup powerup : powerups) {
+                if (powerup.getBoundsInParent().intersects(player.getBoundsInParent())) {
+                    player.setActivePowerup(powerup);
+                    fieldPane.getChildren().remove(powerup);
+                    cleanup.add(powerup);
+                }
+            }
+        }
+    }
+
     public void update(long now, double delta) {
         for (Bomb b : this.bombs) {
             b.update(now, delta);
@@ -74,6 +89,16 @@ public class Field {
                         if (b.withinExplosionCenter(d)) {
                             fieldPane.getChildren().remove(d);
                             cleanup.add(d);
+                            Random r = new Random();
+                            float chance = r.nextFloat();
+
+                            if (chance <= 0.10f) {
+                                PowerBomb powerup = new PowerBomb(AssetManager.getInstance().getImage("bomb_powerup"));
+                                powerup.setX(d.getX());
+                                powerup.setY(d.getY());
+                                fieldPane.getChildren().add(powerup);
+                                powerups.add(powerup);
+                            }
                         }
                     }
                 }
@@ -98,6 +123,10 @@ public class Field {
             }
             if (n.getId().equals("Bomb")) {
                 bombs.remove(n);
+            }
+
+            if (n.getId().equals("Powerbomb")) {
+                powerups.remove(n);
             }
         }
 

@@ -1,27 +1,20 @@
 package application.game;
 
+import javafx.application.Platform;
 import java.util.concurrent.TimeUnit;
 
-import javafx.application.Platform;
-import javafx.scene.text.Text;
 
+public class PowerupTimerThread extends Thread {
 
-public class GameTimerThread extends Thread {
-
-    private Text gameTimer;
-
-    private int time = 300;
-
+    private Player player;
+    private int time = 0;
     private boolean ended = false;
 
-
-    /**
-     * @param gameTimer
-     */
-    public GameTimerThread(Text gameTimer) {
+    public PowerupTimerThread(Player player) {
         setDaemon(true);
-        setName("GameTimer");
-        this.gameTimer = gameTimer;
+        setName("PowerupTimer");
+        this.player = player;
+        this.time = player.getActivePowerup().getDurationSeconds();
     }
 
     @Override
@@ -30,14 +23,10 @@ public class GameTimerThread extends Thread {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    int minutes = time / 60;
-                    int second = time % 60;
-                    gameTimer.setText(String.valueOf(minutes) + ":" + String.valueOf(second));
                     if (time == 0) {
-                        Game.getInstance().End();
+                        player.setActivePowerup(null);
                         ended = true;
                     }
-
                 }
             });
             try {

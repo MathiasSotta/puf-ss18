@@ -56,11 +56,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerFactory.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/game/PlayerFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="120">
+              <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PowerBomb.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/game/PowerBomb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+              <folding>
+                <element signature="e#411#412#0" expanded="true" />
+                <element signature="e#435#436#0" expanded="true" />
+                <element signature="e#474#475#0" expanded="true" />
+                <element signature="e#499#500#0" expanded="true" />
+                <element signature="e#534#535#0" expanded="true" />
+                <element signature="e#567#568#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Powerup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/game/Powerup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PowerupTimerThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/game/PowerupTimerThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpriteAnimation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/game/SpriteAnimation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewDirection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/application/game/ViewDirection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -70,47 +123,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4420">
               <caret line="242" column="46" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameTimerThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/game/GameTimerThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighScoreList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/game/HighScoreList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1199#1200#0" expanded="true" />
-                <element signature="e#1228#1229#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighScoreLoaderThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/game/HighScoreLoaderThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="111" column="36" selection-start-line="111" selection-start-column="36" selection-end-line="111" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighScorePosterThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/game/HighScorePosterThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -129,15 +141,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
               <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighScore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/game/HighScore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -207,6 +210,10 @@
         <option value="$PROJECT_DIR$/src/application/game/HighScoreList.java" />
         <option value="$PROJECT_DIR$/src/application/game/HighScoreLoaderThread.java" />
         <option value="$PROJECT_DIR$/src/application/game/Player.java" />
+        <option value="$PROJECT_DIR$/src/application/game/PlayerFactory.java" />
+        <option value="$PROJECT_DIR$/src/application/game/PowerBomb.java" />
+        <option value="$PROJECT_DIR$/src/application/game/Powerup.java" />
+        <option value="$PROJECT_DIR$/src/application/game/SpriteAnimation.java" />
       </list>
     </option>
   </component>
@@ -406,11 +413,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120594000" />
+    <option name="totallyTimeSpent" value="120838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="2" />
       <window_info anchor="bottom" id="TODO" order="4" />
@@ -422,11 +428,11 @@
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47412884" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.153125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.153125" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3284055" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -471,15 +477,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/application/GameLogic/GameAnimationTimer.java" />
-    <entry file="file://$PROJECT_DIR$/src/application/GameLogic/Player.java" />
-    <entry file="file://$PROJECT_DIR$/src/application/Manager/AssetManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Manager/ViewManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -515,20 +512,6 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/BM_scenebuilder_msot/images/test.png" />
-    <entry file="file://$PROJECT_DIR$/src/application/game/SpriteAnimation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="37" column="42" lean-forward="true" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/game/ViewDirection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/game/DestructableBlock.java" />
     <entry file="jar://C:/Program Files/Java/jdk/javafx-src.zip!/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -821,8 +804,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/game/PlayerFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/PowerBomb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#411#412#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#499#500#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/Powerup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/PowerupTimerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/SpriteAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/game/ViewDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
         </state>
       </provider>
     </entry>

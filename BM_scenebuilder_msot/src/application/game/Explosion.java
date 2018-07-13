@@ -17,6 +17,10 @@ public class Explosion extends GameObject {
 
     private Animation animation = null;
 
+    /**
+     * Sets the animation of the bomb explosion.
+     * @param now
+     */
     public Explosion(long now) {
         this.setImage(IMAGE);
 

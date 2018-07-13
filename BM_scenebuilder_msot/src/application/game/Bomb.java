@@ -207,7 +207,6 @@ public class Bomb extends GameObject {
     }
 
     /**
-     *
      * @return who dropped this bomb
      */
     public Player getOwner() {

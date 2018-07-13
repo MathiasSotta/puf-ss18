@@ -29,7 +29,10 @@ public class Field {
 
     private List<Rectangle2D> gameMatrix = new ArrayList<>();
 
-
+    /**
+     * Links the view elements to the logic.
+     * @param fieldPane defines the AnchorPane that carries the game.
+     */
     public Field(AnchorPane fieldPane) {
         this.fieldPane = fieldPane;
 
@@ -37,14 +40,26 @@ public class Field {
         initGameMatrix();
     }
 
+    /**
+     *
+     * @return width of the AnchorPane
+     */
     public double getWidth() {
         return fieldPane.getMaxWidth();
     }
-
+    /**
+     *
+     * @return height of the AnchorPane
+     */
     public double getHeight() {
         return fieldPane.getMaxHeight();
     }
 
+    /**
+     * Avoids the crossing of the player onto this node element.
+     * @param node elements like blocks
+     * @return
+     */
     public boolean isCollidingWithStaticElement(Node node) {
         for (Node staticElement : staticElements) {
             if (staticElement.getBoundsInParent().intersects(node.getBoundsInParent())) {
@@ -54,6 +69,10 @@ public class Field {
         return false;
     }
 
+    /**
+     * Player gets skills from collectiong a power up.
+     * @param player The player who picks up.
+     */
     public void isPickingUpPowerup(Player player) {
         if (player.getActivePowerup() == null) {
             for (Powerup powerup : powerups) {
@@ -66,6 +85,11 @@ public class Field {
         }
     }
 
+    /**
+     * Handling the visual changes after a bomb explosion, like removing exploded bombs, dead players or destroyed blocks
+     * @param now
+     * @param delta
+     */
     public void update(long now, double delta) {
         for (Bomb b : this.bombs) {
             b.update(now, delta);
@@ -138,6 +162,10 @@ public class Field {
         }
     }
 
+    /**
+     * Adds the blocks as nodes onto the field.
+     * @param node
+     */
     public void add(Node node) {
         if (node.getId() != null) {
             if (node.getId().equals("DestructibleBlock")) {
@@ -151,24 +179,44 @@ public class Field {
         fieldPane.getChildren().add(node);
     }
 
+    /**
+     * Adds a player onto the field.
+     * @param player
+     */
     public void addPlayer(Player player) {
         this.add(player);
         this.players.add(player);
     }
 
+    /**
+     * Adds a bomb onto the field.
+     * @param bomb
+     */
     public void addBomb(Bomb bomb) {
         this.add(bomb);
         this.bombs.add(bomb);
     }
 
+    /**
+     *
+     * @return Array List of bombs.
+     */
     public List<Bomb> getBombs() {
         return bombs;
     }
 
+    /**
+     *
+     * @return Array List of players.
+     */
     public List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Initialises the game matrix with height and width.
+     * Makes tiles from the rectangles on the field.
+     */
     private void initGameMatrix() {
         double matrixTileHeight = this.fieldPane.getMaxHeight() / 11;
         double matrixTileWidth = this.fieldPane.getMaxWidth() / 11;
@@ -181,10 +229,19 @@ public class Field {
         }
     }
 
+    /**
+     *
+     * @return Array List of rectangles which represents the game matrix.
+     */
     public List<Rectangle2D> getGameMatrix() {
         return gameMatrix;
     }
 
+    /**
+     * Defines in which rectangle where the bomb is dropped by calculating the point.
+     * @param node represents the game object
+     * @return the point's coordinates or null
+     */
     public Point2D getBombTileCenterPosition(GameObject node) {
         double x;
         double y;

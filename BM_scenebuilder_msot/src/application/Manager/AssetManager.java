@@ -7,6 +7,9 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.util.HashMap;
 
+/**
+ * Provides the media for the game and their paths.
+ */
 public class AssetManager {
 
     private static AssetManager Instance;

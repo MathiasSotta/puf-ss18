@@ -2,6 +2,9 @@ package application.game;
 
 import javafx.scene.image.Image;
 
+/**
+ * Kind of bomb that gives the player an extended explosion radius by dropping the bomb.
+ */
 public class PowerBomb extends Powerup {
     /**
      * Bomb for powering up.

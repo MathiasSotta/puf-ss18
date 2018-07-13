@@ -9,13 +9,15 @@ import javafx.geometry.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Setting up the game board by filling it with blocks.
+ */
 public class GameboardManager {
 
     private ArrayList<int[][]> randomPick = new ArrayList<>();
     private Random rand = new Random();
 
     /**
-     * Setting up the game board by filling it with blocks.
      * The specific order of blocks is randomly set by the method getGameRandomGameBoard.
      * @param field is an instance of the Field class which puts the gaming components together.
      * @param assetManager is an instance of the AssetManager class which administrates used media content

@@ -5,6 +5,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+/**
+ * Bomb explosion.
+ */
 public class Explosion extends GameObject {
 
     private static final Image IMAGE = new Image("images/explosion.png");

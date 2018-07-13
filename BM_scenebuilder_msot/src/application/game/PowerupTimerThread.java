@@ -3,6 +3,9 @@ package application.game;
 import javafx.application.Platform;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Sets the time that the player has to use the power up.
+ */
 
 public class PowerupTimerThread extends Thread {
 

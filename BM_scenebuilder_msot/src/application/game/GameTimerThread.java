@@ -5,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.text.Text;
 
-
+/**
+ * Sets the gaming duration to 5 minutes.
+ */
 public class GameTimerThread extends Thread {
 
     private Text gameTimer;

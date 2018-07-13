@@ -3,6 +3,9 @@ package application.game;
 import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 
+/**
+ * Sets up players.
+ */
 public class PlayerFactory {
     /**
      * Sets the images for the players looking directions.

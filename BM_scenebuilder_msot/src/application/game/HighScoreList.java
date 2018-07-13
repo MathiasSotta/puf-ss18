@@ -5,6 +5,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Puts highscore data into a Array List.
+ */
 public class HighScoreList {
 
     private ArrayList<HighScore> scores = new ArrayList<>();

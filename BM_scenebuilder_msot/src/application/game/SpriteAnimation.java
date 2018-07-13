@@ -6,6 +6,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+/**
+ * Sprite Animation of the fire ball from bomb exploding.
+ */
 public class SpriteAnimation extends Transition {
 
     private final ImageView imageView;

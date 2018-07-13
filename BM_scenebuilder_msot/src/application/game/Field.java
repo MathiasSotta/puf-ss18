@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Links the view elements to the logic.
+ */
 public class Field {
 
     private AnchorPane fieldPane;
@@ -30,7 +33,6 @@ public class Field {
     private List<Rectangle2D> gameMatrix = new ArrayList<>();
 
     /**
-     * Links the view elements to the logic.
      * @param fieldPane defines the AnchorPane that carries the game.
      */
     public Field(AnchorPane fieldPane) {

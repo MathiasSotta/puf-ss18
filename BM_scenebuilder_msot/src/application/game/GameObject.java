@@ -3,6 +3,9 @@ package application.game;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
+/**
+ * Everything on the game board is a game object.
+ */
 abstract class GameObject extends ImageView {
     public abstract void update(long now, double delta);
 

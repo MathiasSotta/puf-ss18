@@ -11,6 +11,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Network connection for sending highscores.
+ */
 public class HighScorePosterThread extends Thread {
 
     private JSONObject json;
@@ -26,6 +29,9 @@ public class HighScorePosterThread extends Thread {
         this.highscore = highscore;
     }
 
+    /**
+     * Setting up the connection for write and read the highscore data.
+     */
     @Override
     public void run() {
         JSONObject highscoresJson = new JSONObject(highscore);

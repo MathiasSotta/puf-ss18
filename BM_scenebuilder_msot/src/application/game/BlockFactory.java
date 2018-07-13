@@ -2,6 +2,9 @@ package application.game;
 
 import application.manager.AssetManager;
 
+/**
+ * Making blocks for the game board.
+ */
 public class BlockFactory {
 
     public static final String DESTRUCTIBLE = "destructible";

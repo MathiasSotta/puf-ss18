@@ -5,6 +5,9 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * Player with all properties.
+ */
 public class Player extends GameObject {
 
     private Movement movement = Movement.IDLE;

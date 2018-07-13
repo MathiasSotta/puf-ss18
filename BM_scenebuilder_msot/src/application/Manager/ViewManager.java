@@ -7,6 +7,9 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
+/**
+ * Loads and manages the views from fxml Files.
+ */
 public class ViewManager extends StackPane {
 
     private static ViewManager Instance;

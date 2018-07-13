@@ -8,6 +8,9 @@ import java.util.List;
 
 import javafx.scene.media.*;
 
+/**
+ * Administration of the bomb.
+ */
 public class Bomb extends GameObject {
 
     private List<Rectangle2D> explosion = new ArrayList<>();

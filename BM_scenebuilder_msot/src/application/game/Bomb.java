@@ -125,6 +125,10 @@ public class Bomb extends GameObject {
         return false;
     }
 
+    /**
+     * Handles everything changed by an explosion like destroying blocks or powering up a player and playing bomb sound.
+     * @param now
+     */
     public void explode(long now) {
         // explosion right
         this.explosion.add(new Rectangle2D(getX()+getFitWidth(), getY(), 60*powerFactor, getFitHeight()));
@@ -186,18 +190,34 @@ public class Bomb extends GameObject {
         bombAudio.play();
     }
 
+    /**
+     * Checks if the Array List explosion is empty.
+     * @return true- exploding, false- not exploding
+     */
     public boolean isExploding() {
         return this.explosion.size() > 0;
     }
 
+    /**
+     *
+     * @return the Array List with explosions
+     */
     public List<Explosion> getExplosions() {
         return this.explosions;
     }
 
+    /**
+     *
+     * @return who dropped this bomb
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     *
+     * @param powerFactor getting scores from hitting the opponent player
+     */
     public void setPowerFactor(int powerFactor) {
         this.powerFactor = powerFactor;
     }

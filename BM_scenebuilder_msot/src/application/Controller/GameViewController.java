@@ -22,7 +22,10 @@ public class GameViewController implements Initializable {
 
     /**
      * Abstract method of the interface Initializable.
-     * 
+     *
+     * Gets instances of players from Game with their positions from field.
+     * Sets the movement on key events for the players.
+     *
      * @param url location - The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param rb resources - The resources used to localize the root object, or null if the root object was not localized.
      */

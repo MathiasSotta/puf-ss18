@@ -34,6 +34,16 @@ public class HighscoresController implements Initializable {
 
     private TableView table = new TableView();
 
+    /**
+     * Abstract method of the interface Initializable.
+     *
+     * Starts the thread that administrates the loading of the highscore counter.
+     * Sets the event for pressing the "Start Playing" button for changing the view from highscore screen to start screen.
+     * Sets the event for pressing the "Quit" button for ending the game.
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HighScoreLoaderThread highScoreLoader = new HighScoreLoaderThread(Main.settings.getProperty("highscores_url"), Highscores);

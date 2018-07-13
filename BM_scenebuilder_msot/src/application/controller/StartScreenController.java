@@ -27,6 +27,16 @@ public class StartScreenController implements Initializable {
     @FXML
     private AnchorPane StartScreen;
 
+    /**
+     * Abstract method of the interface Initializable.
+     *
+     * Sets the event for pressing the "Start Playing" button for changing the view from start screen to start playing the game in game view.
+     * Sets the event for pressing the "Highscores" button for showing the highscore.
+     * Gets the player names.
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         startPlaying.setOnAction(new EventHandler<ActionEvent>() {

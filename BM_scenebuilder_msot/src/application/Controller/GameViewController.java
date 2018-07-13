@@ -21,8 +21,10 @@ public class GameViewController implements Initializable {
     private AnchorPane InfoBoard;
 
     /**
-     * @param url
-     * @param rb
+     * Abstract method of the interface Initializable.
+     * 
+     * @param url location - The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb resources - The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

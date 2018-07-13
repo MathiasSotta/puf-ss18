@@ -14,6 +14,10 @@ public class ViewManager extends StackPane {
     private Node view;
     private Initializable controller;
 
+    /**
+     *
+     * @return an instance of ViewManager
+     */
     public static ViewManager getInstance() {
         if (Instance == null) {
             Instance = new ViewManager();
@@ -25,6 +29,11 @@ public class ViewManager extends StackPane {
         super();
     }
 
+    /**
+     * Loads the view from fxml-File.
+     * @param resource Derives the location of the fxml.
+     * @return false - couldn't load the fxml, true-loaded the fxml and got it's controller
+     */
     public boolean loadView(String resource) {
         try {
             System.out.println(getClass().getResource(resource));
@@ -40,7 +49,12 @@ public class ViewManager extends StackPane {
         }
     }
 
-
+    /**
+     * If View couldn't be loaded an error message is printed.
+     * If pane already shows a View, it gets removed and a new View is set.
+     * @param resource Derives the location of the fxml.
+     * @return true - if View is set
+     */
     public boolean setView(final String resource) {
         if (!loadView(resource)) {
             System.out.println("ViewManager: View could not be loaded " + resource);
@@ -60,6 +74,10 @@ public class ViewManager extends StackPane {
         return true;
     }
 
+    /**
+     * Initialises a controller.
+     * @return controller
+     */
     public Initializable getController() {
         return controller;
     }

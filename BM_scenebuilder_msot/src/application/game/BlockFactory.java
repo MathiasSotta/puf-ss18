@@ -19,7 +19,7 @@ public class BlockFactory {
             return d;
         } else {
             IndestructibleBlock i = new IndestructibleBlock();
-            i.setId(BlockFactory.INDESTRUCTIBLE);
+            i.setId("IndestructibleBlock");
             i.setImage(assetManager.getImage(BlockFactory.INDESTRUCTIBLE));
 
             return i;

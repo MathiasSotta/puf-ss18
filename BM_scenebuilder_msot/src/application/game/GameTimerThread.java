@@ -14,6 +14,10 @@ public class GameTimerThread extends Thread {
 
     private boolean ended = false;
 
+
+    /**
+     * @param gameTimer
+     */
     public GameTimerThread(Text gameTimer) {
         setDaemon(true);
         setName("GameTimer");

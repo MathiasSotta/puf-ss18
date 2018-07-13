@@ -24,6 +24,9 @@ public class GameTimerThread extends Thread {
         this.gameTimer = gameTimer;
     }
 
+    /**
+     * Sets the gaming time.
+     */
     @Override
     public void run() {
         while (!ended) {

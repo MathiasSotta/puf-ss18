@@ -166,7 +166,7 @@ public class Game {
         return player;
     }
 
-    
+
     public boolean hasEnded() {
         return ended;
     }

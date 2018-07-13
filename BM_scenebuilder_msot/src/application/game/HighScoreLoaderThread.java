@@ -27,6 +27,11 @@ public class HighScoreLoaderThread extends Thread {
 
     private AnchorPane highscorePane;
 
+    /**
+     * Places the player names and scores into a table
+     * @param highscoreUrl
+     * @param highscorePane
+     */
     public HighScoreLoaderThread(String highscoreUrl, AnchorPane highscorePane) {
         setDaemon(true);
         setName("HighScoreLoader");
@@ -34,6 +39,9 @@ public class HighScoreLoaderThread extends Thread {
         this.highscorePane = highscorePane;
     }
 
+    /**
+     * Player data is set to a JSON and put into a table
+     */
     @Override
     public void run() {
         try {
@@ -85,6 +93,12 @@ public class HighScoreLoaderThread extends Thread {
         }
     }
 
+    /**
+     * Reader
+     * @param rd
+     * @return
+     * @throws IOException
+     */
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -94,6 +108,13 @@ public class HighScoreLoaderThread extends Thread {
         return sb.toString();
     }
 
+    /**
+     * Reading the data from the url
+     * @param url
+     * @return json object
+     * @throws IOException
+     * @throws JSONException
+     */
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {

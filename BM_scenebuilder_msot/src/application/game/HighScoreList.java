@@ -9,6 +9,11 @@ public class HighScoreList {
 
     private ArrayList<HighScore> scores = new ArrayList<>();
 
+    /**
+     *
+     * @param json data object which holds the highscore
+     * @return highscore
+     */
     public static HighScoreList fromJson(JSONObject json) {
         HighScoreList highscores = new HighScoreList();
         Iterator<?> keys = json.keys();

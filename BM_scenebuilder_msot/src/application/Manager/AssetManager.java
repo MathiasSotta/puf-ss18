@@ -9,8 +9,21 @@ import java.util.HashMap;
 
 public class AssetManager {
 
+    private static AssetManager Instance;
+
     private HashMap images = new HashMap<>();
     private HashMap audio = new HashMap<>();
+
+    public static AssetManager getInstance() {
+        if (Instance == null) {
+            Instance = new AssetManager();
+        }
+        return Instance;
+    }
+
+    public AssetManager() {
+        this.loadAssets();
+    }
 
     public void loadAssets() {
         images.put("player", new Image("images/test.png"));

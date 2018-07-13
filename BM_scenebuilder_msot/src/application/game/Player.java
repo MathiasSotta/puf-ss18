@@ -1,6 +1,5 @@
 package application.game;
 
-import application.manager.AssetManager;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.media.MediaPlayer;
@@ -32,38 +31,21 @@ public class Player extends GameObject {
 
     private ViewDirection playerLooks;
 
-    private Image playerRight = null;
-    private Image playerUp = null;
-    private Image playerDown = null;
-    private Image playerLeft = null;
+    private Image player;
+    private Image playerRight;
+    private Image playerUp;
+    private Image playerDown;
+    private Image playerLeft;
 
     private int score = 0;
 
     private String name = "";
 
-    public Player(Field field, AssetManager assetManager, Point2D pos, ViewDirection playerLooks, String name) {
+    public Player(Field field, Point2D pos, ViewDirection playerLooks, String name) {
         this.field = field;
         this.playerLooks = playerLooks;
         this.setId(name);
-
-        setImage(assetManager.getImage("player"));
-        playerRight = assetManager.getImage("looksRight");
-        playerLeft = assetManager.getImage("looksLeft");
-        playerUp = assetManager.getImage("looksUp");
-        playerDown = assetManager.getImage("looksDown");
-        bombImage = assetManager.getImage("bomb");
-        bombAudio = assetManager.getAudio("explosion");
-
-        setPreserveRatio(true);
-        setCache(true);
-
-        setFitWidth(Player.WIDTH);
-        setFitHeight(Player.HEIGHT);
-        
         initialPos = pos;
-
-        setX(initialPos.getX());
-        setY(initialPos.getY());
     }
 
     public void update(long now, double delta) {
@@ -199,5 +181,43 @@ public class Player extends GameObject {
 
     public String getName() {
         return name;
+    }
+
+    public void setPlayer(Image player) {
+        this.player = player;
+        setImage(player);
+
+        setPreserveRatio(true);
+        setCache(true);
+
+        setFitWidth(Player.WIDTH);
+        setFitHeight(Player.HEIGHT);
+
+        setX(initialPos.getX());
+        setY(initialPos.getY());
+    }
+
+    public void setPlayerRight(Image playerRight) {
+        this.playerRight = playerRight;
+    }
+
+    public void setPlayerUp(Image playerUp) {
+        this.playerUp = playerUp;
+    }
+
+    public void setPlayerDown(Image playerDown) {
+        this.playerDown = playerDown;
+    }
+
+    public void setPlayerLeft(Image playerLeft) {
+        this.playerLeft = playerLeft;
+    }
+
+    public void setBombImage(Image bombImage) {
+        this.bombImage = bombImage;
+    }
+
+    public void setBombAudio(MediaPlayer bombAudio) {
+        this.bombAudio = bombAudio;
     }
 }

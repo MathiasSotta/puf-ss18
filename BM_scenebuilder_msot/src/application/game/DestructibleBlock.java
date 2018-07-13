@@ -1,9 +1,4 @@
 package application.game;
 
-public class DestructibleBlock extends GameObject {
-
-    @Override
-    public void update(long now, double delta) {
-
-    }
+public class DestructibleBlock extends Block {
 }

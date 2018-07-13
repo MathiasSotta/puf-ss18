@@ -1,5 +1,6 @@
 package application.Manager;
 
+import application.game.BlockFactory;
 import application.game.DestructibleBlock;
 import application.game.Field;
 import application.game.IndestructibleBlock;
@@ -28,9 +29,7 @@ public class GameboardManager {
 
                 if (x == 1) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
-                    IndestructibleBlock i = new IndestructibleBlock();
-                    i.setId("IndestructibleBlock");
-                    i.setImage(assetManager.getImage("indestructible"));
+                    IndestructibleBlock i = (IndestructibleBlock)BlockFactory.getBlock(BlockFactory.INDESTRUCTIBLE);
                     i.setFitWidth(r.getWidth() - 10);
                     i.setFitHeight(r.getHeight() - 10);
                     i.setX(r.getMinX() + 5);
@@ -40,9 +39,7 @@ public class GameboardManager {
                 //setting up the destructible blocks on the game field
                 if (x == 2) {
                     Rectangle2D r = field.getGameMatrix().get(counter);
-                    DestructibleBlock d = new DestructibleBlock();
-                    d.setId("DestructibleBlock");
-                    d.setImage(assetManager.getImage("destructible"));
+                    DestructibleBlock d = (DestructibleBlock) BlockFactory.getBlock(BlockFactory.DESTRUCTIBLE);
                     d.setFitWidth(r.getWidth() - 10);
                     d.setFitHeight(r.getHeight() - 10);
                     d.setX(r.getMinX() + 5);

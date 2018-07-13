@@ -10,7 +10,7 @@ public class GameTimerThread extends Thread {
 
     private Text gameTimer;
 
-    private int time = 5;
+    private int time = 300;
 
     private boolean ended = false;
 

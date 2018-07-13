@@ -19,7 +19,7 @@ public class Game {
     private static String PLAYER_TWO_NAME = "PLAYER_TWO";
 
     private GameAnimationTimer gameAnimationTimer;
-    private AssetManager assetManager = new AssetManager();
+    private AssetManager assetManager = AssetManager.getInstance();
     private GameboardManager gameboardManager = new GameboardManager();
     private Field field;
 
@@ -50,7 +50,6 @@ public class Game {
     public void Initialize(AnchorPane pane, AnchorPane infoBoard) {
         this.field = new Field(pane);
         this.infoBoard = infoBoard;
-        assetManager.loadAssets();
 
         // fill gameBoard with blocks ...
         gameboardManager.fillGameBoardWithBlocks(field, assetManager);
@@ -129,9 +128,8 @@ public class Game {
         return this.field;
     }
 
-    // todo: move to factory pattern
     private Player createPlayerObject(Point2D initialPos, String name) {
-        Player player = new Player(field, assetManager, initialPos, ViewDirection.DOWN, name);
+        Player player = PlayerFactory.getPlayer(field, initialPos, name);
         return player;
     }
 
